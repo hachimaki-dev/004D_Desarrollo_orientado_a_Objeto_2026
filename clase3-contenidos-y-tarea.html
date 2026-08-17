@@ -31,7 +31,28 @@ p,li{font-size:clamp(17px,1.55vw,23px);line-height:1.5;max-width:920px}
 .card p{font-size:17px;margin:0;color:#454a52}
 .card strong{display:block;margin-bottom:9px;font-size:18px}
 .tag{display:inline-block;background:var(--soft);border-radius:999px;padding:7px 11px;font-size:12px;font-weight:750;letter-spacing:.04em;margin:4px 4px 4px 0}
-.code{background:#15171a;color:#f4f4f4;border-radius:14px;padding:22px 25px;font-family:"SFMono-Regular",Consolas,monospace;font-size:15px;line-height:1.55;white-space:pre;overflow:auto;max-width:1000px}
+.code{
+  display:block;
+  margin:0;
+  background:#15171a;
+  color:#f4f4f4;
+  border-radius:14px;
+  padding:22px 25px;
+  font-family:"SFMono-Regular",Consolas,monospace;
+  font-size:15px;
+  line-height:1.55;
+  white-space:pre;
+  overflow-x:auto;
+  overflow-y:hidden;
+  max-width:1000px;
+  tab-size:4;
+}
+.code code{
+  font-family:inherit;
+  white-space:inherit;
+}
+.code-card{margin:12px 0;font-size:14px;padding:14px 16px;max-width:100%}
+
 .hl{color:#fff;font-weight:800}
 .rule{border-left:3px solid #111;padding:5px 0 5px 20px;margin:15px 0;max-width:900px}
 .exercise{display:grid;grid-template-columns:150px 1fr;gap:30px;max-width:1000px;align-items:start}
@@ -95,7 +116,7 @@ button:hover{background:var(--soft)}
   <section v-else-if="current===3" class="slide">
     <div class="kicker">03 · Encapsulamiento</div><h2>Encapsular es controlar el acceso</h2>
     <p class="lead">No significa simplemente “poner private”. Significa proteger el estado interno de un objeto y definir cómo puede ser consultado o modificado.</p>
-    <div class="code">private int vida;</div>
+    <pre class="code"><code>private int vida;</code></pre>
     <div class="rule"><p>Desde fuera de <code>Personaje</code>, no podemos modificar directamente <code>vida</code>.</p></div>
     <p>La clase se convierte en la responsable de decidir qué cambios son válidos.</p>
   </section>
@@ -111,7 +132,7 @@ button:hover{background:var(--soft)}
 
   <section v-else-if="current===5" class="slide">
     <div class="kicker">05 · Getters y setters</div><h2>Una puerta de entrada al estado interno</h2>
-    <div class="code">public void setVida(int vida) {
+    <pre class="code"><code>public void setVida(int vida) {
     if (vida &lt; 0) {
         this.vida = 0;
     } else {
@@ -121,16 +142,24 @@ button:hover{background:var(--soft)}
 
 public int getVida() {
     return vida;
-}</div>
+}</code></pre>
     <p class="small">Getter: consulta. Setter: propone una modificación. La clase decide si esa modificación es válida.</p>
   </section>
 
   <section v-else-if="current===6" class="slide">
     <div class="kicker">06 · this</div><h2>¿Qué significa <code>this.vida</code>?</h2>
     <p class="lead"><code>this</code> representa al objeto actual. Permite distinguir el atributo del objeto de un parámetro local con el mismo nombre.</p>
-    <div class="code">public void setVida(int vida) {
-    this.vida = vida;
-}</div>
+    <pre class="code"><code>public void setVida(int vida) {
+    if (vida &lt; 0) {
+        this.vida = 0;
+    } else {
+        this.vida = vida;
+    }
+}
+
+public int getVida() {
+    return vida;
+}</code></pre>
     <div class="rule"><p>“La vida de este personaje recibe el valor de vida que llegó al método”.</p></div>
   </section>
 
@@ -147,25 +176,25 @@ public int getVida() {
   <section v-else-if="current===8" class="slide">
     <div class="kicker">08 · Comportamiento</div><h2>Un objeto no solo tiene datos.</h2>
     <p class="lead">También tiene comportamientos relacionados con esos datos.</p>
-    <div class="code">personaje.recibirAtaque(25);</div>
+    <pre class="code"><code>personaje.recibirAtaque(25);</code></pre>
     <p>La operación tiene más sentido que hacer desde <code>Main</code> algo como:</p>
-    <div class="code">personaje.vida = personaje.vida - 25;</div>
+    <pre class="code"><code>personaje.vida = personaje.vida - 25;</code></pre>
     <div class="rule"><p>El primer enfoque entrega responsabilidad al objeto. El segundo expone demasiado de su implementación.</p></div>
   </section>
 
   <section v-else-if="current===9" class="slide">
     <div class="kicker">09 · Scanner</div><h2>Entrada de datos desde la consola</h2>
-    <div class="code">Scanner scanner = new Scanner(System.in);
+    <pre class="code"><code>Scanner scanner = new Scanner(System.in);
 
-String nombre = scanner.nextLine();</div>
+String nombre = scanner.nextLine();</code></pre>
     <p><code>Scanner</code> permite leer información ingresada por el usuario. En nuestro caso, usamos <code>nextLine()</code> para obtener una línea completa como <code>String</code>.</p>
     <div class="rule"><p>La entrada del usuario es texto. Si necesitamos un número, debemos convertirlo.</p></div>
   </section>
 
   <section v-else-if="current===10" class="slide">
     <div class="kicker">10 · Parseo</div><h2>De texto a número</h2>
-    <div class="code">String texto = scanner.nextLine();
-int vida = Integer.parseInt(texto);</div>
+    <pre class="code"><code>String texto = scanner.nextLine();
+int vida = Integer.parseInt(texto);</code></pre>
     <p><code>nextLine()</code> entrega un <code>String</code>. <code>Integer.parseInt()</code> intenta convertir ese texto a un <code>int</code>.</p>
     <div class="rule"><p>Ejemplo: <code>"120"</code> → <code>120</code>. Si el texto no representa un entero válido, la conversión puede producir una excepción.</p></div>
     <p class="small">Nota conceptual: parsear no es lo mismo que hacer un cast. Aquí estamos interpretando texto para producir otro tipo.</p>
@@ -173,30 +202,33 @@ int vida = Integer.parseInt(texto);</div>
 
   <section v-else-if="current===11" class="slide">
     <div class="kicker">11 · While</div><h2>Repetir mientras una condición sea verdadera</h2>
-    <div class="code">boolean mantener_menu = true;
+    <pre class="code"><code>boolean mantener_menu = true;
 
 while (mantener_menu) {
     // mostrar y procesar menú
-}</div>
+}</code></pre>
     <p>El menú continúa ejecutándose mientras <code>mantener_menu</code> sea <code>true</code>. Cuando pasa a <code>false</code>, el ciclo termina.</p>
     <p class="small">Patrón útil: una variable de control expresa claramente cuándo debe continuar una interacción.</p>
   </section>
 
   <section v-else-if="current===12" class="slide">
     <div class="kicker">12 · switch</div><h2>Elegir entre alternativas</h2>
-    <div class="code">switch (opcion_menu) {
+    <pre class="code"><code>switch (opcion_menu) {
     case "1":
         // crear personaje
         break;
+
     case "2":
         // ver personaje
         break;
+
     case "3":
         // cerrar
         break;
+
     default:
         // opción no reconocida
-}</div>
+}</code></pre>
     <p><code>switch</code> permite expresar de manera clara que una entrada puede llevar a diferentes caminos.</p>
   </section>
 
