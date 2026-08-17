@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Repaso — Encapsulamiento y diseño de objetos en Java</title>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<style>
+:root{
+  --bg:#f4f5f7; --surface:#fff; --ink:#17191d; --muted:#666b73;
+  --line:#dfe2e6; --accent:#111; --soft:#eceef1;
+}
+*{box-sizing:border-box}
+html,body,#app{margin:0;width:100%;height:100%;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink)}
+body{overflow:hidden}
+.app{height:100%;display:flex;flex-direction:column}
+.top{height:68px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.94);display:flex;align-items:center;justify-content:space-between;padding:0 34px;position:relative;z-index:5}
+.brand{font-size:13px;font-weight:750;letter-spacing:.08em;text-transform:uppercase}
+.counter{font-size:13px;color:var(--muted)}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;background:#111;transition:.3s}
+main{flex:1;position:relative;overflow:hidden}
+.slide{height:100%;width:100%;padding:58px 9vw 70px;display:flex;flex-direction:column;justify-content:center;overflow:auto}
+.kicker{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:18px;font-weight:700}
+h1{font-size:clamp(42px,6vw,78px);line-height:.98;letter-spacing:-.055em;margin:0 0 24px;max-width:1050px}
+h2{font-size:clamp(34px,4.4vw,60px);line-height:1.02;letter-spacing:-.045em;margin:0 0 24px;max-width:1000px}
+h3{font-size:24px;margin:0 0 12px}
+p,li{font-size:clamp(17px,1.55vw,23px);line-height:1.5;max-width:920px}
+.lead{font-size:clamp(20px,2vw,29px);line-height:1.42;color:#393d44;max-width:900px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;max-width:1050px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:25px}
+.card p{font-size:17px;margin:0;color:#454a52}
+.card strong{display:block;margin-bottom:9px;font-size:18px}
+.tag{display:inline-block;background:var(--soft);border-radius:999px;padding:7px 11px;font-size:12px;font-weight:750;letter-spacing:.04em;margin:4px 4px 4px 0}
+.code{background:#15171a;color:#f4f4f4;border-radius:14px;padding:22px 25px;font-family:"SFMono-Regular",Consolas,monospace;font-size:15px;line-height:1.55;white-space:pre;overflow:auto;max-width:1000px}
+.hl{color:#fff;font-weight:800}
+.rule{border-left:3px solid #111;padding:5px 0 5px 20px;margin:15px 0;max-width:900px}
+.exercise{display:grid;grid-template-columns:150px 1fr;gap:30px;max-width:1000px;align-items:start}
+.num{font-size:64px;font-weight:850;letter-spacing:-.06em}
+.exercise p{margin-top:0}
+.controls{height:62px;border-top:1px solid var(--line);background:#fff;display:flex;align-items:center;justify-content:center;gap:10px}
+button{border:1px solid var(--line);background:#fff;border-radius:9px;padding:9px 14px;cursor:pointer;font-weight:650}
+button:hover{background:var(--soft)}
+.dots{display:flex;gap:5px;margin:0 10px}
+.dot{width:7px;height:7px;border-radius:50%;background:#d0d3d7;cursor:pointer}
+.dot.active{background:#111}
+.small{font-size:14px!important;color:var(--muted)!important}
+.ticket{max-width:1050px}
+.ticket-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;max-width:1050px}
+.question{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px}
+.question p{font-size:17px;margin:0 0 9px}
+.options{font-size:15px;line-height:1.55;color:#454a52}
+.answer-key{margin-top:18px;padding:14px 18px;background:var(--soft);border-radius:12px;max-width:1050px}
+@media(max-width:760px){
+  .ticket-grid{grid-template-columns:1fr}
+}
+
+@media(max-width:760px){
+ .top{padding:0 18px}.slide{padding:38px 22px 48px}.grid{grid-template-columns:1fr}.exercise{grid-template-columns:1fr;gap:4px}.num{font-size:44px}
+ .code{font-size:12px;padding:16px}
+}
+</style>
+</head>
+<body>
+<div id="app" class="app">
+<header class="top">
+  <div class="brand">Java · Repaso de clase</div>
+  <div class="counter">{{ current + 1 }} / {{ slides.length }}</div>
+  <div class="progress" :style="{width: ((current+1)/slides.length*100)+'%'}"></div>
+</header>
+
+<main @keydown.left.prevent="prev" @keydown.right.prevent="next" tabindex="0">
+  <section v-if="current===0" class="slide">
+    <div class="kicker">Desarrollo Orientado a Objetos</div>
+    <h1>De “guardar datos” a diseñar objetos que protegen sus propias reglas.</h1>
+    <p class="lead">Hoy conectamos Java con una idea fundamental de la ingeniería de software: un objeto no debería ser solo un conjunto de variables. También debe proteger aquello que sabemos que siempre debe ser cierto.</p>
+  </section>
+
+  <section v-else-if="current===1" class="slide">
+    <div class="kicker">01 · La idea central</div><h2>Primero: entender el problema en lenguaje simple</h2>
+    <div class="rule"><p>Un personaje tiene datos. Algunos pueden cambiar. Pero no cualquier cambio debería estar permitido.</p></div>
+    <div class="rule"><p>Por ejemplo: la vida de un personaje puede cambiar, pero su vida no debería quedar en −20.</p></div>
+    <p>Cuando una clase protege estas condiciones, estamos empezando a diseñar objetos con responsabilidades propias.</p>
+  </section>
+
+  <section v-else-if="current===2" class="slide">
+    <div class="kicker">02 · Abstracción</div><h2>¿Qué significa abstraer?</h2>
+    <p class="lead">Abstraer es quedarse con lo importante para el problema y ocultar detalles que no necesitamos manipular directamente.</p>
+    <div class="grid">
+      <div class="card"><strong>En el mundo real</strong><p>Sabemos que un personaje tiene nombre, vida y puede recibir ataques. No necesitamos modelar cada molécula de su cuerpo.</p></div>
+      <div class="card"><strong>En el programa</strong><p>La clase <code>Personaje</code> representa aquello que nuestro sistema necesita conocer y hacer con un personaje.</p></div>
+    </div>
+    <p class="small">Idea ingenieril: la abstracción reduce complejidad al trabajar con modelos relevantes para el dominio.</p>
+  </section>
+
+  <section v-else-if="current===3" class="slide">
+    <div class="kicker">03 · Encapsulamiento</div><h2>Encapsular es controlar el acceso</h2>
+    <p class="lead">No significa simplemente “poner private”. Significa proteger el estado interno de un objeto y definir cómo puede ser consultado o modificado.</p>
+    <div class="code">private int vida;</div>
+    <div class="rule"><p>Desde fuera de <code>Personaje</code>, no podemos modificar directamente <code>vida</code>.</p></div>
+    <p>La clase se convierte en la responsable de decidir qué cambios son válidos.</p>
+  </section>
+
+  <section v-else-if="current===4" class="slide">
+    <div class="kicker">04 · Public vs. private</div><h2>¿Por qué importa?</h2>
+    <div class="grid">
+      <div class="card"><strong>Acceso directo</strong><p><code>personaje.vida = -20;</code><br>El código externo puede romper las reglas del personaje.</p></div>
+      <div class="card"><strong>Acceso controlado</strong><p><code>personaje.setVida(-20);</code><br>La clase puede validar el valor antes de aceptarlo.</p></div>
+    </div>
+    <div class="rule"><p>El objetivo no es impedir cambios. Es impedir cambios inválidos.</p></div>
+  </section>
+
+  <section v-else-if="current===5" class="slide">
+    <div class="kicker">05 · Getters y setters</div><h2>Una puerta de entrada al estado interno</h2>
+    <div class="code">public void setVida(int vida) {
+    if (vida &lt; 0) {
+        this.vida = 0;
+    } else {
+        this.vida = vida;
+    }
+}
+
+public int getVida() {
+    return vida;
+}</div>
+    <p class="small">Getter: consulta. Setter: propone una modificación. La clase decide si esa modificación es válida.</p>
+  </section>
+
+  <section v-else-if="current===6" class="slide">
+    <div class="kicker">06 · this</div><h2>¿Qué significa <code>this.vida</code>?</h2>
+    <p class="lead"><code>this</code> representa al objeto actual. Permite distinguir el atributo del objeto de un parámetro local con el mismo nombre.</p>
+    <div class="code">public void setVida(int vida) {
+    this.vida = vida;
+}</div>
+    <div class="rule"><p>“La vida de este personaje recibe el valor de vida que llegó al método”.</p></div>
+  </section>
+
+  <section v-else-if="current===7" class="slide">
+    <div class="kicker">07 · Reglas del dominio</div><h2>La vida nunca puede ser negativa.</h2>
+    <p class="lead">Esta no es una regla de Java. Es una regla de nuestro mundo.</p>
+    <div class="grid">
+      <div class="card"><strong>Regla del dominio</strong><p>Un personaje no puede tener menos de 0 puntos de vida.</p></div>
+      <div class="card"><strong>Responsabilidad</strong><p>El objeto <code>Personaje</code> debe proteger esa regla, independientemente de quién intente cambiar su vida.</p></div>
+    </div>
+    <p>Esto es una primera aproximación a la idea de <strong>invariante</strong>: una condición que debe mantenerse válida durante la vida del objeto.</p>
+  </section>
+
+  <section v-else-if="current===8" class="slide">
+    <div class="kicker">08 · Comportamiento</div><h2>Un objeto no solo tiene datos.</h2>
+    <p class="lead">También tiene comportamientos relacionados con esos datos.</p>
+    <div class="code">personaje.recibirAtaque(25);</div>
+    <p>La operación tiene más sentido que hacer desde <code>Main</code> algo como:</p>
+    <div class="code">personaje.vida = personaje.vida - 25;</div>
+    <div class="rule"><p>El primer enfoque entrega responsabilidad al objeto. El segundo expone demasiado de su implementación.</p></div>
+  </section>
+
+  <section v-else-if="current===9" class="slide">
+    <div class="kicker">09 · Scanner</div><h2>Entrada de datos desde la consola</h2>
+    <div class="code">Scanner scanner = new Scanner(System.in);
+
+String nombre = scanner.nextLine();</div>
+    <p><code>Scanner</code> permite leer información ingresada por el usuario. En nuestro caso, usamos <code>nextLine()</code> para obtener una línea completa como <code>String</code>.</p>
+    <div class="rule"><p>La entrada del usuario es texto. Si necesitamos un número, debemos convertirlo.</p></div>
+  </section>
+
+  <section v-else-if="current===10" class="slide">
+    <div class="kicker">10 · Parseo</div><h2>De texto a número</h2>
+    <div class="code">String texto = scanner.nextLine();
+int vida = Integer.parseInt(texto);</div>
+    <p><code>nextLine()</code> entrega un <code>String</code>. <code>Integer.parseInt()</code> intenta convertir ese texto a un <code>int</code>.</p>
+    <div class="rule"><p>Ejemplo: <code>"120"</code> → <code>120</code>. Si el texto no representa un entero válido, la conversión puede producir una excepción.</p></div>
+    <p class="small">Nota conceptual: parsear no es lo mismo que hacer un cast. Aquí estamos interpretando texto para producir otro tipo.</p>
+  </section>
+
+  <section v-else-if="current===11" class="slide">
+    <div class="kicker">11 · While</div><h2>Repetir mientras una condición sea verdadera</h2>
+    <div class="code">boolean mantener_menu = true;
+
+while (mantener_menu) {
+    // mostrar y procesar menú
+}</div>
+    <p>El menú continúa ejecutándose mientras <code>mantener_menu</code> sea <code>true</code>. Cuando pasa a <code>false</code>, el ciclo termina.</p>
+    <p class="small">Patrón útil: una variable de control expresa claramente cuándo debe continuar una interacción.</p>
+  </section>
+
+  <section v-else-if="current===12" class="slide">
+    <div class="kicker">12 · switch</div><h2>Elegir entre alternativas</h2>
+    <div class="code">switch (opcion_menu) {
+    case "1":
+        // crear personaje
+        break;
+    case "2":
+        // ver personaje
+        break;
+    case "3":
+        // cerrar
+        break;
+    default:
+        // opción no reconocida
+}</div>
+    <p><code>switch</code> permite expresar de manera clara que una entrada puede llevar a diferentes caminos.</p>
+  </section>
+
+  <section v-else-if="current===13" class="slide">
+    <div class="kicker">13 · Flujo completo</div><h2>Todo lo visto comienza a conectarse</h2>
+    <div class="grid">
+      <div class="card"><strong>Scanner</strong><p>Obtiene la decisión del usuario.</p></div>
+      <div class="card"><strong>While</strong><p>Mantiene vivo el menú.</p></div>
+      <div class="card"><strong>Switch</strong><p>Selecciona la operación.</p></div>
+      <div class="card"><strong>Personaje</strong><p>Representa datos y comportamientos.</p></div>
+      <div class="card"><strong>Encapsulamiento</strong><p>Protege el estado.</p></div>
+      <div class="card"><strong>Reglas del dominio</strong><p>Definen qué estados son válidos.</p></div>
+    </div>
+  </section>
+
+  <section v-else-if="current===14" class="slide">
+    <div class="kicker">14 · Mirada ingenieril</div><h2>¿Qué problema estamos resolviendo realmente?</h2>
+    <p class="lead">Estamos reduciendo la cantidad de lugares del programa que necesitan conocer cómo funciona internamente un personaje.</p>
+    <div class="rule"><p><strong>Antes:</strong> cualquier parte podría modificar directamente los datos.</p></div>
+    <div class="rule"><p><strong>Después:</strong> el objeto ofrece operaciones y decide cómo mantener sus reglas.</p></div>
+    <p>Esto prepara el camino hacia principios de diseño más grandes: bajo acoplamiento, alta cohesión, responsabilidades claras y polimorfismo.</p>
+  </section>
+
+  <section v-else-if="current===15" class="slide">
+    <div class="kicker">15 · Ejercicio 1</div>
+    <div class="exercise"><div class="num">01</div><div><h2>El oro de Poniente</h2>
+    <p>Nuestro personaje ya tiene nombre, apellido y vida. Ahora necesitamos incorporar el oro que utilizará durante su aventura.</p>
+    <p>Agrega la cantidad de oro inicial al crear el personaje y permite visualizarla junto con sus demás datos.</p>
+    <p>Durante las pruebas descubrimos un problema: actualmente es posible asignarle al personaje una cantidad negativa de oro. Un personaje no puede tener menos de 0 monedas.</p>
+    <p>Corrige el diseño para garantizar que esta regla siempre se cumpla, incluso cuando se intente modificar el oro desde otra parte del programa.</p>
+    <p>Finalmente, agrega una operación que permita gastar una determinada cantidad de oro. El personaje solo podrá realizar el gasto si posee suficientes monedas.</p>
+    </div></div>
+  </section>
+
+  <section v-else-if="current===16" class="slide">
+    <div class="kicker">16 · Ejercicio 2</div>
+    <div class="exercise"><div class="num">02</div><div><h2>La batalla por Poniente</h2>
+    <p>Nuestro personaje necesita una nueva característica: la fuerza. Esta determinará cuánto daño puede realizar durante un combate.</p>
+    <p>Agrega la fuerza al personaje y permite establecerla y visualizarla durante la creación.</p>
+    <p>Durante las pruebas descubrimos que es posible asignarle valores inválidos, como una fuerza negativa. La fuerza de un personaje nunca puede ser menor que 0.</p>
+    <p>Corrige el diseño para garantizar esta regla.</p>
+    <p>Ahora los personajes deben poder enfrentarse. Un personaje debe poder atacar a otro utilizando su fuerza, y el personaje atacado debe actualizar correctamente su vida y su estado.</p>
+    <p>Un personaje que haya muerto no puede continuar recibiendo ataques.</p>
+    <p>La batalla debe poder realizarse entre dos objetos <code>Personaje</code>, sin que <code>Main</code> tenga que modificar directamente sus vidas.</p>
+    </div></div>
+  </section>
+
+  <section v-else-if="current===17" class="slide">
+    <div class="kicker">17 · Ejercicio 3</div>
+    <div class="exercise"><div class="num">03</div><div><h2>Las casas de Poniente</h2>
+    <p>Los personajes ahora pertenecen a una casa:</p>
+    <p><span class="tag">STARK</span><span class="tag">LANNISTER</span><span class="tag">TARGARYEN</span><span class="tag">BARATHEON</span><span class="tag">GREYJOY</span></p>
+    <p>La casa debe formar parte de los datos del personaje y debe poder visualizarse junto con el resto de su información.</p>
+    <p>Cada casa posee una característica especial durante el combate: STARK puede resistir un ataque; LANNISTER obtiene oro al derrotar; TARGARYEN aumenta su ataque con poca vida; BARATHEON realiza más daño con mucha vida; GREYJOY puede esquivar.</p>
+    <p>Implementa estas reglas en el sistema de combate. Todos los personajes deben seguir utilizando los mismos comportamientos de combate, pero su casa debe influir en la forma en que estos comportamientos funcionan.</p>
+    <p>Finalmente, inventa una habilidad adicional para una de las casas y agrégala al juego.</p>
+    </div></div>
+  </section>
+
+  <section v-else-if="current===18" class="slide">
+    <div class="kicker">18 · Cierre</div><h2>La pregunta importante no es “¿cómo lo programo?”</h2>
+    <p class="lead">Primero preguntamos: ¿qué cosas son ciertas en nuestro mundo?, ¿qué cosas puede hacer cada objeto?, ¿qué cosas no deberían poder hacer otros objetos?</p>
+    <p>Después elegimos las herramientas de Java para expresar ese diseño.</p>
+    <div class="rule"><p>Programar orientado a objetos no es solamente crear clases. Es decidir qué responsabilidades pertenece a cada objeto y proteger las reglas que hacen válido su estado.</p></div>
+    <p>¿Dudas, preguntas o sugerencias?</p>
+  </section>
+
+  <section v-else-if="current===19" class="slide">
+    <div class="kicker">19 · Ticket de salida</div>
+    <h2>Chequeo de comprensión</h2>
+    <p class="lead">Responde las 6 preguntas sin mirar las diapositivas anteriores. Luego revisa tus respuestas.</p>
+
+    <div class="ticket-grid">
+      <div class="question">
+        <p><strong>1. ¿Cuál es el objetivo principal del encapsulamiento?</strong></p>
+        <div class="options">A) Eliminar los métodos · B) Proteger el estado interno y controlar cómo se modifica · C) Evitar crear objetos · D) Hacer todos los atributos públicos</div>
+      </div>
+
+      <div class="question">
+        <p><strong>2. Verdadero o falso:</strong> Un setter siempre debe aceptar cualquier valor que reciba.</p>
+        <div class="options">A) Verdadero · B) Falso</div>
+      </div>
+
+      <div class="question">
+        <p><strong>3. ¿Qué representa <code>this</code> dentro de un método de instancia?</strong></p>
+        <div class="options">A) La clase padre · B) El método actual · C) El objeto actual · D) Un nuevo objeto</div>
+      </div>
+
+      <div class="question">
+        <p><strong>4. Verdadero o falso:</strong> “La vida nunca puede ser negativa” es una regla del dominio del personaje.</p>
+        <div class="options">A) Verdadero · B) Falso</div>
+      </div>
+
+      <div class="question">
+        <p><strong>5. ¿Qué permite hacer <code>Integer.parseInt(texto)</code>?</strong></p>
+        <div class="options">A) Convertir texto a <code>int</code> · B) Convertir <code>int</code> a texto · C) Crear un objeto · D) Leer una línea desde la consola</div>
+      </div>
+
+      <div class="question">
+        <p><strong>6. ¿Qué combinación representa mejor el flujo del menú?</strong></p>
+        <div class="options">A) Scanner → While → Switch → Personaje · B) Switch → Scanner → While → Personaje · C) Personaje → Scanner → Switch → While · D) While → Personaje → Scanner → Switch</div>
+      </div>
+    </div>
+
+    <div class="answer-key">
+      <strong>Clave de autocorrección:</strong>
+      1-B · 2-B · 3-C · 4-A · 5-A · 6-A
+    </div>
+  </section>
+
+</main>
+
+<footer class="controls">
+  <button @click="prev">← Anterior</button>
+  <div class="dots">
+    <span v-for="(s,i) in slides" :key="i" class="dot" :class="{active:i===current}" @click="current=i"></span>
+  </div>
+  <button @click="next">Siguiente →</button>
+</footer>
+</div>
+
+<script>
+const { createApp } = Vue;
+createApp({
+  data(){ return { current:0, slides:Array.from({length:20},(_,i)=>i) } },
+  methods: {
+    next() {
+      if (this.current < this.slides.length - 1) {
+        this.current++;
+      }
+    },
+    prev() {
+      if (this.current > 0) {
+        this.current--;
+      }
+    }
+  },
+  mounted() {
+    window.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+        this.next();
+      }
+
+      if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        this.prev();
+      }
+
+      if (e.key === 'Home') {
+        this.current = 0;
+      }
+
+      if (e.key === 'End') {
+        this.current = this.slides.length - 1;
+      }
+    });
+  }
+}).mount('#app');
+</script>
+</body>
+</html>
