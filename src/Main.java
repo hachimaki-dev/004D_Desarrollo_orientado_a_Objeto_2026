@@ -20,6 +20,7 @@ public class Main {
             System.out.println("1.- Crear personaje");
             System.out.println("2.- Ver personaje");
             System.out.println("3.- Cerrar");
+            System.out.println("4.- Testeando cositas");
             opcion_menu = scanner.nextLine();
 
             switch (opcion_menu) {
@@ -35,11 +36,28 @@ public class Main {
                     mantener_menu = false;
                     break;
 
+                case "4":
+                    testeandoCositas();
+                    break;
                 default:
                     System.out.println("Por favor ingrese una opción valida");
                     break;
             }
         }
+    }
+
+    static void testeandoCositas(){
+        System.out.println("Este es ek hacker");
+        Personaje hacker = new Hacker();
+        hacker.trabajar();
+
+        hacker.validarNombre("carlitos");
+        System.out.println(hacker.mostrarNombre());
+
+        System.out.println("Este es el gamedev");
+        Personaje gamedev = new GameDev();
+        gamedev.trabajar();
+        
     }
 
     static void crearPersonaje(Scanner scanner, Personaje personaje_jugador) {

@@ -52,4 +52,11 @@ public class Personaje {
     public int getVida(){
         return vida;
     }
+
+
+
+    public void trabajar(){
+        System.out.println("Chambeando");
+    }
+
 }
