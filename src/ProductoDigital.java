@@ -18,12 +18,12 @@ public class ProductoDigital extends Producto{
 
     @Override
     public int calcularPrecioFinal() {
-        return (getPrecioBase() * this.descuento) / 100 ;
+        return getPrecioBase() - (getPrecioBase() * this.descuento) / 100 ;
     }
 
     @Override
     public String mostrarInfo() {
-        return super.mostrarInfo() + " . El descuento es " + this.descuento + " . Plataforma: " + this.plataforma;
+        return super.mostrarInfo() + " . El descuento es " + this.descuento + "%" + " . Plataforma: " + this.plataforma + ". Precio total: $" + this.calcularPrecioFinal();
     }
 
 }

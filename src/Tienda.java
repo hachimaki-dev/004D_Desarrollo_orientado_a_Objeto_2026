@@ -23,6 +23,7 @@ public class Tienda {
             System.out.println("4. Vender producto");
             System.out.println("5. Resumen del inventario");
             System.out.println("6. Salir");
+            System.out.println("7. Insertar datos de prueba");
 
             System.out.println("Ingrese su opción: ");
 
@@ -35,8 +36,8 @@ public class Tienda {
                 case "2":
                     listarInventario();
                     break;
-                case "3":
-
+                case "3":   
+                    buscarProductoPorNombre();
                     break;
                 case "4":
 
@@ -46,6 +47,9 @@ public class Tienda {
                     break;
                 case "6":
 
+                    break;
+                case "7":
+                    insertarDatosDePrueba();
                     break;
 
                 default:
@@ -85,7 +89,7 @@ public class Tienda {
         }
     }
 
-    static public void registrarProductoFisico(){
+    static public void registrarProductoFisico() {
 
         System.out.println("Ingrese nombre del juego");
         String nombre = sc.nextLine();
@@ -104,7 +108,7 @@ public class Tienda {
         coleccion_juegos_fisicos.add(juego);
     }
 
-    static public void registrarProductoDigital(){
+    static public void registrarProductoDigital() {
 
         System.out.println("Ingrese nombre del juego");
         String nombre = sc.nextLine();
@@ -126,13 +130,51 @@ public class Tienda {
         coleccion_juegos_digitales.add(juego);
     }
 
+    static public void listarInventario() {
+        System.out.println("----INVENTARIO DE JUEGOS FÍSICOS-----");
+        for (ProductoFisico juegoFisico : coleccion_juegos_fisicos) {
+            System.out.println(juegoFisico.mostrarInfo());
+        }
 
-    static public void listarInventario(){
-        System.out.println("****Listado de juegos Físicos****");
-        for (ProductoFisico productoFisico : coleccion_juegos_fisicos) {
-            System.out.println(productoFisico.mostrarInfo());
+        System.out.println("----INVENTARIO DE JUEGOS DIGITALES-----");
+        for (ProductoDigital juegoDigital : coleccion_juegos_digitales) {
+            System.out.println(juegoDigital.mostrarInfo());
+        }
+
+    }
+
+    static void buscarProductoPorNombre(){
+        System.out.println("****Ingrese nombre del juego a buscar****");
+        String nombre_a_buscar = sc.nextLine();
+
+        for( ProductoFisico juego : coleccion_juegos_fisicos ){
+            if (juego.getNombre().contains(nombre_a_buscar)) {
+                System.out.println(juego.mostrarInfo()); 
+            }
+        }
+
+        for(ProductoDigital juego : coleccion_juegos_digitales){
+            if (juego.getNombre().contains(nombre_a_buscar)) {
+                System.out.println(juego.mostrarInfo());
+            }
+
         }
     }
 
+    static void insertarDatosDePrueba(){
+        coleccion_juegos_fisicos.add(new ProductoFisico("Pokémon Escudo", 45000, 10, 2500));
+
+        coleccion_juegos_fisicos.add(new ProductoFisico("Pokémon Espada", 42000, 26, 2500));
+
+        coleccion_juegos_fisicos.add(new ProductoFisico("Factorio", 18000, 60, 2500));
+
+        coleccion_juegos_fisicos.add(new ProductoFisico("PES 2017", 32000, 100, 3000));
+
+        coleccion_juegos_digitales.add(new ProductoDigital("Sonic racing crossworld", 17000, 25, 30, "PC"));
+
+        coleccion_juegos_digitales.add(new ProductoDigital("Undartale", 5000, 66, 15, "Nintendo Switch"));
+
+        System.out.println("Datos de prueba isertados");
+    }
 
 }

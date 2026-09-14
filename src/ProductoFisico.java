@@ -20,7 +20,7 @@ public class ProductoFisico extends Producto {
     @Override
     public String mostrarInfo() {
         // TODO Auto-generated method stub
-        return super.mostrarInfo() + ". Y el costo de envio es " + this.costoEnvio;
+        return super.mostrarInfo() + ". Costo de envio: $" + this.costoEnvio + ". Precio total: $" + this.calcularPrecioFinal();
     }
 
 
