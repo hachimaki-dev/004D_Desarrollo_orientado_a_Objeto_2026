@@ -23,6 +23,7 @@ public class Tienda {
             System.out.println("4. Vender producto");
             System.out.println("5. Resumen del inventario");
             System.out.println("6. Salir");
+            System.out.println("7. casos de prueba");
 
             System.out.println("Ingrese su opción: ");
 
@@ -45,6 +46,10 @@ public class Tienda {
 
                     break;
                 case "6":
+
+                    break;
+                case "7":
+                    insertarDatosPrueba();
 
                     break;
 
@@ -128,11 +133,20 @@ public class Tienda {
 
 
     static public void listarInventario(){
-        System.out.println("****Listado de juegos Físicos****");
-        for (ProductoFisico productoFisico : coleccion_juegos_fisicos) {
-            System.out.println(productoFisico.mostrarInfo());
+        System.err.println("inventario de juego fisico");
+        for (ProductoFisico juegofisico : coleccion_juegos_fisicos) {
+            juegofisico.mostrarInfo();
+            System.out.println(juegofisico);
+        }
+
+        System.err.println("inventario de juego digitales");
+        for (ProductoDigital productoDigital : coleccion_juegos_digitales) {
+            productoDigital.mostrarInfo();
+            System.out.println(productoDigital);
         }
     }
 
-
+    static void insertarDatosPrueba(){
+        coleccion_juegos_fisicos.add(new ProductoFisico("pokemon Escudo", 45000 , 10, 2500));
+    }
 }
