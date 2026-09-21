@@ -64,6 +64,8 @@ public class Main
                 
                 case 5:
 
+                    resumenCatalogo();
+
                     break;
 
                 case 6:
@@ -289,6 +291,39 @@ public class Main
         {
             System.out.println("No se a encontrado materiales.");
         }
+    }
+
+    public static void resumenCatalogo()
+    {   
+        
+        int totalLibros=0;
+
+        int totalRevistas=0;
+
+        int cantidadEjemplares=0;
+
+        System.out.println("La cantidad de materiales disponibles son: " + registroMateriales.size());
+
+        for (int i = 0; i < registroMateriales.size(); i++)
+        {
+
+            if (registroMateriales.get(i) instanceof Libro)
+            {
+                totalLibros += 1;
+            }
+            else if (registroMateriales.get(i) instanceof Libro)
+            {
+                totalRevistas += 1;
+            }
+
+            cantidadEjemplares += registroMateriales.get(i).getCantidadDisponible();
+        }
+        System.out.println("El total de libros es: " + totalLibros);
+
+        System.out.println("El total de revistas es: " + totalRevistas);
+
+        System.out.println("La cantidad total de ejemplares es: " + cantidadEjemplares);
+
     }
 
     public static boolean salir()
