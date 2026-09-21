@@ -6,7 +6,8 @@
 * Que diferencias hay entre Java y Python? 
 * Java definitivamente requiere mucho mas pensamiento a la larga ya que
 * Errores en planificacion realmente complican todo a diferencia de Python
-* Donde puedes mas o menos salirte con la tuya, pero aca no.
+* Donde puedes mas o menos salirte con la tuya, pero aca no (Y yo soy)
+* TERRIBLE planificando, algo para trabajar.
 * Tambien Java y POO en general es mucho menos intuitivo comparado a Python y
 * Programacion linear, pero en todo caso con un poco de cabeza definitivamente
 * Podria entenderlo y hacer algo asi funcionar.
