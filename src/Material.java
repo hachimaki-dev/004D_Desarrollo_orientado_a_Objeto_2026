@@ -24,10 +24,11 @@ public class Material {
         this.cantidadDisponible = cantidadDisponible;
     }
 
-    public abstract int calcularDiasPrestamo();
+    public int calcularDiasPrestamo();
 
     public String mostrarInfo(){
-        
     }
+
+    
 }
 
