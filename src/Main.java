@@ -15,7 +15,7 @@ public class Main
             switch (opcione) 
             {
                 case "1":
-                    registroMateril()
+                    registroMateril();
                     break;
 
                 case "2":
