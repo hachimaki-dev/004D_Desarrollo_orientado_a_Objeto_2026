@@ -60,6 +60,8 @@ public class Main
 
                 case 4:
 
+                    prestamo();
+
                     break;
                 
                 case 5:
@@ -293,9 +295,50 @@ public class Main
         }
     }
 
+    public static void prestamo()
+    {   
+        int respuesta;
+
+        System.out.println("¿Cual es el indice del material que quieres prestar?");
+
+        while (true)
+        {
+            try
+            {
+                respuesta = Integer.parseInt(scanner.nextLine());
+
+                if (respuesta < 0)
+                {
+                    System.out.println("El indice es invalido. Tiene que ser un número entero.");
+                }
+                else
+                {
+                    break;
+                }
+            }
+            catch (Exception e)
+            {
+                System.out.println("Respuesta invalida");
+            }
+        }
+        
+        for (int i=0; i < registroMateriales.size(); i++)
+        {
+            if (i == respuesta)
+            {
+                if (registroMateriales.get(i).getCantidadDisponible() > 0)
+                {
+                    registroMateriales.get(i).setCantidadDisponible(registroMateriales.get(i).getCantidadDisponible() - 1);
+
+                    System.out.println("Titulo: " + registroMateriales.get(i).getTitulo() + "| Dias de prestamos: " + registroMateriales.get(i).calcularDiasPrestamos() + "|Ejemplares restantes: " + registroMateriales.get(i).getCantidadDisponible());
+                }
+            }
+        }
+
+    }
     public static void resumenCatalogo()
     {   
-        
+
         int totalLibros=0;
 
         int totalRevistas=0;
