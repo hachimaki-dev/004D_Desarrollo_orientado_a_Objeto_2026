@@ -16,6 +16,7 @@ public class Main {
 
         boolean seguir = true;
 
+
     while (seguir == true) {
 
         switch (OpcionDelMenu) {
@@ -91,8 +92,9 @@ static void RegistrarMaterial (Scanner sc){
             System.out.println("Ingrese la cantidad de ejemplares disponible");
 
             int CantidadDeEjemplares = sc.nextInt();
-            
-            
+
+            System.out.println("OK, Libro registrado");
+
             break;
 
         case 2:
@@ -105,7 +107,7 @@ static void RegistrarMaterial (Scanner sc){
 
             int CantidadDeEjemplare = sc.nextInt();
 
-            
+            System.out.println("OK, revista registrada");
               
             break;
     
@@ -117,6 +119,8 @@ static void RegistrarMaterial (Scanner sc){
 static void ListarCatalogo(){
 
    System.out.println("Listando catalogo....");
+
+   
 }
 
 static void BuscarPorTitulo(Scanner sc){
@@ -132,6 +136,8 @@ static void ResumenDelCatalogo(){
 
     System.out.println("Resumen del catalogo: ");
 
+
+
 }
 
 static void PrestarMaterial(Scanner sc){
@@ -139,7 +145,6 @@ static void PrestarMaterial(Scanner sc){
     System.out.println("Seleccione el material que necesita: ");
 
     String MaterialPorPrestar = sc.nextLine();
-
     
 
 }

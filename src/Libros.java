@@ -4,8 +4,8 @@ public class Libros extends Material {
 
  
 
-    public Libros(String titulo, String autor, int ejemplaresDisponibles, int numPaginas) {
-        super(titulo, autor, ejemplaresDisponibles);
+    public Libros(String titulo, String autor, int cantidadDisponibles, int numPaginas) {
+        super(titulo, autor, cantidadDisponibles);
         this.numPaginas = numPaginas;
     }
 
@@ -13,8 +13,15 @@ public class Libros extends Material {
         return numPaginas;
     }
 
-    
+
+static int calcularDiasDePrestamo (){
+
+    return 0;
 }
+}
+
+    
+
 
 
 

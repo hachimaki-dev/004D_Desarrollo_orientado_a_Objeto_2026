@@ -1,18 +1,16 @@
 public class Revistas extends Material {
 
-    private String MesDePublicacion;
+    private String mesDePublicacion;
 
 
 
-    public Revistas(String titulo, String autor, int ejemplaresDisponibles, String mesDePublicacion) {
-        super(titulo, autor, ejemplaresDisponibles);
-        MesDePublicacion = mesDePublicacion;
+    public Revistas(String titulo, String autor, int cantidadDisponibles, String mesDePublicacion) {
+        super(titulo, autor, cantidadDisponibles);
+        mesDePublicacion = mesDePublicacion;
     }
-
-
 
     public String getMesDePublicacion() {
-        return MesDePublicacion;
+        return mesDePublicacion;
     }
-    
+ 
 }
