@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Main {
     static Scanner input = new Scanner(System.in);
@@ -15,24 +16,24 @@ public class Main {
                 registrarMaterial();
                 break;
             case "2":
-                System.out.println("Función para listar catalogo pendiente");
+                listarCatalogo();
                 break;
             case "3":
-                System.out.println("Función para buscar material por titulo pendiente");
+                buscarMaterialTitulo();
                 break;
             case "4":
-                System.out.println("Función para prestar material pendiente");
+                prestarMaterial();
                 break;
             case "5":
-                System.out.println("Función para resumir catalogo pendiente");
+                resumirCatalogo();
                 break;
             case "6":
                 boolean Cierre = false;
                 Menu = Cierre;
-                System.out.println("Programa finalizado"); 
+                System.out.println("shao"); 
                 break;
             case "wwssadadbastart":
-                System.out.println("Función para registrar material pendiente");
+                System.out.println("Easter egg que ni me dio tiempo a terminar XD");
                 break;
             default:
                 System.out.println("Opción no valida, intente nuevamente");
@@ -47,7 +48,7 @@ input.close();}
     }
 
     static void mostrarMenu(){
-        System.out.println("\n\n==== BIBLIOTECA REGIONAL====");
+        System.out.println("\n\n==== BIBLIOTECA MUNICIPAL con alzheimer====");
         System.out.println("1. Registrar material");
         System.out.println("2. Listar catalogo");
         System.out.println("3. Buscar material por título");
@@ -61,16 +62,58 @@ input.close();}
         System.out.println("--- Tipo de material ---");
         System.out.print("1. Libro \n2. Revista \nSeleccione: ");
         String tipoMaterial = input.nextLine();
-        if (tipoMaterial.equals("1")){
-            System.out.println("");
-        }
-        else if (tipoMaterial.equals("2")){
+        switch (tipoMaterial) {
+            case "1":
+                System.out.print("Titulo: ");
+                String tituloIngresadolibro = input.nextLine();
+                System.out.print("Autor: ");
+                String autorIngresadolibro = input.nextLine();
+                System.out.print("Cantidad disponible: ");
+                int cantidadIngresadalibro = Integer.parseInt(input.nextLine());
+                System.out.print("Numero de paginas: ");
+                int numeropaginasIngresadaslibro = Integer.parseInt(input.nextLine());
+                
+                
+                System.out.println("Hecho");
+                break;
+            case "2":
+                System.out.print("Titulo: ");
+                String tituloIngresadorevista = input.nextLine();
+                System.out.print("Autor: ");
+                String autorIngresadorevista = input.nextLine();
+                System.out.print("Cantidad disponible: ");
+                int cantidadIngresadarevista = Integer.parseInt(input.nextLine());
+                System.out.print("Mes de publicación: ");
+                String mesingresadorevista = input.nextLine();
+                
 
-        }
-        else{
-            System.out.println("Error, intente nuevamente");
+                System.out.println("Hecho");
+                break;
+        
+            default:
+                System.out.println("Error: Intente nuevamente");
+                break;
         }
         
     }
 
+    static void listarCatalogo(){
+        System.out.println("--- CATALOGO ---");
+    }
+
+    static void buscarMaterialTitulo(){
+        System.out.print("Ingrese el texto a buscar: ");
+        String busquedaMaterial = input.nextLine().toLowerCase();
+        System.out.println("No hay sistema x_x");
+    }
+
+    static void prestarMaterial(){
+        System.out.print("Ingrese el nombre del material: ");
+        String nombreMaterialprestamo = input.nextLine();
+        System.out.println("No hay sistema x_x");
+    }
+
+    static void resumirCatalogo(){
+        System.out.println("¿Que catalogo?");
+    }
 }
