@@ -1,3 +1,9 @@
+// Ahora mismo se esta programdo con java que a diferencia de python aca trabajamos dandole mas caracteristicas al "objeto"
+// lo que diferencia java de python son artas cosas entre estas encontramos que a la hora de difinir una variable en java especificamos el tipo de dato del cual va haccer la variable
+// mientas que en python es mas facil porque solo si es un string el valor de esa variable va entre comillas "" , y si es un entero o boolean se escribe el valor sin mas 
+// Otra mas seria que a diferencia de python , java te permite manejar tus variables  con mas privacidad (private , public , protected ) , en cambio python es mas de "todos somos iguales"
+// Hablando claramente de lo que seria la privacidad 
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -71,19 +77,7 @@ public class Biblioteca {
                     break;
             }
 
-
-
-
-
-
         }
-    
-    
-    
-    
-    
-    
-    
     
     }
 
@@ -93,26 +87,18 @@ public class Biblioteca {
         boolean  mostrar_menu = true;
 
         while (mostrar_menu) {
+            System.out.println("===== Procedimiento de Registro =====");
             System.out.println("1. Libro");
             System.out.println("2. Revista");
             System.out.println("3. SALIR");
         
             int opcion_elegida = 0 ;
-            while (true) {
+
                 try {
                    System.out.println("Seleccione una opcion: ");
                     opcion_elegida = Integer.parseInt(sc.nextLine()) ;
 
-                    if (opcion_elegida == 1 || opcion_elegida == 2 || opcion_elegida == 3 ) {
-                        break ;
-                    }else{
-                        System.out.println("ingrese una opcion valida ");
-                    }    
-                } catch (NumberFormatException e) {
-                    System.out.println("Ingrese una de las opciones aparecidas en el menu ");
-                }
-        
-                switch (opcion_elegida) {
+                    switch (opcion_elegida) {
                     case 1:
                         registrar_libro();
                         break;
@@ -124,16 +110,14 @@ public class Biblioteca {
                         break ;
                     default:
                         break;
+                    }                       
+                } catch (NumberFormatException e) {
+                    System.out.println("Ingrese una de las opciones aparecidas en el menu ");
                 }
             
-            
-            }
-        
-        
-        
-        
         }
     }
+
 
 
     static void registrar_libro (){
@@ -144,13 +128,44 @@ public class Biblioteca {
         String titulo = sc.nextLine().toLowerCase() ;
 
         System.out.println("Autor del libro :");
-        String autor = sc.nextLine() ;
+        String autor = sc.nextLine().toLowerCase() ;
 
-        System.out.println("cantidad disponible :");
-        int cantidad_disponible = Integer.parseInt(sc.nextLine()) ;
+        int cantidad_disponible = 0 ;
+        while (true) {
+            try {
+                System.out.println("cantidad disponible :");
+                cantidad_disponible = Integer.parseInt(sc.nextLine()) ;
+            
+                if (cantidad_disponible < 0) {
+                    System.out.println("ingrese una cantidad mayor a 0");
+                }
+                else{
+                    break ;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("ingrese una opcion valida");
+            }
+        }
 
-        System.out.println("Numero de paginas del libro :");
-        int numero_d_paginas = Integer.parseInt(sc.nextLine()) ;
+
+        int numero_d_paginas = 0 ;
+        while (true) {
+            try {
+                System.out.println("Numero de paginas del libro :");
+                numero_d_paginas = Integer.parseInt(sc.nextLine()) ;
+            
+                if (numero_d_paginas <= 0) {
+                    System.out.println("ingrese una cantidad de paginas valida ");
+                }
+                else{
+                    break ;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("ingrese una opcion valida");
+            }
+        }
+
+        
 
         Libro libro_agregado = new Libro(titulo, autor, cantidad_disponible, numero_d_paginas) ;
 
@@ -167,17 +182,31 @@ public class Biblioteca {
     static  void registrar_revista(){
         System.out.println("===== Registro de Revista =====");
         
-        System.out.println("Titulo del de la revista :");
+        System.out.println("Titulo  de la revista :");
         String titulo = sc.nextLine().toLowerCase() ;
 
         System.out.println("Autor de la revista :");
-        String autor = sc.nextLine() ;
+        String autor = sc.nextLine().toLowerCase() ;
 
-        System.out.println("cantidad disponible :");
-        int cantidad_disponible = Integer.parseInt(sc.nextLine()) ;
+        int cantidad_disponible = 0 ;
+        while (true) {
+            try {
+                System.out.println("cantidad disponible :");
+                cantidad_disponible = Integer.parseInt(sc.nextLine()) ;
+            
+                if (cantidad_disponible < 0) {
+                    System.out.println("ingrese una cantidad mayor a 0");
+                }
+                else{
+                    break ;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("ingrese una opcion valida");
+            }
+        }
 
         System.out.println("Mes de publicacion  de la revista :");
-        String mes_publicacion = sc.nextLine() ;
+        String mes_publicacion = sc.nextLine().toLowerCase() ;
         
         Revista revista_agregada = new Revista(titulo, autor, cantidad_disponible, mes_publicacion);
 
@@ -192,6 +221,7 @@ public class Biblioteca {
         if (inventario_cnjunto.isEmpty()) {
             System.out.println("No hay ningun libro ni revista agregado todavia !");
         }else {
+            System.out.println("");
             System.out.println("==== Libros Registrados ===");
 
             for (Libro libro : inventario_libros) {
@@ -199,33 +229,41 @@ public class Biblioteca {
                 
             }
             
+            System.out.println("");
+
             System.out.println("==== Revistaa Registradas ===");
 
             for (Revista revista : inventario_revistas) {
                 System.out.println(revista.mostrarinfo());
             }
 
+            System.out.println("");
 
 
         }
     }
 
     static void buscar_material(){
-        System.out.println("Ingrese el Titulo del libro o revista que esta buscando :");
-        String buscar = sc.nextLine().toLowerCase() ;
+        if (inventario_cnjunto.isEmpty()) {
+            System.out.println("No hay nada resgistrado todavia , porvafor registre algo antes de buscar ");
+        }else{
+            System.out.println("Ingrese el Titulo del libro o revista que esta buscando :");
+            String buscar = sc.nextLine().toLowerCase() ;
 
-        boolean bandera = false ;
+            boolean bandera = false ;
 
-        for (Material encontrado : inventario_cnjunto) {
-            if (encontrado.gettitulo().contains(buscar)) {
-                System.out.println(encontrado.mostrarinfo());
-                bandera = true ;
+            for (Material encontrado : inventario_cnjunto) {
+                if (encontrado.gettitulo().contains(buscar)) {
+                    System.out.println(encontrado.mostrarinfo());
+                    bandera = true ;
+                }
+            }
+
+            if (!bandera) {
+                System.out.println("No se encontraron resultados de la  busqueda : "+ buscar  );
             }
         }
-
-        if (!bandera) {
-            System.out.println("No se encontraron resultados de la  busqueda : "+ buscar  );
-        }
+        
 
     }
 
@@ -240,30 +278,31 @@ public class Biblioteca {
             System.out.println("=== LIbros y Revistas Disponibles ===");
             int contador = 0 ;
             for (Material material : inventario_cnjunto) {
-                System.out.println( (contador + 1)+ material.mostrarinfo());
+                System.out.println( (contador + 1) + ")" + material.mostrarinfo());
+                contador ++;
             }
             
             while (true) {
                 System.out.println("Ingrese el indice : ");
                 int indice = Integer.parseInt(sc.nextLine());
+                int indice_guardado = indice ;
 
-                if (indice <= 0 ) {
+                if (indice_guardado <= 0 ) {
                     System.out.println("Ingrese un indice valido ");
-
-                }else if (inventario_libros.get(indice).getcantidad_disponible() <= 0) {
+                }else if (inventario_cnjunto.get(indice_guardado).getcantidad_disponible() <= 0) {
                     System.out.println("Ingrese un Material cn la cantidad disponible mayor a 0");
                 }else{
 
-                    int descuenta = inventario_cnjunto.get(indice).getcantidad_disponible() - 1 ;
-                    inventario_cnjunto.get(indice).setcantidad_disponible(descuenta);
+                    int descuenta = inventario_cnjunto.get(indice_guardado).getcantidad_disponible() - 1 ;
+                    inventario_cnjunto.get(indice_guardado).setcantidad_disponible(descuenta);
 
-                    int calculo = inventario_cnjunto.get(indice).calcularDiasPrestamo() ;
+                    int calculo = inventario_cnjunto.get(indice_guardado).calcularDiasPrestamo() ;
 
 
                     System.out.println("=== Comprobante ===");
-                    System.out.println("Titulo :" + inventario_cnjunto.get(indice).gettitulo());
+                    System.out.println("Titulo :" + inventario_cnjunto.get(indice_guardado).gettitulo());
                     System.out.println("Dias de Prestamo :" + calculo);
-                    System.out.println("Cantidad disponible restante : " + inventario_cnjunto.get(indice).getcantidad_disponible());
+                    System.out.println("Cantidad disponible restante : " + inventario_cnjunto.get(indice_guardado).getcantidad_disponible());
                     
 
 
@@ -281,23 +320,30 @@ public class Biblioteca {
             System.out.println("No hay nada registrado");
         }else{
 
-            int cantidad_total  = 0 ;
+            int cantidad_total  = inventario_cnjunto.size() ;
             int cantidad_libros = 0 ;
             int cantidad_revistas  = 0 ;
             int total_ejemplares  = 0 ;
 
 
             for (Material material : inventario_cnjunto) {
-                if (material instanceof inventario_cnjunto) {
+                if (material instanceof Libro) {
                     cantidad_libros += 1 ;
+                }else{
                     cantidad_revistas += 1 ;
                 }
+
+                total_ejemplares += material.getcantidad_disponible() ;
+
+
             }
 
-           
-
-
+            System.out.println("===== RESUMEN CATALOGO =====");
+            System.out.println("Cantidad total : " + cantidad_total);
+            System.out.println("Cantidad de libros : " + cantidad_libros);
+            System.out.println("Cantidad de revistas : " + cantidad_revistas);
+            System.out.println("Total de ejemplares " + total_ejemplares);
+            System.out.println("");
         }
     }
-
 }

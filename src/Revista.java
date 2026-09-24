@@ -23,7 +23,7 @@ public class Revista extends Material {
 
     @Override
     public String mostrarinfo() {
-        return "Tipo : Revista " +super.mostrarinfo() + " |  Mes de Publicacion : " + get_mes_publicacion() + " | Precio final :" + this.calcularDiasPrestamo();
+        return " Tipo : Revista " +super.mostrarinfo() + " |  Mes de Publicacion : " + get_mes_publicacion() + " | Dias Prestados :" + this.calcularDiasPrestamo();
     }
 
 

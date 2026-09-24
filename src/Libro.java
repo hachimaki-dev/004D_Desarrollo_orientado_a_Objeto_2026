@@ -28,7 +28,7 @@ public class Libro extends Material {
 
     @Override
     public String mostrarinfo() {
-        return "Tipo : Libro  " +super.mostrarinfo() + " | Numero de Paginas :" + this.get_numero_paginas() + " | Precio final : " + this.calcularDiasPrestamo();
+        return " Tipo : Libro  " + super.mostrarinfo() + " | Numero de Paginas :" + this.get_numero_paginas() + " | Dias Prestados : " + this.calcularDiasPrestamo();
     }
 
 

@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Biblioteca",
+            "request": "launch",
+            "mainClass": "Biblioteca",
+            "projectName": "004D_Desarrollo_orientado_a_Objeto_2026_731febc"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"

@@ -37,7 +37,7 @@ public abstract class Material {
 
 
     public String mostrarinfo(){
-        return  "Titulo :" + this.gettitulo() + " |  Autor :" + this.getautor() + " |  Cantidad_disponible : " + this.getcantidad_disponible();
+        return  "| Titulo :" + this.gettitulo() + " |  Autor :" + this.getautor() + " |  Cantidad_disponible : " + this.getcantidad_disponible();
     }
 
 
