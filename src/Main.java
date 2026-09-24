@@ -7,18 +7,17 @@ public class Main {
     public static void main(String[] args) {
 
 //creo las listas donde se almacenaran los matiriales libros y revistaas
-        static ArrayList<Material>general_matirial = new ArrayList<>();
-        static ArrayList<Libro> Libros_inventario = new ArrayList<>();
+        static ArrayList<Material> general_matirial = new ArrayList<>();
+        static ArrayList<Libros> Libros_inventario = new ArrayList<>();
         static ArrayList<Revista> Revistas_inventario = new ArrayList<>();
-
+            
+        Scanner scn = new Scanner(System.in);
 
 
         int opcion = 0;
     static void mostrar_menu(){
-        while(opcion = 0){
+        while(opcion != 0){
 //creo un sccaner dentro de un while apra que el usuario puedainteractuar con el mismo
-            Scanner scn = new Scanner(System.in);
-
 //creo el menu que va a visualisar el usuario
             System.out.println("Biblioteca Municipal");
             System.out.println("1. registrar material");
@@ -54,38 +53,46 @@ public class Main {
                 
                     break;
                 case 6:
-                    mostrar_menu() = false
+                    mostrar_menu() = false;
                 default:
                     break;
             }
         }
     }
 
+    static void Mostrar_menu(){
+        return Mostrar_menu;
+    }
+
 //empiezo a crear las funciones para que el usuario pueda interactuar con las opciones del menu    
-    static void Registrar_Material(){
+    static String void Registrar_Material(){
         System.out.println("registrar libro");
 
         System.out.println("titulo del libro");
-        String titulo = scn.nexline();
+        String titulo = scn.nextLine();
 
         System.out.println("autor del libro");
-        String autor = scn.nexline();
+        String autor = scn.nextLine();
 
         System.out.println("numero total de paginas");
-        int numPaginas = scn.nexline();
+        int numPaginas = scn.nextInt();
         System.out.println("cantidad disponible ");
 
     }
 
-    static void listar_catalogo(){
+    static void Listar_catalogo(){
         if(invenatrio.isEmpty){
             System.out.println("no hay ningun libro o revista registrado todavia!!!!!");
         }else{
             System.out.println("se a podido registrar el libro o revista con excito");
         }
 
-            for(Libro libro : invenatrio){
-                System.out.println(libro.mostrarInfo);
+            for(Libros libro : Libros_inventario){
+                System.out.println(libro.MostrarInfo());
+            }
+
+            for(Revista revista : Revistas_inventario){
+                System.out.println(revista.MostrarInfo);
             }
 
     }
@@ -100,8 +107,8 @@ public class Main {
         }else{
             System.out.println("libros y revistas disponibles");
             int contador = 0;
-            for(Material material : invenatrio)(
-                System.out.println((contador + 1)+ ,material.mostrarInfo());
+            for(Material material : general_matirial)(
+                System.out.println((contador + 1)++ ,Material.mostrarInfo());
             )
         }
         while(true) {
