@@ -1,14 +1,15 @@
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList material = new ArrayList<>
+        ArrayList material = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         
         boolean off = true;
 
-        while (off = true) {
+        while (off == true) {
             System.out.println("= BIBLIOTECA MUNICIPAL =");
             System.out.println("1. Registrar material");
             System.out.println("2. Listar catalogo");
@@ -34,6 +35,7 @@ public class Main {
                     resumenCatalogo();
                 case "6":
                     off = false;
+                    System.out.println("Programa Finalizado");
                     break;
                 case "7":
                 default:
@@ -42,37 +44,67 @@ public class Main {
         }
     }    
 
-    public static void registrarMaterial(){
+    public static void registrarMaterial(Scanner scanner, ArrayList material){
         System.out.println("- Tipo de material -");
         System.out.println("1. Libro");
         System.out.println("2. Revista");
         
-        opcion_usuario = new scanner.nextLine;
+        String opcion_usuario = scanner.nextLine();
 
         switch (opcion_usuario) {
             case "1":
                 System.out.println("Ingrese el titulo: ");
+                String titulo = scanner.nextLine();
+
                 System.out.println("Ingrese el autor: ");
+                String autor = scanner.nextLine();
+
                 System.out.println("Ingrese el cantidad disponible: ");
+                String cantidadDisponible = Integer.parseInt(cantidadDisponible);
+
                 System.out.println("Días de prestamo: ");
+                String diasPrestamo =  Integer.parseInt(diasPrestamo); 
+
                 System.out.println("Ingrese la cantidad de paginas: ");
+                String cantidadPaginas = Integer.parseInt(cantidadPaginas)
 
+                material.add(titulo);
+                material.add(autor);
+                material.add(cantidadDisponible);
+                material.add(diasPrestamo);
+                material.add(cantidadPaginas);
+                break;
             case "2":
-                System.out.println("Ingrese el titulo");
-                System.out.println("Ingrese el autor");
-                System.out.println("Ingrese la cantidad disponible");
-                System.out.println("Días de prestamo");
-                System.out.println("Ingrese el mes de publicación:");
+                System.out.println("Ingrese el titulo: ");
+                String titulo = scanner.nextLine();
 
+                System.out.println("Ingrese el autor: ");
+                String autor = scanner.nextLine();
+
+                System.out.println("Ingrese el cantidad disponible: ");
+                String cantidadDisponible = Integer.parseInt(cantidadDisponible);
+                
+                System.out.println("Días de prestamo: ");
+                String diasPrestamo =  Integer.parseInt(diasPrestamo); 
+
+                System.out.println("Ingrese el mes de publicación: ");
+                String mesPublicacion = scanner.nextLine();
+
+                material.add(titulo);
+                material.add(autor);
+                material.add(cantidadDisponible);
+                material.add(diasPrestamo);
+                material.add(mesPublicacion)
+                break;
             default:
                 break;
         }
 
     }
 
-    public static void listarCatalogo(){
-        for (int i = 0; i < array.length; i++) {
-            
+    public static void listarCatalogo(ArrayList material){
+        for (int i = 0; i >= material ; i++) {
+            System.out.println();
         }
     }
 
@@ -85,6 +117,10 @@ public class Main {
     }
     
     public static void resumenCatalogo(){
-z
+
+    }
+
+    public static void datosDePrueba(ArrayList material){
+        material.add();
     }
 }
