@@ -29,6 +29,6 @@ public class Libro extends Material{
 
     @Override
     public String mostrarInfo() {
-        return super.mostrarInfo() + " | " + getNumPaginas() + " páginas";
+        return "Libro | " + super.mostrarInfo() + " | " + getNumPaginas() + " páginas";
     }
 }

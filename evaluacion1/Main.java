@@ -4,6 +4,8 @@ import java.util.Scanner;
 public class Main {
     static Scanner sc = new Scanner(System.in);
     static ArrayList<Material> materiales = new ArrayList<>();
+    int contadorRevista = 0;
+    int contadorLibro = 0;
     public static void main(String[] args) {
         mostrarMenu();
     }
@@ -45,7 +47,7 @@ public class Main {
                         System.out.println("Opción inválida");
                 }
             } catch (Exception e) {
-                System.out.println("Seleccione un número.");
+                System.out.println("Error. Debe seleccionar un número válido.");
             }
         }
     }
@@ -68,7 +70,7 @@ public class Main {
                     System.out.println("Opción inválida");
             }
         } catch (Exception e) {
-            System.out.println("Ingrese un número.");
+            System.out.println("Error. Debe seleccionar un número válido.");
         }
     }
 
@@ -81,8 +83,9 @@ public class Main {
         int cantidadDisponible = Integer.parseInt(sc.nextLine());
         System.out.print("Número de páginas: ");
         int numPaginas = Integer.parseInt(sc.nextLine());
-        Material material = new Libro(titulo, autor, cantidadDisponible, numPaginas);
-        materiales.add(material);
+        Libro libro = new Libro(titulo, autor, cantidadDisponible, numPaginas);
+        System.out.println(libro instanceof Material);
+        materiales.add(libro);
         System.out.println("[OK] Libro registrado");
     }
 
@@ -95,14 +98,19 @@ public class Main {
         int cantidadDisponible = Integer.parseInt(sc.nextLine());
         System.out.print("Mes de publicación: ");
         String mesPublicacion = sc.nextLine();
-        Material material = new Revista(titulo, autor, cantidadDisponible, mesPublicacion);
-        materiales.add(material);
+        Revista revista = new Revista(titulo, autor, cantidadDisponible, mesPublicacion);
+        System.out.println(revista instanceof Material);
+        materiales.add(revista);
         System.out.println("[OK] Revista registrada");
     }
 
     public static void listarCatalogo() {
-        for (Material material : materiales) {
-            System.out.println(material.mostrarInfo());
+        if (materiales.isEmpty()) {
+            System.out.println("No hay materiales registrados");
+        } else {
+            for (Material material : materiales) {
+                System.out.println(material.mostrarInfo());
+            }
         }
     }
 
@@ -113,14 +121,14 @@ public class Main {
             if (material.getTitulo().contains(tituloBuscar)) {
                 System.out.println("Resultados: ");
                 System.out.println(material.mostrarInfo());
-            } else {
-                System.out.print("No encontrado");
             }
         }
     }
 
     public static void prestarMaterial() {
-        System.out.println("Prestar material");
+        System.out.print("Indique el índice del material: ");
+        int indicePrestar = Integer.parseInt(sc.nextLine());
+        System.out.println(indicePrestar);
     }
 
     public static void resumenCatalogo() {
