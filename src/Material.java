@@ -24,14 +24,14 @@ public abstract class Material {
     }
 
     public void setCantidadDisponible(int cantidadDisponible){
-
+        this.cantidadDisponible = cantidadDisponible;
     }
 
     public abstract int calcularDiasPrestamo();
         
 
     public String mostraInfo(){
-        return "Titulo: " + getTitulo() + " Autor: " + getAutor() + " cantidad disponible: " + getCantidadDisponible() + " Dias de prestamo: " + calcularDiasPrestamo();
+        return "Titulo: " + getTitulo() + "|| Autor: " + getAutor() + "|| cantidad disponible: " + getCantidadDisponible() + "|| Dias de prestamo: " + calcularDiasPrestamo();
     }
 
 }

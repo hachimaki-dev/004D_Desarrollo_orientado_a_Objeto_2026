@@ -1,7 +1,7 @@
-public class Libros extends Material {
+public class Libros extends Material implements Prestable{
     private int numPaginas;
 
-    Libros(String titulo, String autor, int cantidadDisponible, int numPaginas){
+    public Libros(String titulo, String autor, int cantidadDisponible, int numPaginas){
         super(titulo, autor, cantidadDisponible);
         this.numPaginas = numPaginas;
     }
@@ -21,7 +21,20 @@ public class Libros extends Material {
 
     @Override
     public String mostraInfo() {
-        return super.mostraInfo() + " Cantidad de paginas" + getNumPaginas();
+        return super.mostraInfo() + "|| Cantidad de paginas " + getNumPaginas();
     }
 
+    @Override
+    public boolean prestar(int cantidad){
+        if(cantidad <= getCantidadDisponible()){
+            setCantidadDisponible(getCantidadDisponible()- cantidad);
+            return true;
+        }
+        return false;
+    }
+
+    @Override 
+    public void devolver(int cantidad){
+        setCantidadDisponible(getCantidadDisponible()+cantidad);
+    }
 }

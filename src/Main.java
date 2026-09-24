@@ -2,16 +2,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    //1. El progrmama usa poo, organiza clases que represetan
-    //entidades y comportamientos con atributos y metodos
+    //1. en cuanto a esceuctura y encapsulamiento java agrupa datos (atributos) y 
+    // comportamientos (metodos) dentro de clases protegidas, en otros lenguajes de programacion
+    //los datos se manejan por escructuras sueltas o variables globales sin proteccion
 
-    //2. la organicaion es diferente en cuanto a java y python ya que 
-    //en python es regla tabular, en java es importante que los metodos solo 
-    //esten entre llaves {}
-
-    // otra diferencia fundamental es que java organiza el codigo en objetos
-    // que combinan datos y comportamientos mutables y 
-    //python se centra en trasformar datos por funciones puras sin cambiar estados,osea inmutable 
+    //2. con respecto a la ejecuccion y tipado java usa tipado estatico donde los 
+    //tipos de datos se verifican en tiempo de compilacion
+    //En lenguajes de tipado dinamico o interpretados la verificacion ocurre en 
+    //tiempo de ejecucion
 
     static Scanner sc = new Scanner(System.in);
 
@@ -108,11 +106,9 @@ public class Main {
         System.out.println("Ingrese el nombre del autor: ");
         String autor = sc.nextLine();
 
-        System.out.println("Ingrese la cantidad de ejemplares disponibles: ");
-        int cantidadDisponible = Integer.parseInt(sc.nextLine());
+        int cantidadDisponible = leerEnteroValido("Ingrese la cantidad de ejemplares disponibles: ");
 
-        System.out.println("Ingrese el numero de paginas: ");
-        int numPaginas = Integer.parseInt(sc.nextLine());
+        int numPaginas = leerEnteroValido("Ingrese el numero de paginas: ");
 
         Libros libroNuevo = new Libros(titulo, autor, cantidadDisponible, numPaginas);
         material.add(libroNuevo);
@@ -128,74 +124,86 @@ public class Main {
         System.out.println("Ingrese el nombre del autor: ");
         String autor = sc.nextLine();
 
-        System.out.println("Ingrese la cantidad de ejemplares disponibles: ");
-        int cantidadDisponible = Integer.parseInt(sc.nextLine());
+        int cantidadDisponible = leerEnteroValido("Ingrese la cantidad de ejemplares disponibles: ");
 
         System.out.println("Ingrese el mes de publicacion: ");
         String mesPublicacion = sc.nextLine();
 
         Revistas revistaNuevo = new Revistas(titulo, autor, cantidadDisponible, mesPublicacion);
         material.add(revistaNuevo);
+
+        System.out.println("Revista registrada exitosamente");
     }
 
     public static void listarCatalogo(){
         if (material.isEmpty()) {
             System.out.println("el catalogo se encuentra vacio");
             return;
-        }else{
+        }
             for (Material m : material) {
                 System.out.println(" [" + m.mostraInfo() + "] ");
             }
-        }
-        return;
+        
+            return;
     }
 
     public static void buscarPorTitulo(){
         if(material.isEmpty()){
             System.out.println("No hay materiales en el catalogo");
             return;
-        }else{
+        }
             System.out.println("Ingrese el nombre del material que desea buscar: ");
             String nombreABuscar = sc.nextLine().trim().toLowerCase();
 
             for (Material mbusqueda : material) {
                 if(mbusqueda.getTitulo().toLowerCase().contains(nombreABuscar)){
                     System.out.println("encontrado: " + mbusqueda.mostraInfo());
-                }else{
-                    System.out.println("no se encontro ninguna cooincidencia");
                 }
+                
+                System.out.println("no se encontro ninguna cooincidencia");
+                return;
             }
             return;
-        }
+        
     }
 
     public static void prestarMaterial(){
         if(material.isEmpty()){
             System.out.println("no hay material disponible para prestar");
-        }else{
-            for(int i = 0; i < material.size(); i ++){
-                Material m = material.get(i);
-                System.out.println( "[" + (i +1) + m.mostraInfo() + "]");
-            }
-            System.out.println("ingrese el indice del libro que se prestara: ");
-            int indcep = Integer.parseInt(sc.nextLine());
-
-            if(indcep < 1 || indcep > material.size()){
-                System.out.println("invalido, intenta nuevamente");
-            }else{
-                Material mSeleccionado = material.get(indcep - 1);
-                System.out.println("cuantos ejemplares desea prestar?");
-                int c = Integer.parseInt(sc.nextLine());
-
-                if(c < 1 || mSeleccionado.getCantidadDisponible() < c ){
-                    System.out.println("cantidad insuficiente");
-                }else{
-                    mSeleccionado.setCantidadDisponible(mSeleccionado.getCantidadDisponible() - c);
-                    int totalPrestamo = mSeleccionado.calcularDiasPrestamo() * c;
-                    System.out.println("prestamo realizado con exito" + totalPrestamo);
-                }
-            }
+            return;
         }
+            
+        for(int i = 0; i < material.size(); i ++){
+                Material m = material.get(i);
+                System.out.println( "[ " + (i +1)+ " ||" + m.mostraInfo() + "]");
+            }
+
+        int indcep = leerEnteroValido("ingrese el indice del libro que se prestara: ");
+
+        if(indcep < 1 || indcep > material.size()){
+            System.out.println("invalido, intenta nuevamente");
+            return;
+            }
+
+            Material mSeleccionado = material.get(indcep - 1);
+            int c = leerEnteroValido("cuantos ejemplares desea prestar?: ");
+
+            if(c < 1 || mSeleccionado.getCantidadDisponible() < c ){
+                System.out.println("cantidad insuficiente");
+                return;
+                }else{
+                    if(mSeleccionado instanceof Prestable){
+                        Prestable prestable = (Prestable)mSeleccionado;
+                        if(prestable.prestar(c)){
+                            int totalDias = mSeleccionado.calcularDiasPrestamo();
+                            System.out.println("pretamo realizado por: " + totalDias + " dias");
+                        }else{
+                            System.out.println("no se pudo realizar el prestamo");
+                        }
+                    }
+                }
+            
+        
     }
 
     public static void resumenDeCatalogo(){
@@ -215,5 +223,23 @@ public class Main {
         System.out.println("libros: " + totalLibros);
         System.out.println("Revistas: " + totalRevistas);
         System.out.println("En total hay: "+ Total);
+    }
+
+    private static int leerEnteroValido(String mensaje){
+        while (true) {
+            try {
+                System.out.println(mensaje + "");
+                int valor = Integer.parseInt(sc.nextLine());
+
+                if(valor <= 0){
+                    System.out.println("Error: valor invalido");
+                    continue;
+                }
+                return valor;
+            } catch (NumberFormatException e) {
+                System.out.println("error con el tipo de dato, intente nuevamente");
+            }
+            
+        }
     }
 }
