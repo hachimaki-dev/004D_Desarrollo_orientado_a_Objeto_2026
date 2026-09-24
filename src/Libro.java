@@ -23,6 +23,6 @@ public class Libro extends Materiales {
 
     @Override
     String mostrarInfo() {
-        return super.mostrarInfo() + "Libro" +  this.getNumeroPaginas();
+        return super.mostrarInfo() + " Numero de paginas: " + this.getNumeroPaginas();
     }
 }

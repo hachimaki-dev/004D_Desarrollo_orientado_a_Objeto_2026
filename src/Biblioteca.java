@@ -1,11 +1,15 @@
-// El paradigma de programacion a utilizar es POO (Programacion orientada a objetos), esta hace que cada objeto tega un archivo "independiente".
+// El paradigma de programacion a utilizar es POO (Programacion orientada a objetos)
+// Una de las principales diferencias entre python y java es que, java es un lenguaje más estricto, además de ser keySensivility
 
 import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Biblioteca {
 
-    static ArrayList<Materiales> Coleccion_materiales = new ArrayList<>();
+    static ArrayList <Materiales> Coleccion_materiales = new ArrayList<>();
+    static ArrayList <Libro> Coleccion_libros = new ArrayList<>();
+    static ArrayList <Revista> Coleccion_revistas = new ArrayList<>();
+
     static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
         mostrarMenu();
@@ -31,19 +35,18 @@ public class Biblioteca {
             switch (opcion_usuario) {
                 case "1":
                     registrarMaterial();    
-
                     break;
+
                 case "2":
                     listarCatalogo();
-
                     break;
 
                 case "3":
-
+                    buscarMaterialPorTitulo();
                     break;
 
                 case "4":
-
+                    prestarMaterial();
                     break;
 
                 case "5":
@@ -94,23 +97,29 @@ public class Biblioteca {
 
     static void registrarLibro(){
         System.out.println("Ingresa el nombre del libro: ");
-        String titulo = scanner.nextLine();
+        String titulo = scanner.nextLine().trim().toLowerCase();
 
         System.out.println("Ingrese el autor");
-        String autor = scanner.nextLine();
+        String autor = scanner.nextLine().trim().toLowerCase();
+
+        int cantidadDisponible = 0;
+        int numeroPaginas = 0;
 
         try {
             System.out.println("Ingrese la cantidad disponible: ");
-            int cantidadDisponible = Integer.parseInt(scanner.nextLine());
+            cantidadDisponible = Integer.parseInt(scanner.nextLine());
 
             System.out.println("Ingrese el numero de paginas: ");
-            int numeroPaginas = Integer.parseInt(scanner.nextLine());
+            numeroPaginas = Integer.parseInt(scanner.nextLine());
 
         } catch (NumberFormatException e) {
             System.out.println("Error, ingresa numeros enteros positivos");
         }
 
-        Coleccion_materiales.add(new Materiales(titulo, autor, cantidadDisponible, numeroPaginas));
+        Libro nuevo_libro = new Libro(titulo, autor, cantidadDisponible, numeroPaginas);
+        
+        Coleccion_libros.add(nuevo_libro);
+        Coleccion_materiales.add(nuevo_libro);
     }
 
     static void registrarRevista(){
@@ -120,23 +129,71 @@ public class Biblioteca {
         System.out.println("Ingrese el autor");
         String autor = scanner.nextLine();
 
-        System.out.println("Ingrese el es de publicacion: ");
+        System.out.println("Ingrese el mes de publicacion: ");
         String mesPublicacion = scanner.nextLine();
+
+        int cantidadDisponible = 0;
 
         try {
             System.out.println("Ingrese la cantidad disponible: ");
-            int cantidadDisponible = Integer.parseInt(scanner.nextLine());
+            cantidadDisponible = Integer.parseInt(scanner.nextLine());
 
         } catch (NumberFormatException e) {
             System.out.println("Error, ingresa numeros enteros positivos");
         }
 
-        Coleccion_materiales.add(new Materiales(titulo, autor, mesPublicacion, cantidadDisponible));
+        Revista nueva_revista = new Revista(titulo, autor, cantidadDisponible, mesPublicacion);
+        
+        Coleccion_revistas.add(nueva_revista);
+        Coleccion_materiales.add(nueva_revista);
     }
 
     static void listarCatalogo(){
-        for (Materiales materiales : Coleccion_materiales) {
-            System.out.println(materiales);
+        if (Coleccion_materiales.isEmpty()) {
+            System.out.println("No hay nada en el catalogo");
+        }
+        else {
+            System.out.println("=== Catalogo de libros ===");
+            
+            for (Libro libro : Coleccion_libros) {
+                System.out.println(libro.mostrarInfo());
+            }
+
+            System.out.println("=== Catalogo de revistas ===");
+
+            for (Revista revista: Coleccion_revistas) {
+                System.out.println(revista.mostrarInfo());
+            }
+        }
+    }
+
+    static void buscarMaterialPorTitulo(){
+        if (Coleccion_materiales.isEmpty()) {
+            System.out.println("No hay nada en el catalogo");
+        }
+        else {
+            String tituloBuscado = scanner.nextLine().trim().toLowerCase();
+
+            if (tituloBuscado.isEmpty()) {
+                System.out.println("ERROR, debe ingresar el nombre a buscar");
+            }
+            else {
+                
+                }
+        }
+    }
+
+    static void prestarMaterial(){
+        if (Coleccion_materiales.isEmpty()) {
+            System.out.println("No hay nada en el catalogo");
+        }
+        else {
+            for (Materiales materiales : Coleccion_materiales) {
+                System.out.println(materiales.mostrarInfo());
+            }
+
+            String materialVendido = scanner.nextLine().trim().toLowerCase();
+
         }
     }
 }
