@@ -2,7 +2,6 @@
 //1 diferencia seria como se interpreta que en java no puedes compilar o darle play a tu programa sin que este este 100% bien si no dara error, y en python es diferente
 //el tipado es distino porque en python los comandos son diferentes a como se usa en java.
 
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -36,11 +35,14 @@ public class Main {
                     buscarMaterialPorTitulo();
                     break;
                 case "4":
+                    prestarMaterial();
                     break;
                 case "5":
+                    resumenCatalogo();
                     break;
                 case "6":
                     menu = false;
+                    System.out.println("Programa finalizado");
                     break;
                 default:
                     System.out.println("Opcion no valida, ingrese una opcion del menu");
@@ -84,7 +86,7 @@ public class Main {
         libro.add(new Libro(titulo, autor, cantidadDisponible, numpPaginas));
     }
 
-    public static void registrarRevista() {
+    public static void registrarRevista(){
         System.out.println("Ingrese el titulo de la Revista: ");
         String titulo = sc.nextLine();
         System.out.println("Ingrese el autor de la Revista: ");
@@ -99,9 +101,9 @@ public class Main {
 
     public static void listarCatalogo() {
         System.out.println("--- CATALOGO ---");
-        for (Material p : libro) {
-            System.out.println(p.mostrarInfo());
-
+        for (int i = 1; i < libro.size(); i++) {
+            Material p = libro.get(i);
+            System.out.println("Índice [" + i + "] - " + p.mostrarInfo());
         }
     }
 
@@ -109,10 +111,32 @@ public class Main {
         System.out.println("--- BUSCAR MATERIAL ---");
         System.out.println("Ingrese el material a buscar");
         String texto = sc.nextLine();
-        if (libro.contains(texto)) {
-            System.out.println("Libro encontrado");
-        } else {
-            System.out.println("no encontrado");
+        for (Material p : libro){
+            if (p.getTitulo().contains(texto)){
+                System.out.println(p.mostrarInfo());
+                System.out.println("Libro encontrado");
+            } else {
+                System.out.println("Libro no encontrado");
+            }
+        }
+    }
+
+    public static void prestarMaterial(){
+        System.out.println("--- PRESTAR MATERIAL ---");
+        for (int i = 1; i < libro.size(); i++) {
+            Material p = libro.get(i);
+            System.out.println("Índice [" + i + "] - " + p.mostrarInfo());
+        }
+        System.out.println("ingrese numero del material: ");
+        int numero_material = Integer.parseInt(sc.nextLine());
+        System.out.println("Prestamo realizado para el material numero: " + numero_material);
+        }
+
+
+    public static void resumenCatalogo(){
+        System.out.println("--- RESUMEN DEL CATALOGO ---");
+        for (Material p : libro){
+            System.out.println("Total de materiales registrados: " + p.getCantidadDisponible() );
         }
     }
 }
