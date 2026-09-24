@@ -2,7 +2,22 @@ package src;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+/* --Paradigmas-- */
 
+/* R1: */
+/* El paradigma en relación a la creación de objetos.
+   Se completamente en el concepto de clase, y objetos que se crean a partir de esta.
+   Los objetos tienen atributos y actitudes especiales, que se acceden de forma facil y se pueden definir dentro de un recuadro distinto.
+   Gracias a esto, permite una estructuración más completa y mejor distribuida.
+   Todo el sistema completo en java se basa en clases, y todo funciona dentro de clases, las cuales a su vez, le puedes poner restricciones.
+*/
+/*R2: */
+/* Una diferencia crucial entre Java y Python es la forma en la que se compila el programa, mientras que python lo hace en el momento de ejecución, 
+   Java se compila antes de iniciar el programa, esto no solo permite que los programas sean más rapido en el momento, permite detectar errores, porque Java no inicia si existe algun error.
+
+    Otra diferencia es la forma en la que se guardan los datos, las clases permiten crear estructuras independiente de las cuales se encuentran separadas del sistema principal, se le pueden definir atributos, comportamientos, etc.
+    Se le pueden poner todas las restricciones que uno quiera, mucho más beneficioso que diseñar el programa completo en Python solo con funciones, listas y diccionarios.
+*/
 public class Main
 {   
 
@@ -48,19 +63,28 @@ public class Main
 
                 case 2:
 
-                    mostrarCatalogo();
+                    if (mostrarCatalogo() == false)
+                    {
+                        System.out.println("No tienes materiales registrados.");
+                    }
 
                     break;
 
                 case 3:
 
-                    buscarMaterial();
+                    if (buscarMaterial() == false)
+                    {
+                        System.out.println("No tienes materiales registrados actualmente.");
+                    }
 
                     break;
 
                 case 4:
 
-                    prestamo();
+                    if (prestamo() == false)
+                    {   
+                        System.out.println("No tienes materiales actualmente registrados.");
+                    }
 
                     break;
                 
@@ -86,9 +110,8 @@ public class Main
         } 
     }
 
-    public static int menuPrincipal()
+    public static int menuPrincipal() /*Completado */
     {
-        int respuestaMenu;
 
         while (true)
         {
@@ -110,7 +133,7 @@ public class Main
 
             try
             {
-                return respuestaMenu = Integer.parseInt(scanner.nextLine());
+                return Integer.parseInt(scanner.nextLine());
             }
             catch (Exception e)
             {
@@ -120,10 +143,8 @@ public class Main
         }
     }
 
-    public static int registroMaterial()
+    public static int registroMaterial() /*Completado */
     {   
-
-        int respuestaRegistro;
 
         while (true)
         { 
@@ -138,7 +159,7 @@ public class Main
 
             try
             {   
-               return respuestaRegistro = Integer.parseInt(scanner.nextLine());
+               return Integer.parseInt(scanner.nextLine());
             }
             catch (Exception e)
             {
@@ -148,7 +169,7 @@ public class Main
 
     }
                 
-                public static void registroLibro()
+                public static void registroLibro()  /*Completado */
                 {
 
                     String tituloLibro;
@@ -207,7 +228,7 @@ public class Main
 
                 }
 
-                public static void registroRevista()
+                public static void registroRevista()    /*Completado */
                 {
 
                     String tituloLibro;
@@ -254,26 +275,32 @@ public class Main
                     
                 }
     
-    public static void mostrarCatalogo()
-    {
+    public static boolean mostrarCatalogo() /*Completado */
+    {   
+        if (registroMateriales.isEmpty())
+        {
+            return false;
+        }
+
         for (int i = 0; i < registroMateriales.size(); i++)
         {   
-            try
-            {
-                System.out.println(registroMateriales.get(i).mostrarInfo());
-            }
-            catch (IndexOutOfBoundsException e)
-            {
-                System.out.println("Actualmente no tienes materiales registrados.");
-            }
+            System.out.println(registroMateriales.get(i).mostrarInfo());
         } 
+
+        return true;
     }
 
-    public static void buscarMaterial()
+    public static boolean buscarMaterial()  /*Completado */
     {   
         String busqueda;
 
-        boolean bandera=false;
+        boolean bandera = false;
+
+        if (registroMateriales.isEmpty())
+        {
+            return false;
+        }
+
         System.out.println("Introduce el nombre del material: ");
 
         busqueda = scanner.nextLine();
@@ -289,16 +316,32 @@ public class Main
                 System.out.println(registroMateriales.get(i).mostrarInfo());
             }
         }
+
         if (bandera == false)
         {
             System.out.println("No se a encontrado materiales.");
         }
+
+        return true;
     }
 
-    public static void prestamo()
+    public static boolean prestamo() /*Completado */
     {   
         int respuesta;
 
+        boolean bandera = false;
+
+        if (registroMateriales.isEmpty())
+        {   
+            return false;
+        }
+
+        System.out.println("Listado de materiales: ");
+
+        for (int i = 0; i < registroMateriales.size(); i ++)
+        {
+            System.out.println((i + 1) + ". " + registroMateriales.get(i).getTitulo());
+        }
         System.out.println("¿Cual es el indice del material que quieres prestar?");
 
         while (true)
@@ -307,9 +350,9 @@ public class Main
             {
                 respuesta = Integer.parseInt(scanner.nextLine());
 
-                if (respuesta < 0)
+                if (respuesta <= 0)
                 {
-                    System.out.println("El indice es invalido. Tiene que ser un número entero.");
+                    System.out.println("El indice es invalido. Tiene que ser un mayor a 0.");
                 }
                 else
                 {
@@ -322,28 +365,41 @@ public class Main
             }
         }
         
-        for (int i=0; i < registroMateriales.size(); i++)
+        for (int i = 0; i < registroMateriales.size(); i++)
         {
-            if (i == respuesta)
+            if (i == (respuesta - 1))
             {
                 if (registroMateriales.get(i).getCantidadDisponible() > 0)
                 {
                     registroMateriales.get(i).setCantidadDisponible(registroMateriales.get(i).getCantidadDisponible() - 1);
 
-                    System.out.println("Titulo: " + registroMateriales.get(i).getTitulo() + "| Dias de prestamos: " + registroMateriales.get(i).calcularDiasPrestamos() + "|Ejemplares restantes: " + registroMateriales.get(i).getCantidadDisponible());
+                    System.out.println("Titulo: " + registroMateriales.get(i).getTitulo() + " | Dias de prestamos: " + registroMateriales.get(i).calcularDiasPrestamos() + " | Ejemplares restantes: " + registroMateriales.get(i).getCantidadDisponible());
                 }
+                else
+                {
+                    System.out.println("El material que intentas prestar no tiene stock.");
+                }
+
+                bandera = true;
             }
         }
 
+        if (bandera == false)
+        {
+            System.out.println("El indice que buscaste, actualmente no se encuentra registrado.");
+        }
+
+        return true;
     }
-    public static void resumenCatalogo()
+    
+    public static void resumenCatalogo() /*Completado */
     {   
 
-        int totalLibros=0;
+        int totalLibros = 0;
 
-        int totalRevistas=0;
+        int totalRevistas = 0;
 
-        int cantidadEjemplares=0;
+        int cantidadEjemplares = 0;
 
         System.out.println("La cantidad de materiales disponibles son: " + registroMateriales.size());
 
@@ -354,7 +410,7 @@ public class Main
             {
                 totalLibros += 1;
             }
-            else if (registroMateriales.get(i) instanceof Libro)
+            else if (registroMateriales.get(i) instanceof Revista)
             {
                 totalRevistas += 1;
             }
@@ -369,9 +425,8 @@ public class Main
 
     }
 
-    public static boolean salir()
+    public static boolean salir() /*Completado */
     {   
-        int respuestaSalir;
 
         while (true)
         {
@@ -387,9 +442,7 @@ public class Main
             try
             {   
 
-                respuestaSalir = Integer.parseInt(scanner.nextLine());
-
-                switch (respuestaSalir) 
+                switch (Integer.parseInt(scanner.nextLine())) 
                 {
                     case 1:
                         
