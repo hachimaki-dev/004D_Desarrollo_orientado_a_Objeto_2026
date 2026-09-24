@@ -1,5 +1,5 @@
 /* El paradigma utilizado es el de Programacion orientado a objetos en java.
-Algunas caracteristicas es que se utiliza a traves de clases(molde, objetos, etc), metodos(acciones) y atributos(caracteristicas).
+Algunas caracteristicas es que se utiliza a traves de clases(los cuales simulan moldes de objetos de la vida real), metodos(acciones) y atributos(caracteristicas).
 Se diferencia del paradigma anterior en que este es mucho mas organizado gracias a la division de clases
 en este lenguaje de java hay que ser mas especificos sobre cada objeto, incluyendo su tipo y nombre.
 Aca es mas facil y efectivo encapsular y proteger datos
@@ -15,7 +15,11 @@ public class Biblioteca {
     static Scanner sc = new Scanner(System.in);
     static ArrayList<Libro> coleccion_libros = new ArrayList<>();
     static ArrayList<Revista> coleccion_revistas = new ArrayList<>();
+    static int materialesRegistrados = 0;
+    static int revistasRegistrados = 0;
+    static int librosRegistrados = 0;
     public static void main(String[] args) {
+    
         menuPrincipal();
     }
 
@@ -30,6 +34,7 @@ public class Biblioteca {
             System.out.println("5. Resumen del catalogo");
             System.out.println("6. Salir");
             System.out.println("Seleccione una opcion: _");
+            
             
             String opcionMenu = sc.nextLine();
 
@@ -92,6 +97,8 @@ static void registrarLibro(){
             int numPaginas = Integer.parseInt(sc.nextLine());
 
             coleccion_libros.add(new Libro(numPaginas, titulo, autor, cantidadDisponible));
+            materialesRegistrados += 1;
+            librosRegistrados+= 1;
     }
 static void registrarRevista(){
             System.out.println("Ingrese el titulo");
@@ -104,6 +111,7 @@ static void registrarRevista(){
             String mesPublicacion = sc.nextLine();
 
             coleccion_revistas.add(new Revista(mesPublicacion, titulo, autor, cantidadDisponible));
+            revistasRegistrados += 1;
 }
 
 static void listarCatalogo() {
@@ -133,6 +141,27 @@ static void buscarMaterial() {
         }
     }
     }
+
+
+static void prestarMaterial() {
+    System.out.println("Que material desea prestar? (busque por nombre)");
+    String materialBuscado = sc.nextLine();
+    for (Libro lib : coleccion_libros) {
+        if (lib.getTitulo().contains(materialBuscado)){
+        System.out.println(lib.mostrarInfo());
+        if (lib.getCantidadDisponible() > 0){
+        System.out.println("Comprobante: " + lib.getTitulo() + " . " +  lib.calcularDiasPrestamo() );
+        }
+    }
+    }
+}
+
+static void resumenCatalogo(){
+    System.out.println("Cantidad de materiales registrados: " + materialesRegistrados);
+    System.out.println("Cantidad de libros registrados: " + librosRegistrados);
+    System.out.println("Cantidad de revistas registrados: " + revistasRegistrados);
+}
+
 }
 
 
