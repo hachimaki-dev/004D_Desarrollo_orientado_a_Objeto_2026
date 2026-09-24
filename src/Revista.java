@@ -2,9 +2,9 @@ public class Revista extends Material
 {
     private  String mesPublicacion;
 
-    public Revista(String titul, String autor, int cantidadDisponible, String mesPublicacion) 
+    public Revista(String titulo, String autor, int cantidadDisponible, String mesPublicacion) 
     {
-        super(titul, autor, cantidadDisponible);
+        super(titulo, autor, cantidadDisponible);
     }
 
     public String getMesPublicacion() 
@@ -14,14 +14,17 @@ public class Revista extends Material
 
     public int calcularDiasPrestamo()
     {
-        return 3 ;
+        return 3;
     }
 
     @Override 
      public String mostrarInfo()
      {
-        return "tip revista"+
-               " | mes de ublicacio" + mesPublicacion ;
+        return "tip revista" + 
+                " | Titulo: " + getTitulo() +
+                " | Autor: " + getAutor() + 
+                " | Cantidad disponible: " + getCantidadDisponible() +
+                " | mes de ublicacio" + mesPublicacion ;
      }
     
     

@@ -4,9 +4,9 @@ public abstract class Material
     private String autor;
     private int cantidadDisponible;
    
-    public Material(String titul, String autor, int cantidadDisponible) 
+    public Material(String titulo, String autor, int cantidadDisponible) 
     {
-        this.titulo = titul;
+        this.titulo = titulo;
         this.autor = autor;
         this.cantidadDisponible = cantidadDisponible;
     }

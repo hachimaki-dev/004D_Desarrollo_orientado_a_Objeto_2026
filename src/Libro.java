@@ -2,8 +2,9 @@ public class Libro extends Material
 {
     private int numPaginas;
 
-    public Libro(String titul, String autor, int cantidadDisponible, int numPaginas) {
-        super(titul, autor, cantidadDisponible);
+    public Libro(String titulo, String autor, int cantidadDisponible, int numPaginas) 
+    {
+        super(titulo, autor, cantidadDisponible);
         this.numPaginas = numPaginas;
     }
 
@@ -17,16 +18,19 @@ public class Libro extends Material
     {
         if (getNuPaginas() > 300)
         {
-            System.out.println("numero de pagias");
+            return 14;
         }
-        return 14;
+        return 7;
     }
 
     @Override 
     public String mostrarInfo()
     {
-        return "Tipo libro" +
-                "Numero de paginas" + this.numPaginas;
+        return "Libro" +
+                " | Titulo: " + getTitulo() +
+                " | Autor: " + getAutor() + 
+                " | Cantidad disponible: " + getCantidadDisponible() +
+                " | Numero de paginas: " + this.numPaginas;
     }
 
 }
