@@ -14,13 +14,18 @@ public class Libro extends Material{
     }
     
     @Override
-    public void calcularDiasPrestamo() {
-        // TODO Auto-generated method stub
+    public int calcularDiasPrestamo() {
+        if(NumPaginas < 300){
+            return 7;
+
+        }else{
+            return 3;
+        }
+
     }
 
     @Override
-    public void mostrarInfo() {
-        // TODO Auto-generated method stub
-        super.mostrarInfo();
+    public String mostrarInfo() {
+        return super.mostrarInfo() + " | el numero de paguinas es de: " + getNumPaginas();
     }
 }

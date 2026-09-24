@@ -16,14 +16,13 @@ public class Revista extends Material{
     }
 
     @Override
-    public void calcularDiasPrestamo() {
-        // TODO Auto-generated method stub
+    public int calcularDiasPrestamo() {
+        return 7;
         
     }
 
     @Override
-    public void mostrarInfo() {
-        // TODO Auto-generated method stub
-        super.mostrarInfo();
+    public String mostrarInfo() {
+        return super.mostrarInfo() + " | el mes de publicacion es el: " + getMesPublicacion();
     }
 }

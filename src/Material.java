@@ -33,10 +33,10 @@ public abstract class Material {
         CantidadDisponible = cantidadDisponible;
     }
     
-    public abstract void calcularDiasPrestamo();
+    public abstract int calcularDiasPrestamo();
 
-    public void mostrarInfo(){
-        System.out.println("el titulo es: " + Titulo + "el autor es: " + Autor + "la cantidad disponible es de: " + CantidadDisponible);
+    public String mostrarInfo(){
+        return "el titulo es: " + getTitulo() + " | el autor es: " + getAutor() + " | la cantidad disponible es de: " + getCantidadDisponible() + calcularDiasPrestamo();
     }
 
 }
