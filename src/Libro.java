@@ -14,6 +14,7 @@ public int numPginas(){
 
 @Override 
 public void calcularDiasprestamo(){
+    System.out.println("ingrese el numero de paginas ");
     if (numPginas > 300) {
         System.out.println(" dias habiles del pretamo: 14 dias");
         

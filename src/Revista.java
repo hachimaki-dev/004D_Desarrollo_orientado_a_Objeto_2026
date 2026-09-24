@@ -8,5 +8,11 @@ public class Revista extends Material {
     public String getMespublicacion(){
         return  this.mesPublicacion;
     }
+
+    public void calcularDiasprestamo(int calcularDiasprestamo){
+        return 
+
+    }
+
     
 }
