@@ -17,6 +17,6 @@ public class Revista extends Material{
 
     @Override
     public String mostrarInfo() {
-        return super.mostrarInfo() + "\nTipo de material: REVISTA" + "\nMes Publicación: " + this.mesPublicacion;
+        return "[REVISTA]\n" + super.mostrarInfo() + "\nMes Publicación: " + this.mesPublicacion;
     }
 }
