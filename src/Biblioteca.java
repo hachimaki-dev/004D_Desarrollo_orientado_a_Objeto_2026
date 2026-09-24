@@ -1,5 +1,6 @@
 // El paradigma de programacion a utilizar es POO (Programacion orientada a objetos)
 // Una de las principales diferencias entre python y java es que, java es un lenguaje más estricto, además de ser keySensivility
+//python es un lenguaje en el cual se puede utilizar matematicas, graficar, etc.. en cambio java, esta dedicadomás hacia los objetos, con sus respectivos atributos y metodos.
 
 import java.util.Scanner;
 import java.util.ArrayList;
