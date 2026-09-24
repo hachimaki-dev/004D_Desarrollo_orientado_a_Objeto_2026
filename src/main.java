@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class main {
@@ -14,11 +15,10 @@ public class main {
     System.out.println("5. Resumen del catalogo");
     System.out.println("6. Salir");
     System.out.println("Seleccione una opcion: _");
-    int opcion = sc.nextint();
+    String opcion = sc.nextline();
 
     switch (opcion) {
-        case 1:
-            registrarmaterial();
+        case "1":
             break;
 
         case "2":
@@ -29,24 +29,26 @@ public class main {
         default:
             break;
     }
-    String registrarmaterial(){
+    public String registrarMaterial(){
         System.out.println("1-revista");
         System.out.println("2-libro");
-        int opcion2 = sc.nextint();
+        String opcion2 = sc.nextline();
         switch (opcion2) {
-            case 1:
-                this.titulo = sc.nextline();
+            case "1":-------
+                this.Titulo = Sc.nextline();
+
                 break;
-            case 2:
-                this.titulo = sc.nextline();
+            case "2":
+                this.Titulo = sc.nextline();
+
+                
                 break;
         
             default:
                 break;
 
-        return 
         }
     }
-    }
- }
+  } 
+}
 }
