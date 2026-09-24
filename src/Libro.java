@@ -26,6 +26,6 @@ public class Libro  extends Material{
     @Override
     public String mostrarInfo() {
         // TODO Auto-generated method stub
-        return super.mostrarInfo() + "Libro registrado" + getNumPaginas();
+        return super.mostrarInfo() + " Libro registrado " + getNumPaginas();
     }
 }

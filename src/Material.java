@@ -27,9 +27,9 @@ public abstract class Material {
     public abstract int calcularDiasPrestamo();
 
     public String mostrarInfo(){
-        return "Titulo:" + this.titulo + 
-        "Autor: " + this.autor + 
-        "Dias prestados: " + this.calcularDiasPrestamo() +
-        "Libros disponibles: " + this.getCantidadDisponible();
+        return "Titulo: " + this.titulo + 
+        " Autor: " + this.autor + 
+        " Dias prestados: " + this.calcularDiasPrestamo() +
+        " Libros disponibles: " + this.getCantidadDisponible();
     }
 }

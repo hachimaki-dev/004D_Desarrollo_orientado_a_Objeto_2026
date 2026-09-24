@@ -3,8 +3,8 @@ import java.util.Scanner;
 
 public class Biblioteca {
     static Scanner sc = new Scanner(System.in);
-    static ArrayList<Libro> Todos_los_libros = new ArrayList<>();
-    static ArrayList<Revista> Todas_las_revistas = new ArrayList<>();
+    static ArrayList<Libro> Almacenamiento_libros = new ArrayList<>();
+    static ArrayList<Revista> Almacenamiento_revistas = new ArrayList<>();
 
     public static void main(String[] args) {
         mostrar_menu();
@@ -40,7 +40,9 @@ public class Biblioteca {
                     case "6":
                         bandera = false;
                         break;
-                
+                    case "7":
+                        cargarDatos();
+                        break;
                     default:
                         System.out.println("Esta opcion no existe");
                         break;
@@ -75,19 +77,33 @@ public class Biblioteca {
         System.out.println("Titulo: ");
         String Titulo = sc.nextLine();
 
+       
+
         System.out.println("Autor");
         String Autor = sc.nextLine();
 
         System.out.println("Cantidad disponible:");
-        String cantidadDisponible = sc.nextLine();
+        String disponibles = sc.nextLine();
 
         System.out.println("Numero de paginas");
-        String numPaginas = sc.nextLine();
+        String Paginas = sc.nextLine();
+
+        
+
+        
+
+        
+
+
+    
+
+        
 
         
     }
 
     static void registrarRevista(){
+        
         System.out.println("Titulo: ");
         String Titulo = sc.nextLine();
 
@@ -99,6 +115,8 @@ public class Biblioteca {
 
         System.out.println("Numero de paginas");
         String mesDePublicacion = sc.nextLine();
+        
+        
 
         
     }
@@ -106,20 +124,20 @@ public class Biblioteca {
 
 
     static void listarCatalogo(){
-        if(Todos_los_libros.size()>0){
-            for(Libro Libro_en_el_catalogo : Todos_los_libros){
+        if(Almacenamiento_libros.size()>0){
+            for(Libro Libro_en_el_catalogo : Almacenamiento_libros){
                 System.out.println(Libro_en_el_catalogo.mostrarInfo());
             }
         }else{
-            System.out.println("No se encuentra ningun material registrado");
+            System.out.println("No se encuentra ningun Libro registrado");
         }
         
-        if (Todas_las_revistas.size()>0){
-            for(Revista Revista_en_el_catalogo : Todas_las_revistas){
+        if (Almacenamiento_revistas.size()>0){
+            for(Revista Revista_en_el_catalogo : Almacenamiento_revistas){
                 System.out.println(Revista_en_el_catalogo.mostrarInfo());
             }
         }else{
-            System.out.println("No se encuentra ningun material registrado");
+            System.out.println("No se encuentra ninguna revista registrado");
         }
         
             
@@ -128,11 +146,21 @@ public class Biblioteca {
         
     }
 
-    static void buscarMaterialPorTitulo(){}
+    static void buscarMaterialPorTitulo(){
+    }
 
     static void prestarMaterial(){}
 
     static void resumenDelCatalogo(){}
+
+
+    static void   cargarDatos(){
+        Libro Libro1 = new Libro("El principito", "Pedro", 8, 30);
+        Almacenamiento_libros.add(Libro1);
+        Libro Libro2 = new Libro("Harry potter", "jk", 2, 120);
+        Almacenamiento_libros.add(Libro2);
+    }
+
 
 
 }
