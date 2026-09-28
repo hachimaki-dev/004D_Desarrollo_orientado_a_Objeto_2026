@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "▶ Ejecutar App JavaFX (Windows - Laboratorio)",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "004D_Desarrollo_orientado_a_Objeto_2026",
+            "vmArgs": "--module-path \"${workspaceFolder}/lib\" --add-modules javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
+            "name": "▶ Ejecutar App JavaFX (macOS - Profe)",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "004D_Desarrollo_orientado_a_Objeto_2026",
+            "vmArgs": "--module-path \"${workspaceFolder}/lib/mac\" --add-modules javafx.controls,javafx.fxml"
+        }
+    ]
+}
