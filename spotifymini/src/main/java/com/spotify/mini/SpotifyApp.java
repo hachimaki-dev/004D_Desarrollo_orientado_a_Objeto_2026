@@ -22,7 +22,7 @@ public class SpotifyApp extends Application{
         txtArtista.setStyle("-fx-background-radius: 20px");
 
         Button btnAgregarCancion = new Button("Aceptar");
-        btnAgregarCancion.setStyle("-fx-background-color:rgb(20, 202, 35);" + "-fx-background-radius: 20px;" + "-fx-padding: 5 20;" + "-fx-text-fill #fff;");
+        btnAgregarCancion.setStyle("-fx-background-color:rgb(20, 202, 35);" + "-fx-background-radius: 20px;" + "-fx-padding: 5 20;" + "-fx-text-fill: #ffffff;");
         
         //HBox contenedorHorizontal = new HBox(5,lblNombreApp, btnAgregarCancion);
         VBox contenedorVertical =  new VBox(15,lblNombreApp, txtArtista, btnAgregarCancion);
