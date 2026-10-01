@@ -25,7 +25,7 @@ public class SpotifyApp extends Application{
 
 
         //HBox contenedorHorizontal = new HBox(5, lblNombreApp, btnAgregarCancion);
-        VBox contenedorVertical = new VBox(5, lblNombreApp, btnAgregarCancion);
+        VBox contenedorVertical = new VBox(5, lblNombreApp, txtArtista,btnAgregarCancion);
         contenedorVertical.setStyle("-fx-background-color: #222;");
         contenedorVertical.setPadding(new Insets(20));
 
