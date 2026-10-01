@@ -1,5 +1,5 @@
 package com.spotify.minivicentesoto;
 
-public class main {
+public class SpotifyApp {
     
 }
