@@ -16,7 +16,8 @@ public class SpotifyApp extends Application{
         Label lblNombreApp = new Label("SpotifyDuoc :D");
         lblNombreApp.setStyle("-fx-text-fill: #fff;");
 
-        TextField txtArtista
+        TextField txtArtista = new TextField();
+        txtArtista.setStyle("-fx-background-radius: 20px");
 
 
         Button btnAgregarCancion = new Button("Aceptar");
