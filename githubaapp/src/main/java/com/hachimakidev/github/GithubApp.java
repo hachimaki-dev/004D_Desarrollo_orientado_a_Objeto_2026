@@ -44,6 +44,9 @@ public class GithubApp extends Application {
 
         VBox formulario_login = new VBox(5, lbl_user_name, txt_user_name, lbl_password, txt_password);
         VBox contenedor_padre = new VBox(logotipo, formulario_login);
+        
+        contenedor_padre.setStyle("-fx-background-color: #ffffff");
+
 
         Scene inicio_de_sesion = new Scene(contenedor_padre, 375, 667);
         
