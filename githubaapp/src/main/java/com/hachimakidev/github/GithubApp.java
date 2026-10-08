@@ -21,21 +21,13 @@ public class GithubApp extends Application {
         imgview_logo_gh.setFitHeight(60);
         imgview_logo_gh.setFitWidth(60);
 
-
         Label lbl_text_bienvenida = new Label("Sign in to Github");
-
-        lbl_text_bienvenida.setStyle("-fx-font-size: 20px;" + "-fx-font-weight: bold;");
-
-
-
+        lbl_text_bienvenida.setStyle("-fx-font-size: 20px; -fx-font-weight: bold;");
 
         VBox logotipo = new VBox(15, imgview_logo_gh, lbl_text_bienvenida);
-        
         logotipo.setAlignment(Pos.TOP_CENTER);
-
-        logotipo.setPadding(new Insets(30));
-
-        logotipo.setStyle("-fx-backgroud-color: #fff");
+        logotipo.setPadding(new Insets(30, 0, 20, 0));
+        logotipo.setStyle("-fx-background-color: #ffffff;"); // Corregido el typo en background
 
         Label lbl_user_name = new Label("Username or email address");
         TextField txf_user_name = new TextField();
@@ -43,14 +35,16 @@ public class GithubApp extends Application {
         Label lbl_password = new Label("Password");
         PasswordField txf_password = new PasswordField();
 
-        VBox formulario_login = new VBox(lbl_user_name, txf_user_name, lbl_password, txf_password);
+        // Se añadió un espaciado de 8px para que los campos no estén tan pegados
+        VBox formulario_login = new VBox(8, lbl_user_name, txf_user_name, lbl_password, txf_password);
 
-        VBox contenedor_padre = new VBox(logotipo, formulario_login);
-
-        contenedor_padre.setStyle("-fx-backgroud-color: #fff");
+        VBox contenedor_padre = new VBox(20, logotipo, formulario_login);
+        contenedor_padre.setStyle("-fx-background-color: #ffffff;"); // Corregido el typo en background
         contenedor_padre.setPadding(new Insets(20));
 
-        Scene inicio_de_sesion = new Scene(logotipo, 375, 667);
+        // CORREGIDO: Ahora la escena recibe el contenedor padre que agrupa todo
+        Scene inicio_de_sesion = new Scene(contenedor_padre, 375, 667);
+        
         stage.setTitle("GitHub Login");
         stage.setScene(inicio_de_sesion);
         stage.show();
