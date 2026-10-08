@@ -23,7 +23,7 @@ public class SpotifyApp extends Application{
 
         contenerdor_vertical.setPadding(new  Insets(100, 20, 30, 50));
 
-        Scene scene = new Scene(lblnombreApp, 500, 300);
+        Scene scene = new Scene(contenerdor_vertical, 500, 300);
 
         escenario.setScene(scene);
         escenario.show();
