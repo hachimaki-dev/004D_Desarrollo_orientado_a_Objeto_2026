@@ -17,50 +17,40 @@ public class GithubApplication extends  Application{
     @Override
     public void start(Stage stage) throws Exception {
         
-        Image logo_gh = new Image("https://images.seeklogo.com/logo-png/30/2/github-logo-png_seeklogo-304612.png");
+    Image logo_gh = new Image("https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/github-icon.png");
+    ImageView imgview_logo_gh = new ImageView(logo_gh);
+    imgview_logo_gh.setFitWidth(60);
+    imgview_logo_gh.setFitHeight(60);
 
-        ImageView imgView_logo_gh = new ImageView(logo_gh);
-        imgView_logo_gh.setFitWidth(60);
-        imgView_logo_gh.setFitHeight(60);
+    Label lbl_text_bienvenida = new label("Sign in to Github");
+    lbl_text_bienvenida.setStyle("-fx-font-size:20px;" +"-fx-font-weight: bold;");
 
-        Label lblInicioSesion = new Label("Sign in to GitHub");
+    VBox logotipo = new VBox(10 ,imgview_logo_gh, lbl_text_bienvenida);
 
-        lblInicioSesion.setStyle("-fx-font-size: 20px;" + "-fx-font-weight: bold;");
+    logotipo.setAlignment(Pos.TOP_CENTER);
+    logotipo.setPadding(new Insets(30));
 
-        VBox banner = new VBox(imgView_logo_gh, lblInicioSesion);
+    logotipo.setStyle("-fx-background-color: #ffffff");
 
-        banner.setAlignment(Pos.TOP_CENTER);
+    label lbl_user_name = new label("Username or Email addres");
+    Textfield txf_user_name = new TextField();
+
+    label lbl_password = new lbl_passwordField();
+    PasswordField txf_password = new PasswordField();
+
+    Vbox formulario_login = new Vbox(5, lbl_user_name, lbl_password, txf_password);
+
+    vbox contenerdor_padre = new Vbox (logotipo,formulario_login);
+
+    contenerdor_padre.setStyle("-fx-background-color: #ffffff");
+    
 
 
-        Label lbl_user_name = new Label("Username or email addres");
-        
-        TextField txf_user_name = new TextField();
+    Scene inicio_de_sesion = new Scene(logotipo, 375, 667);
 
-        Label lbl_password = new Label("Password");
+    stage.setScene(inicio_de_sesion);
 
-        TextField txf_password = new TextField();
-
-        Button btn_sign_in = new Button("Sign in");
-        btn_sign_in.setMaxWidth(Double.MAX_VALUE);
-        btn_sign_in.setStyle("-fx-background-color:#0a8940;" + "-fx-text-fill: #fff;" + "-fx-font-weight: bold;");
-
-        btn_sign_in.setOnAction( e -> {
-            System.out.println("Wena wena");
-        } );
-
-        VBox formulario_login = new VBox(10,lbl_user_name, txf_user_name, lbl_password, txf_password, btn_sign_in);
-
-        VBox interfaz = new VBox(5, banner, formulario_login);
-
-        interfaz.setPadding(new Insets(20));
-
-        interfaz.setStyle("-fx-background-color: #fff;");
-
-        Scene login_scene = new Scene(interfaz, 375, 667);
-        
-        stage.setScene(login_scene);
-
-        stage.show();
+    stage.show();
     }
 
 
