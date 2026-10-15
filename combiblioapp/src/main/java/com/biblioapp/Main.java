@@ -1,7 +1,8 @@
-package com.hachimakidev.github;
+package com.biblioapp;
 
 public class Main {
     public static void main(String[] args) {
-        GithubApp.main(args);
+        App.main(args);
     }
+    
 }
