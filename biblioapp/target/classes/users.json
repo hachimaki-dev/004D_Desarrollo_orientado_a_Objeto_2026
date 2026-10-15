@@ -1,0 +1,28 @@
+[
+    {
+      "rut": "12345678-9",
+      "nombre": "Juan Pérez",
+      "correo": "juan.perez@example.com"
+    },
+    {
+      "rut": "98765432-1",
+      "nombre": "María López",
+      "correo": "maria.lopez@example.com"
+    },
+    {
+        "rut" : "22.254.365-9",
+        "nombre" : "Vicente Soto",
+        "correo" : "vsoto@duocuc.cl"
+    },
+    {
+        "rut" : "22.248.548-6",
+        "nombre" : "Yuliana Belmar",
+        "correo" : "ybelmar@duocuc.cl"
+    },
+    {
+        "rut" : "18.801.566-8",
+        "nombre" : "Carlos Orellana",
+        "correo" : "car.oredsfwsllana@profesor.duoc.cl"
+    }
+    
+]
