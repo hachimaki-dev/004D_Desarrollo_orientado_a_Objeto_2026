@@ -1,0 +1,17 @@
+[
+    {
+        "Rut": "12345678-9",
+        "Nombre": "Juan Pérez",
+        "Correo": "juan.perez@example.com"
+    },
+    {
+        "Rut": "98765432-1",
+        "Nombre": "María López",
+        "Correo": "maria.lopez@example.com"
+    },
+    {
+        "Rut": "42397058-7",
+        "Nombre": "Amaro López",
+        "Correo": "am.lop2007@duoc.cl"
+    }
+]
