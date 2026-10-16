@@ -1,16 +1,19 @@
 package com.vicente_soto.biblioapp;
 
+import com.vicente_soto.biblioapp.view.HomeView;
+
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class BiblioTechApp extends Application {
 
-         @Override
+    @Override
     public void start(Stage stage) {
+
+        HomeView home_view = new HomeView();
+
         stage.setTitle("BiblioTech");
-        stage.setScene(new Scene(new VBox(), 600, 300));
+        stage.setScene(home_view.homeScene());
         stage.show();
     }
 
