@@ -1,0 +1,7 @@
+com\hachimakidev\bibliotech\controller\UserController.class
+com\hachimakidev\bibliotech\BiblioTechApp.class
+com\hachimakidev\bibliotech\model\UserManager.class
+com\hachimakidev\bibliotech\view\UserDataView.class
+com\hachimakidev\bibliotech\view\HomeView.class
+com\hachimakidev\bibliotech\model\User.class
+com\hachimakidev\bibliotech\Main.class
