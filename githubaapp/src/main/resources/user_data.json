@@ -1,0 +1,35 @@
+[
+
+    {
+        "rut": "11.111.111-1",
+        "nombre": "Franco Dietert",
+        "correo": "fdietert@duocuc.cl",
+        "edad": 19,
+        "puede_solicitar _prestamos":true
+    },
+
+    {
+        "rut": "22.222.222-2",
+        "nombre": "Patroclo",
+        "correo": "patro@duocuc.cl",
+        "edad": 20,
+        "puede_solicitar _prestamos":true
+    },
+
+    {
+        "rut": "33.333.333-3",
+        "nombre": "Benjita alcaphone",
+        "correo": "b.alcaphone@duocuc.cl",
+        "edad": 18,
+        "puede_solicitar _prestamos":false
+    },
+
+    {
+        "rut": "44.444.444-4",
+        "nombre": "Bruh bruh",
+        "correo": "bruh@duocuc.cl",
+        "edad": 18,
+        "puede_solicitar _prestamos":false
+    }
+
+]
