@@ -8,5 +8,11 @@
         "rut":"22176467-4",
         "nombre": "Samuel Jackson",
         "correo": "sjackson642@gmail.com"
+    },
+
+    {
+        "rut": "22176478-6",
+        "nombre": "Peruano Alvarado",
+        "correo": "palvarado@outlook.com"
     }
 ]

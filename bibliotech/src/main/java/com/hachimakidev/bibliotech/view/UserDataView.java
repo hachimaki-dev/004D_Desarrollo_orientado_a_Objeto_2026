@@ -1,7 +1,6 @@
 package com.hachimakidev.bibliotech.view;
 import com.hachimakidev.bibliotech.controller.UserController;
 import com.hachimakidev.bibliotech.model.User;
-
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -9,15 +8,21 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+
 public class UserDataView {
 
-    public VBox userData(){
+    public VBox userData(Runnable IrABuscarLibros){
         UserController controller = new UserController();
 
         Label lbl_user_rut = new Label("RUT del usuario:");
         TextField txf_user_rut = new TextField();
         txf_user_rut.setPromptText("Ej: 12345678-9");
         Button btn_buscar = new Button("Buscar");
+        Button buscar_libro = new Button("BUSCAR LIBRO");
+        
+        buscar_libro.setOnAction(e -> IrABuscarLibros.run());
+
+       
 
         Label lbl_resultado = new Label();
         Label lbl_rut = new Label("RUT: -");
@@ -53,7 +58,7 @@ public class UserDataView {
         });
 
         HBox fila_busqueda = new HBox(10, lbl_user_rut, txf_user_rut, btn_buscar);
-        VBox box = new VBox(10, fila_busqueda, lbl_resultado, lbl_rut, lbl_nombre, lbl_correo);
+        VBox box = new VBox(10, fila_busqueda, lbl_resultado, lbl_rut, lbl_nombre, lbl_correo, buscar_libro);
         box.setPadding(new Insets(20));
 
         return box;
