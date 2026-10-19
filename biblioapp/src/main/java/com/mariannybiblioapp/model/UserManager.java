@@ -7,43 +7,34 @@ import java.util.ArrayList;
 import com.google.gson.Gson;
 
 public class UserManager {
-    private ArrayList<User> lista_usuarios = new ArrayList<>();
-    private boolean datos_cargados = false;
 
-    public UserManager() {
-        cargarDatos();
+    ArrayList<User> user_arraylist = new ArrayList<>();
+
+    public UserManager(){
+        loadUsers();
     }
 
-    private void cargarDatos() {
-        try {
-            InputStream stream = getClass().getResourceAsStream("/users.json");
+    public void loadUsers(){
+        InputStream cadena = getClass().getResourceAsStream("/user_data.json");
 
-            InputStreamReader reader = new InputStreamReader(stream);
+        InputStreamReader reader = new InputStreamReader(cadena);
 
-            Gson gson = new Gson();
-            User[] arreglo_usuarios = gson.fromJson(reader, User[].class);
+        Gson gson = new Gson();
+        User[] users = gson.fromJson(reader, User[].class);
 
-            for (User u : arreglo_usuarios) {
-                lista_usuarios.add(u);
-            }
-
-            datos_cargados = true;
-
-        } catch (Exception e) {
-            System.out.println("Error al cargar users.json: " + e);
+        for(User usuario : users ){
+            user_arraylist.add(usuario);
         }
     }
 
-    public boolean isDatosCargados() {
-        return datos_cargados;
-    }
-
-    public User buscarPorRut(String rut_a_buscar) {
-        for (User u : lista_usuarios) {
-            if (u.getRut().equals(rut_a_buscar)) {
-                return u;
-            }
+    public void aVer(){
+        for(User u: user_arraylist){
+            System.out.println("--------");
+            System.out.println(u.getRut());
+            System.out.println(u.getNombre());
+            System.out.println(u.getEmail());
+            System.out.println(u.getEdad());
+            System.out.println(u.isPuede_solicitar_prestamos());
         }
-        return null;
     }
 }

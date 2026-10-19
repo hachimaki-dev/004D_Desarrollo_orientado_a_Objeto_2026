@@ -1,0 +1,30 @@
+[
+  {
+    "rut": "11.111.111-1",
+    "nombre": "Franco Dietert",
+    "email": "fdieter@duocuc.cl",
+    "edad": 19,
+    "puede_solicitar_prestamos" : true
+  },
+  {
+    "rut": "22.222.222-2",
+    "nombre": "Matías Moena",
+    "email": "mmoena@example.com",
+    "edad": 18,
+    "puede_solicitar_prestamos" : false
+  },
+    {
+    "rut": "33.333.333-3",
+    "nombre": "Brayan Vasquez",
+    "email": "bvasquez@example.com",
+    "edad": 19,
+    "puede_solicitar_prestamos" : true
+    },
+  {
+    "rut": "33.333.333-3",
+    "nombre": "Alberto Cardenas",
+    "email": "acardenas@example.com",
+    "edad": 19,
+    "puede_solicitar_prestamos" : true
+    }
+]

@@ -9,14 +9,13 @@ import javafx.stage.Stage;
 
 public class BiblioTechApp extends Application {
 @Override
-    public void start(Stage stage) {
+public void start(Stage stage) throws Exception {
+    HomeView home_view = new HomeView();
+    Scene home_scene = home_view.homeScene();
+    stage.setScene(home_scene);
+    stage.show();
 
-        HomeView home_view = new HomeView();
-
-        stage.setTitle("BiblioTech");
-        stage.setScene(home_view.homeScene());
-        stage.show();
-    }
+}
 
     public static void main(String[] args) {
         launch(args);
