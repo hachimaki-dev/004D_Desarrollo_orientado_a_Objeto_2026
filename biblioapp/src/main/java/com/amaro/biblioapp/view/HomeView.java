@@ -1,6 +1,7 @@
 package com.amaro.biblioapp.view;
 
 import com.amaro.biblioapp.controller.UserController;
+import com.amaro.biblioapp.model.User;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -10,6 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class HomeView {
+    private User us;
 
     public Scene homeScene() {
         Label lbl_user_rut = new Label("Rut: ");
@@ -30,7 +32,13 @@ public class HomeView {
         Scene home_scene = new Scene(vbox_home, 720, 480);
         btn_search_user.setOnAction(e -> {
             UserController userController = new UserController();
-            userController.test();
+            String rut = txf_user_rut.getText();
+            us = userController.searchUserByRut(rut);
+            lbl_user_data_rut.setText(us.getRut());
+            lbl_user_data_nombre.setText(us.getNombre());
+            lbl_user_data_email.setText(us.getEmail());
+            lbl_user_data_edad.setText(us.getEdad() + "");
+            lbl_user_data_pedir.setText(us.isPuede_solicitar_prestamos() + "");
         });
 
         return home_scene;

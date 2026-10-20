@@ -23,6 +23,15 @@ public class UserManager {
         }
     }
 
+    public User returnUserByRut(String rut) {
+        for (User u : user_arraylist) {
+            if (u.getRut().equals(rut)) {
+                return u;
+            }
+        }
+        return null;
+    }
+
     public void aVerSiEsVerdad() {
         for (User u : user_arraylist) {
             System.out.println("-------------");
