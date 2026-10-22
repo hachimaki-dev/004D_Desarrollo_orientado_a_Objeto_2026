@@ -10,11 +10,11 @@ public class UserManager {
 
     ArrayList<User> user_arraylist = new ArrayList<>();
 
-    public UserManager(){
+    public UserManager() {
         loadUsers();
     }
 
-    public void loadUsers(){
+    public void loadUsers() {
         InputStream cadena = getClass().getResourceAsStream("/user_data.json");
 
         InputStreamReader reader = new InputStreamReader(cadena);
@@ -28,8 +28,17 @@ public class UserManager {
         }
     }
 
+    public User devolverUsuarioPorRut(String rut) {
+        for (User usuario : user_arraylist) {
+            if(usuario.getRut().equals(rut)) {
+                return usuario;
+            }
+        }
+        return null;
+    }
 
-    public void aVerSiEsVerdad(){
+
+    public void aVerSiEsVerdad() {
         for(User u : user_arraylist){
             System.out.println("--------------");
             System.out.println(u.getRut());
