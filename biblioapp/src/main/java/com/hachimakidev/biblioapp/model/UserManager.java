@@ -28,6 +28,14 @@ public class UserManager {
         }
     }
 
+    public User devolverUsuarioPorRut(String rut){
+        for (User usuario : user_arraylist) {
+            if( usuario.getRut().equals(rut)) {
+                return usuario;
+            }
+        }
+        return null;        
+    }
 
     public void aVerSiEsVerdad(){
         for(User u : user_arraylist){
