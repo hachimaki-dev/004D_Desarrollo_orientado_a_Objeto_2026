@@ -26,8 +26,10 @@ public class UserDataView {
 
         Label lbl_resultado = new Label();
         Label lbl_rut = new Label("RUT: -");
-        Label lbl_nombre = new Label("NOMBRE: -");
+        Label lbl_nombre = new Label("Nombre: -");
         Label lbl_correo = new Label("Correo: -");
+        Label lbl_edad = new Label("Edad: -");
+        Label prestamo = new Label("Permiso de prestamo: -");
 
         btn_buscar.setOnAction(e ->{
             lbl_rut.setText("RUT: -");
@@ -50,6 +52,18 @@ public class UserDataView {
                     lbl_rut.setText("RUT: " + usuario.getRut());
                     lbl_nombre.setText("Nombre: " + usuario.getNombre());
                     lbl_correo.setText("Correo: " + usuario.getCorreo());
+                    lbl_edad.setText("Edad: " + usuario.getEdad());
+                   
+                    if (usuario.getPuedeSolicitar() == true){
+                        prestamo.setText("Permiso de prestamo: SI");
+
+                    }
+                
+                    else{
+                        prestamo.setText("Permiso de prestamo: NO");
+                    };
+
+
                 }
                 else{
                     lbl_resultado.setText("Usuario no encontrado.");
@@ -58,7 +72,7 @@ public class UserDataView {
         });
 
         HBox fila_busqueda = new HBox(10, lbl_user_rut, txf_user_rut, btn_buscar);
-        VBox box = new VBox(10, fila_busqueda, lbl_resultado, lbl_rut, lbl_nombre, lbl_correo, buscar_libro);
+        VBox box = new VBox(10, fila_busqueda, lbl_resultado, lbl_rut, lbl_nombre, lbl_correo, lbl_edad, prestamo, buscar_libro);
         box.setPadding(new Insets(20));
 
         return box;

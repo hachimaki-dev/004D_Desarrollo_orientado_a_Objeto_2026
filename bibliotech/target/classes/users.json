@@ -2,17 +2,23 @@
     {
         "rut": "22176458-2",
         "nombre": "Pedro Gonzalez",
-        "correo": "pgonzales@gmail.com"
+        "correo": "pgonzales@gmail.com",
+        "edad": 21,
+        "puede_solicitar": true
     },
     {
         "rut":"22176467-4",
         "nombre": "Samuel Jackson",
-        "correo": "sjackson642@gmail.com"
+        "correo": "sjackson642@gmail.com",
+        "edad": 19,
+        "puede_solicitar": false
     },
 
     {
         "rut": "22176478-6",
         "nombre": "Peruano Alvarado",
-        "correo": "palvarado@outlook.com"
+        "correo": "palvarado@outlook.com",
+        "edad": 24,
+        "puede_solicitar": false
     }
 ]
