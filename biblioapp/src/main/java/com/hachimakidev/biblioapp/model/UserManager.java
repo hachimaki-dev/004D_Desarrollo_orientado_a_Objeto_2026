@@ -39,5 +39,14 @@ public class UserManager {
             System.out.println(u.isPuede_solicitar_prestamos());
         }
     }
+
+    public User devolverUsuarioPorRut(String rut){
+        for(User  usuario : user_arraylist){
+            if (usuario.getRut().equals(rut)){
+                return usuario;
+            }
+        }
+        return null; 
+    }
     
 }
