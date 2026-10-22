@@ -1,6 +1,7 @@
 package com.hachimakidev.biblioapp.view;
 
 import com.hachimakidev.biblioapp.controller.UserController;
+import com.hachimakidev.biblioapp.model.User;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -32,12 +33,30 @@ public class HomeView {
 
         Scene home_scene = new Scene(vbox_home, 720, 480);
 
-        btn_search_user.setOnAction( e -> {
+        btn_search_user.setOnAction(e -> 
+        {
+
+            String rut = txf_user_rut.getText();
+
             UserController userController = new UserController();
 
-            userController.test();
+            User user = userController.buscarUsuario(rut);
 
-        } );
+            if (user == null)
+            {
+
+            }
+            else
+            {
+                lbl_user_data_rut.setText("Rut: " + user.getRut());
+                lbl_user_data_edad.setText("Edad: " + user.getEdad());
+                lbl_user_data_nombre.setText("Nombre: " + user.getNombre());
+                lbl_user_data_email.setText("Email: " + user.getEmail());
+                lbl_user_data_puede_pedir.setText("¿Puede solicitar libros?: " + user.isPuede_solicitar_prestamos());
+            }
+            
+        }
+                                   );
 
         return home_scene;
     }

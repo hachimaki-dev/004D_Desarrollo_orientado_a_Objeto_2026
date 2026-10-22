@@ -6,15 +6,18 @@ import java.util.ArrayList;
 
 import com.google.gson.Gson;
 
-public class UserManager {
+public class UserManager 
+{
 
     ArrayList<User> user_arraylist = new ArrayList<>();
 
-    public UserManager(){
+    public UserManager()
+    {
         loadUsers();
     }
 
-    public void loadUsers(){
+    public void loadUsers()
+    {
         InputStream cadena = getClass().getResourceAsStream("/user_data.json");
 
         InputStreamReader reader = new InputStreamReader(cadena);
@@ -23,14 +26,17 @@ public class UserManager {
 
         User[] users = gson.fromJson(reader, User[].class);
 
-        for( User usuario : users ){
+        for (User usuario : users )
+        {
             user_arraylist.add(usuario);
         }
     }
 
 
-    public void aVerSiEsVerdad(){
-        for(User u : user_arraylist){
+    public void aVerSiEsVerdad()
+    {
+        for(User u : user_arraylist)
+        {
             System.out.println("--------------");
             System.out.println(u.getRut());
             System.out.println(u.getNombre());
@@ -40,4 +46,18 @@ public class UserManager {
         }
     }
     
+    public User devolverUsuarioPorRut(String rut)
+    {
+
+        for (User u : user_arraylist)
+        {
+            if (u.getRut().equals(rut))
+            {
+                return u;
+            }
+        }
+
+        return null;
+
+    }
 }
