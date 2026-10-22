@@ -16,7 +16,7 @@ public class HomeView {
         Label lbl_user_rut = new Label("Rut: ");
         TextField txf_user_rut = new TextField();
         txf_user_rut.setPromptText("ej: 11.111.111-1");
-        Button btn_search_user = new Button("Buscar c:");
+        Button btn_search_user = new Button("Buscar");
 
         HBox hbox_search_user = new HBox(10, lbl_user_rut, txf_user_rut, btn_search_user);
 
@@ -35,8 +35,9 @@ public class HomeView {
         btn_search_user.setOnAction( e -> {
             UserController userController = new UserController();
 
-            userController.test();
+            String rut = txf_user_rut.getText(); //Permite reutilizar la variable
 
+            User user = userController.buscarUsuario(rut);
         } );
 
         return home_scene;
