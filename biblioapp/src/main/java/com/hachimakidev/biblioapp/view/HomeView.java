@@ -1,6 +1,7 @@
 package com.hachimakidev.biblioapp.view;
 
 import com.hachimakidev.biblioapp.controller.UserController;
+import com.hachimakidev.biblioapp.model.User;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -33,9 +34,18 @@ public class HomeView {
         Scene home_scene = new Scene(vbox_home, 720, 480);
 
         btn_search_user.setOnAction( e -> {
+            
             UserController userController = new UserController();
 
-            userController.test();
+            String rut = txf_user_rut.getText();
+
+            User usuario_recibido = userController.buscarUsuario( rut );
+
+            lbl_user_data_rut.setText(usuario_recibido.getRut());
+            lbl_user_data_nombre.setText(usuario_recibido.getNombre());
+            lbl_user_data_email.setText(usuario_recibido.getEmail());
+            lbl_user_data_edad.setEdad(usuario_recibido.getEdad());
+            lbl_user_data_puede_pedir.set
 
         } );
 
