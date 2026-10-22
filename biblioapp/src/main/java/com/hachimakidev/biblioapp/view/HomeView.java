@@ -1,6 +1,7 @@
 package com.hachimakidev.biblioapp.view;
 
 import com.hachimakidev.biblioapp.controller.UserController;
+import com.hachimakidev.biblioapp.model.User;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -35,6 +36,20 @@ public class HomeView {
         btn_search_user.setOnAction( e -> {
             UserController userController = new UserController();
 
+            String rut = txf_user_rut.getText();
+
+            User usuario = userController.buscarUsuario(rut);
+
+            lbl_user_data_rut.setText(usuario.getRut());
+
+            lbl_user_data_email.setText(usuario.getEmail());
+
+            lbl_user_data_nombre.setText(usuario.getNombre());
+
+            lbl_user_data_edad.setText("Edad: " + usuario.getEdad());
+
+
+            //esta es la mejor opcion pq la podemos reutilizar, esta es para mostrar el rut,
             userController.test();
 
         } );
