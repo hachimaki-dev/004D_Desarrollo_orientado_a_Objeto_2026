@@ -40,4 +40,16 @@ public class UserManager {
         }
     }
     
-}
+    public  User devolverusuarioporrut(String rut){
+        for (User usuario : user_arraylist) {
+            if (usuario.getRut().equals(rut)) {
+                return usuario ;
+            }
+        }
+        return  null ;
+            
+        }
+    }
+
+
+     
