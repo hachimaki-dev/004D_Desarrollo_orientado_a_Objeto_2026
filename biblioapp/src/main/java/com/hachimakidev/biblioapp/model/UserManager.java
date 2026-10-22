@@ -29,6 +29,18 @@ public class UserManager {
     }
 
 
+
+    public User BuscarUsuarioPorRut(String Rut){
+        for (User rut_user : user_arraylist) {
+            if (rut_user.getRut().equals(Rut)){
+                return rut_user;
+            }
+        }
+        return null;
+    }
+
+    
+
     public void aVerSiEsVerdad(){
         for(User u : user_arraylist){
             System.out.println("--------------");
