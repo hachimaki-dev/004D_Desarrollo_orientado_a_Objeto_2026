@@ -29,6 +29,15 @@ public class UserManager {
     }
 
 
+    public User devolverUsuarioPorRut(String rut){
+        for (User usuario : user_arraylist) {
+            if (usuario.getRut().equals(rut)) {
+                return usuario;
+            }
+        }
+        return null;
+    }
+
     public void aVerSiEsVerdad(){
         for(User u : user_arraylist){
             System.out.println("--------------");
@@ -36,7 +45,7 @@ public class UserManager {
             System.out.println(u.getNombre());
             System.out.println(u.getEmail());
             System.out.println(u.getEdad());
-            System.out.println(u.isPuede_solicitar_prestamos());
+            System.out.println(u.getPuede_solicitar_prestamos());
         }
     }
     

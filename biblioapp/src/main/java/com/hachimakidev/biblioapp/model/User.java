@@ -39,7 +39,7 @@ public class User {
     public void setEdad(int edad) {
         this.edad = edad;
     }
-    public boolean isPuede_solicitar_prestamos() {
+    public boolean getPuede_solicitar_prestamos() {
         return puede_solicitar_prestamos;
     }
     public void setPuede_solicitar_prestamos(boolean puede_solicitar_prestamos) {
