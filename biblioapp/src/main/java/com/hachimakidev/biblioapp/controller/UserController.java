@@ -1,5 +1,6 @@
 package com.hachimakidev.biblioapp.controller;
 
+import com.hachimakidev.biblioapp.model.User;
 import com.hachimakidev.biblioapp.model.UserManager;
 
 public class UserController {
@@ -9,4 +10,12 @@ public class UserController {
         userManager.aVerSiEsVerdad();
     }
 
+    public User buscarUsuario(String rut){
+        UserManager administracionDeUsuarios = new UserManager();
+
+        User usuarioBuscado = administracionDeUsuarios.devolverUsuarioPorRut(rut);
+
+        return usuarioBuscado;
+
+    }
 }
