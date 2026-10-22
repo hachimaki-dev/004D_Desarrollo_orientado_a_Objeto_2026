@@ -34,8 +34,14 @@ public class HomeView {
 
         btn_search_user.setOnAction( e -> {
             UserController userController = new UserController();
+            String rut = txf_user_rut.getText();
 
-            userController.test();
+            userController.buscarUsuario(rut);
+
+            lbl_user_data_rut.setText(usuario.getRut());
+            lbl_user_data_nombre.setText(usuario.getNombre());
+            lbl_user_data_email.setText(usuario.getEmail());
+            lbl_user_data_puede_pedir.setText(rut);
 
         } );
 

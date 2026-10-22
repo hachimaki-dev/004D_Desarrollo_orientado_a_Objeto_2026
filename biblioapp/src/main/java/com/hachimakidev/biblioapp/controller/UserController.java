@@ -9,4 +9,10 @@ public class UserController {
         userManager.aVerSiEsVerdad();
     }
 
+    public User buscarusuario(String rut){
+        UserManager administacionDeUsuario = new UserManager();
+        User usuarioEncontrado = administacionDeUsuario.devolverUsuarioPorRut(rut);
+        return usuarioEncontrado;
+    }
+
 }
