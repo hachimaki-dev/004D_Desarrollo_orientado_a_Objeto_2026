@@ -49,7 +49,7 @@ public class HomeView {
             lbl_user_data_edad.setText("Edad: " + usuario.getEdad());
 
 
-            //esta es la mejor opcion pq la podemos reutilizar, esta es para mostrar el rut,
+            //esta es la mejor opcion pq la podemos reutilizar, esta es para mostrar el rut, el email, nombre y la edad tiene que ir con un texto adelante sino te da error
             userController.test();
 
         } );
