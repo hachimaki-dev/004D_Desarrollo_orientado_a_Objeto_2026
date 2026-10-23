@@ -1,6 +1,7 @@
 package com.hachimakidev.biblioapp.view;
 
 import com.hachimakidev.biblioapp.controller.UserController;
+import com.hachimakidev.biblioapp.model.User;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -25,6 +26,22 @@ public class HomeView {
         Label lbl_user_data_email = new Label("Email: ____________");
         Label lbl_user_data_edad = new Label("Edad: ____________");
         Label lbl_user_data_puede_pedir = new Label("¿Puede solicitar libros?: ____________");
+
+                btn_search_user.setOnAction( e -> {
+            
+            UserController userController = new UserController();
+
+            String rut = txf_user_rut.getText();
+
+            User usuario =  userController.buscarUsuario(rut);
+
+            lbl_user_data_rut.setText(usuario.getRut());
+            lbl_user_data_nombre.setText(usuario.getNombre());
+            lbl_user_data_email.setText(usuario.getEmail());
+
+            lbl_user_data_puede_pedir.setText(usuario.isPuede_solicitar_prestamos() + "");
+
+        } );
 
         VBox vbox_user_data = new VBox(5, lbl_user_data_rut, lbl_user_data_nombre, lbl_user_data_email, lbl_user_data_edad, lbl_user_data_puede_pedir);
 

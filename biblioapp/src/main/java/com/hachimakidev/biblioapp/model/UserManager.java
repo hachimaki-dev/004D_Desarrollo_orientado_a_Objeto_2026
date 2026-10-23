@@ -28,6 +28,19 @@ public class UserManager {
         }
     }
 
+    public User devolverUsuarioPorRut(String rut){
+        System.err.println("WENA WENA!!!");
+        for( User usuario : user_arraylist){
+            if( usuario.getRut().equals(rut)) {
+                System.out.println("-------");
+                System.out.println("El usuario es "  + usuario.getRut());
+                System.out.println("El usuario es "  + usuario.getNombre());
+                return usuario;
+            }
+        }
+        return null;
+    }
+
 
     public void aVerSiEsVerdad(){
         for(User u : user_arraylist){
