@@ -47,7 +47,7 @@ function Write-Fail {
 # CONFIGURACION
 # ------------------------------------------------------------
 
-$JAVA_HOME_PATH = "C:\Program Files\Java\jdk-21"
+$JAVA_HOME_PATH = "C:\Program Files\Java\jdk-25"
 $MAVEN_HOME_PATH = "C:\apache-maven-3.9.11"
 
 # La carpeta donde esta este script
@@ -76,14 +76,14 @@ Write-Host ""
 # JAVA_HOME
 # ------------------------------------------------------------
 
-Write-Step "Configurando Java 21"
+Write-Step "Configurando Java 25"
 
 if (-not (Test-Path $JAVA_HOME_PATH)) {
-    Write-Fail "No se encontro Java 21 en:"
+    Write-Fail "No se encontro Java 25 en:"
     Write-Host $JAVA_HOME_PATH
     Write-Host ""
     Write-Host "Verifica que exista:"
-    Write-Host "C:\Program Files\Java\jdk-21"
+    Write-Host "C:\Program Files\Java\jdk-25"
     exit 1
 }
 
@@ -183,7 +183,7 @@ if (-not (Test-Path $VSCODE_PATH)) {
 
 $settings = @'
 {
-    "java.jdt.ls.java.home": "C:\\Program Files\\Java\\jdk-21",
+    "java.jdt.ls.java.home": "C:\\Program Files\\Java\\jdk-25",
     "java.configuration.updateBuildConfiguration": "automatic",
     "java.debug.settings.onBuildFailureProceed": true,
     "java.import.maven.enabled": true,

@@ -27,34 +27,39 @@ public class HomeView {
         Label lbl_user_data_edad = new Label("Edad: ____________");
         Label lbl_user_data_puede_pedir = new Label("¿Puede solicitar libros?: ____________");
 
-                btn_search_user.setOnAction( e -> {
-            
-            UserController userController = new UserController();
+btn_search_user.setOnAction( e -> {
+    UserController userController = new UserController();
 
-            String rut = txf_user_rut.getText();
+    lbl_user_data_rut.setText("Rut: ____________");
+    lbl_user_data_nombre.setText("Nombre: ____________");
+    lbl_user_data_email.setText("Email: ____________");
+    lbl_user_data_edad.setText("Edad: ____________");
+    lbl_user_data_puede_pedir.setText("¿Puede solicitar libros?: ____________");
 
-            User usuario =  userController.buscarUsuario(rut);
+    String rut = txf_user_rut.getText().trim();
 
-            lbl_user_data_rut.setText(usuario.getRut());
-            lbl_user_data_nombre.setText(usuario.getNombre());
-            lbl_user_data_email.setText(usuario.getEmail());
+    if (rut.isBlank()) {
+        lbl_user_data_rut.setText("Escribe un RUT antes de buscar.");
+    } else {
+        User usuario = userController.buscarUsuario(rut);
 
-            lbl_user_data_puede_pedir.setText(usuario.isPuede_solicitar_prestamos() + "");
-
-        } );
+        if (usuario != null) {
+            lbl_user_data_rut.setText("Rut: " + usuario.getRut());
+            lbl_user_data_nombre.setText("Nombre: " + usuario.getNombre());
+            lbl_user_data_email.setText("Email: " + usuario.getEmail());
+            lbl_user_data_edad.setText("Edad: " + usuario.getEdad());
+            lbl_user_data_puede_pedir.setText("¿Puede solicitar libros?: " + usuario.isPuede_solicitar_prestamos());
+        } else {
+            lbl_user_data_rut.setText("Usuario no encontrado");
+        }
+    }
+} );
 
         VBox vbox_user_data = new VBox(5, lbl_user_data_rut, lbl_user_data_nombre, lbl_user_data_email, lbl_user_data_edad, lbl_user_data_puede_pedir);
 
         VBox vbox_home = new VBox(30, hbox_search_user, vbox_user_data);
 
         Scene home_scene = new Scene(vbox_home, 720, 480);
-
-        btn_search_user.setOnAction( e -> {
-            UserController userController = new UserController();
-
-            userController.test();
-
-        } );
 
         return home_scene;
     }

@@ -10,9 +10,12 @@ public class UserController {
         userManager.aVerSiEsVerdad();
     }
 
-    public User buscarUsuario(String rut) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarUsuario'");
+       public User buscarUsuario(String rut){
+        UserManager administracionDeUsuarios = new UserManager();
+
+        User usuarioEncontrado =  administracionDeUsuarios.devolverUsuarioPorRut(rut);
+
+        return usuarioEncontrado;        
     }
 
 }
