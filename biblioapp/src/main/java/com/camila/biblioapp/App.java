@@ -1,6 +1,6 @@
-package com.hachimakidev.biblioapp;
+package com.camila.biblioapp;
 
-import com.hachimakidev.biblioapp.view.HomeView;
+import com.camila.biblioapp.view.HomeView;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
