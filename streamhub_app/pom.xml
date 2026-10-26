@@ -4,29 +4,25 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.hachimakidev.biblioapp</groupId>
-    <artifactId>biblioapp</artifactId>
+    <groupId>com.monrousito14.streamhub</groupId>
+    <artifactId>streamhub_app</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.source></maven.compiler.source>
+        <maven.compiler.target>21.0.8</maven.compiler.target>
     </properties>
 
     <dependencies>
-
         <dependency>
             <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-            <version>21.0.1</version>
+            <artifactId>javafx</artifactId>
+            <version>21.0.7</version>
         </dependency>
-
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
-            <version>2.14.0</version>
-        </dependency>
-
+            <version>2.15.0</version>
+    </dependency>
     </dependencies>
-
 </project>
