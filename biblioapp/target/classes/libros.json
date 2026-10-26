@@ -1,0 +1,26 @@
+[
+  {
+    "titulo": "Cien años de soledad",
+    "fechaPublicacion": "1967-05-30",
+    "autor": "Gabriel García Márquez",
+    "numero_paginas": 471
+  },
+  {
+    "titulo": "Fahrenheit 451",
+    "fechaPublicacion": "1953-10-19",
+    "autor": "Ray Bradbury",
+    "numero_paginas": 249
+  },
+  {
+    "titulo": "El Principito",
+    "fechaPublicacion": "1943-04-06",
+    "autor": "Antoine de Saint-Exupéry",
+    "numero_paginas": 96
+  },
+  {
+    "titulo": "Harry Potter y la piedra filosofal",
+    "fechaPublicacion": "1997-06-26",
+    "autor": "J.K. Rowling",
+    "numero_paginas": 223
+  }
+]

@@ -10,7 +10,7 @@ public class App extends Application{
     
     @Override
     public void start(Stage stage) throws Exception {
-        HomeView home_view = new HomeView();
+        HomeView home_view = new HomeView(stage);
         Scene home_scene = home_view.homeScene();
         stage.setScene(home_scene);
         stage.show();

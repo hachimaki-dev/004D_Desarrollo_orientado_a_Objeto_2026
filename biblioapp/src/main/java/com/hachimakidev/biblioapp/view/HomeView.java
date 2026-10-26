@@ -2,6 +2,10 @@ package com.hachimakidev.biblioapp.view;
 
 import com.hachimakidev.biblioapp.controller.UserController;
 import com.hachimakidev.biblioapp.model.User;
+import com.hachimakidev.biblioapp.model.LibroManager;
+import com.hachimakidev.biblioapp.controller.LibroController;
+import com.hachimakidev.biblioapp.model.Libros;
+import com.hachimakidev.biblioapp.model.Revistas;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -9,8 +13,17 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
 
 public class HomeView {
+    private Stage stage;
+
+    public HomeView(Stage stage){
+        this.stage = stage;
+    }
+
+
     
     public Scene homeScene(){
 
@@ -18,6 +31,8 @@ public class HomeView {
         TextField txf_user_rut = new TextField();
         txf_user_rut.setPromptText("ej: 11.111.111-1");
         Button btn_search_user = new Button("Buscar c:");
+        Button btn_libro = new Button("LIBROS");
+        Button btn_revista = new Button("REVISTAS");
 
         HBox hbox_search_user = new HBox(10, lbl_user_rut, txf_user_rut, btn_search_user);
 
@@ -27,12 +42,26 @@ public class HomeView {
         Label lbl_user_data_edad = new Label("Edad: ____________");
         Label lbl_user_data_puede_pedir = new Label("¿Puede solicitar libros?: ____________");
 
-        VBox vbox_user_data = new VBox(5, lbl_user_data_rut, lbl_user_data_nombre, lbl_user_data_email, lbl_user_data_edad, lbl_user_data_puede_pedir);
+        VBox vbox_user_data = new VBox(5, lbl_user_data_rut, lbl_user_data_nombre, lbl_user_data_email, lbl_user_data_edad, lbl_user_data_puede_pedir , btn_libro , btn_revista);
 
         VBox vbox_home = new VBox(30, hbox_search_user, vbox_user_data);
 
         Scene home_scene = new Scene(vbox_home, 720, 480);
+        
+        btn_libro.setOnAction(e -> {
+            LibroView librito = new LibroView();
+            stage.setScene(librito.libroScene());
+            
+            
+        });
+        
+        btn_revista.setOnAction(e -> {
+            RevistaView revista = new RevistaView();
+            stage.setScene(revista.revistaScene());
+            
+        });
 
+        
         btn_search_user.setOnAction( e -> {
             UserController userController = new UserController();
 
@@ -40,11 +69,11 @@ public class HomeView {
 
             User usuario = userController.buscarusuario(rut);
 
-            lbl_user_data_rut.setText(usuario.getRut());
-            lbl_user_data_nombre.setText(usuario.getNombre());
-            lbl_user_data_email.setText(usuario.getEmail());
-            lbl_user_data_edad.setText(usuario.getEdad() + "");
-            lbl_user_data_puede_pedir.setText(usuario.isPuede_solicitar_prestamos() + "");
+            lbl_user_data_rut.setText("Rut : " + usuario.getRut());
+            lbl_user_data_nombre.setText("Nombre : " + usuario.getNombre());
+            lbl_user_data_email.setText("Email : " + usuario.getEmail());
+            lbl_user_data_edad.setText( "Edad : " + usuario.getEdad() + "");
+            lbl_user_data_puede_pedir.setText("¿Puede Solicitar Libros? : " + usuario.isPuede_solicitar_prestamos() + "");
 
             
 
