@@ -1,0 +1,1 @@
+Investigar e implementar el patrón DAO repository para este proyecto.
