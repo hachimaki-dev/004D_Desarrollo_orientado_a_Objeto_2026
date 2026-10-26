@@ -1,0 +1,34 @@
+[
+  {
+    "tipo": "pelicula",
+    "titulo": "Inception",
+    "genero": "Ciencia Ficción",
+    "duracionMinutos": 148,
+    "director": "Christopher Nolan",
+    "portada": "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_FMjpg_UX1000_.jpg"
+  },
+  {
+    "tipo": "serie",
+    "titulo": "Breaking Bad",
+    "genero": "Drama Criminal",
+    "temporadas": 5,
+    "capitulosTotales": 62,
+    "portada": "https://m.media-amazon.com/images/M/MV5BMzU5ZGYzNmQtMTdhYy00OGRiLTg0NmQtYjVjNzliZTg1ZGE4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+  },
+  {
+    "tipo": "pelicula",
+    "titulo": "Spider-Man: Into the Spider-Verse",
+    "genero": "Animación / Acción",
+    "duracionMinutos": 117,
+    "director": "Peter Ramsey",
+    "portada": "https://m.media-amazon.com/images/M/MV5BMjMwNDkxMTgyNV5BMl5BanBnXkFtZTgwNzkwNTQ3NjM@._V1_FMjpg_UX1000_.jpg"
+  },
+  {
+    "tipo": "serie",
+    "titulo": "Stranger Things",
+    "genero": "Misterio / Fantasía",
+    "temporadas": 4,
+    "capitulosTotales": 34,
+    "portada": "https://m.media-amazon.com/images/M/MV5BMDZkYmVhNjMtNWU4MC00MDQxLWE3YTgtZTZlN2RmZzk5YTlmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+  }
+]

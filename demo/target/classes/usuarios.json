@@ -1,0 +1,20 @@
+[
+  {
+    "rut": "11.111.111-1",
+    "nombre": "Anais Morales",
+    "email": "anais.morales@streamhub.cl",
+    "plan": "Básico HD"
+  },
+  {
+    "rut": "22.222.222-2",
+    "nombre": "Benjamín Soto",
+    "email": "benja.soto@streamhub.cl",
+    "plan": "Estándar Full HD"
+  },
+  {
+    "rut": "33.333.333-3",
+    "nombre": "Camila Valenzuela",
+    "email": "camila.v@streamhub.cl",
+    "plan": "Premium 4K Ultra"
+  }
+]

@@ -1,8 +1,8 @@
-package com.hachimakidev.biblioapp;
+package com.streamhub;
 
 public class Main {
     public static void main(String[] args) 
     {
-        App.main(args);
+        System.out.println("Hello world!");
     }
 }
