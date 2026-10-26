@@ -1,7 +1,7 @@
-package com.hachimakidev.biblioapp;
+package com.her.gamevault;
 
 public class Main {
     public static void main(String[] args) {
-        App.main(args);
+        System.out.println("Hello world!");
     }
 }
