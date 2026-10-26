@@ -1,7 +1,7 @@
-package com.hachimakidev.biblioapp;
+package com.video.juegos;
 
 public class Main {
     public static void main(String[] args) {
-        App.main(args);
+        GameHub.main(args);
     }
 }
