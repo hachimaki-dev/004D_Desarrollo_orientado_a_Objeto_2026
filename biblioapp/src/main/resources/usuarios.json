@@ -1,0 +1,20 @@
+[
+  {
+    "rut": "18.111.222-3",
+    "nombre": "Diego Alarcón",
+    "email": "diego.gamer@gamevault.cl",
+    "nivelGamer": "Bronce"
+  },
+  {
+    "rut": "19.333.444-5",
+    "nombre": "Javiera Pinto",
+    "email": "javi.pinto@gamevault.cl",
+    "nivelGamer": "Plata"
+  },
+  {
+    "rut": "20.555.666-7",
+    "nombre": "Matías Cárdenas",
+    "email": "matias.pro@gamevault.cl",
+    "nivelGamer": "Leyenda Gamer"
+  }
+]
