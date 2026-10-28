@@ -11,10 +11,27 @@ import javafx.stage.Stage;
 public class StreamHubView extends Contenido {
 
         @Override
-    public void Start(Stage primaryStage) {
+    public void start(Stage primaryStage) {
         Label titulo = new Label("bienvemido a streamhub");
         VBox layout = new  VBox(10);
-        layout.getChildren().addListener();)
+        layout.getChildren().addListener();
+
+
+    layout.getChildren().add(titulo);
+    
+ 
+    Scene scene = new Scene(layout, 400, 300);
+    
+  
+    primaryStage.setTitle("StreamHub");
+    primaryStage.setScene(scene);
+    primaryStage.show();
+}
+
+
+
+
+
     }
 
     

@@ -5,6 +5,11 @@ public class Contenido {
     private String genero;
     private String portadaUrl;
 
+    contenido(){
+
+    }
+
+
     public Contenido(String titulo, String genero, String portadaUrl) {
         this.titulo = titulo;
         this.genero = genero;
