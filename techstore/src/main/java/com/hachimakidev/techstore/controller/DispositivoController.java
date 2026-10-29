@@ -1,6 +1,16 @@
 package com.hachimakidev.techstore.controller;
 
+import com.hachimakidev.techstore.model.Dispositivo;
+import com.hachimakidev.techstore.model.Smartphone;
+
 public class DispositivoController {
+
+
+    public void agregarDispositivo(String marca, String modelo, int precio){
+       if (condition) {
+          
+       }
+    }
 
     // TODO 1: Instanciar DispositivoManager como atributo del controlador.
 
