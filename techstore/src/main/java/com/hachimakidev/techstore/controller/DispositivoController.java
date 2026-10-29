@@ -1,6 +1,19 @@
 package com.hachimakidev.techstore.controller;
 
+import java.util.ArrayList;
+
+import com.hachimakidev.techstore.model.Dispositivo;
+
 public class DispositivoController {
+    private DispositivoController dispoController;
+
+    public DispositivoController() {
+        dispoController = new DispositivoController();
+    }
+
+    public ArrayList<Dispositivo> getDispositivo() {
+        return dispoController.getDispositivo();
+    }
 
     // TODO 1: Instanciar DispositivoManager como atributo del controlador.
 
