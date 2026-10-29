@@ -1,0 +1,8 @@
+﻿{
+    "java.jdt.ls.java.home": "C:\\Program Files\\Java\\jdk-21",
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.debug.settings.onBuildFailureProceed": true,
+    "java.import.maven.enabled": true,
+    "java.configuration.maven.userSettings": "",
+    "java.server.launchMode": "Standard"
+}

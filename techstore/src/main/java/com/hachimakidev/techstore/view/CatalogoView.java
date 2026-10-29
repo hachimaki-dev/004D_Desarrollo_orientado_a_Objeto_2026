@@ -1,7 +1,10 @@
 package com.hachimakidev.techstore.view;
 
+import com.hachimakidev.techstore.model.Dispositivo;
+
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -16,7 +19,7 @@ public class CatalogoView {
         // TODO 2: Reemplazar este contenedor temporal por un TableView<Dispositivo>
         //   - Crear columnas con PropertyValueFactory para: "id", "tipo", "marca", "modelo", "precio", "especificacion", "disponible"
         //   - Poblar la tabla usando FXCollections.observableArrayList(...) con la lista del controlador
-        Label lbl_placeholder_tabla = new Label("[ TODO: Construir aquí el TableView<Dispositivo> con los datos de dispositivos.json ]");
+        TableView<Dispositivo> tableVie;
         VBox contenedor_tabla = new VBox(10, lbl_placeholder_tabla);
         contenedor_tabla.setPadding(new Insets(20));
         contenedor_tabla.setStyle("-fx-border-color: #cbd5e1; -fx-border-radius: 6; -fx-background-color: #f8fafc;");
