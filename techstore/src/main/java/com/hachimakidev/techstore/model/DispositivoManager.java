@@ -1,6 +1,14 @@
 package com.hachimakidev.techstore.model;
 
+import java.util.ArrayList;
+
 public class DispositivoManager {
+
+    ArrayList<Dispositivo> lista_dispositivos = new ArrayList<>();
+
+    public DispositivoManager(){
+
+    }
 
     // TODO 1: Declarar la lista polimórfica ArrayList<Dispositivo> para almacenar notebooks y smartphones.
 
