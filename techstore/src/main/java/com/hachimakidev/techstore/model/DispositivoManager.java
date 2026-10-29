@@ -1,16 +1,61 @@
 package com.hachimakidev.techstore.model;
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
 public class DispositivoManager {
 
-    // TODO 1: Declarar la lista polimórfica ArrayList<Dispositivo> para almacenar notebooks y smartphones.
+    private ArrayList<Dispositivo> dispositivos = new ArrayList<>();
 
-    // TODO 2: En el constructor, llamar al método que carga los datos desde "/dispositivos.json".
+    public DispositivoManager (){
+        cargarDatos();
+    }
+    public void cargarDatos(){
+     InputStream stream = getClass().getResourceAsStream("/dispositivos.json");
 
-    // TODO 3: Implementar el método de carga usando Gson y JsonObject[]:
-    //   - Si el campo "tipo" es "notebook", convertir el JsonObject a Notebook.class y agregarlo a la lista.
-    //   - Si el campo "tipo" es "smartphone", convertir el JsonObject a Smartphone.class y agregarlo a la lista.
+     InputStreamReader reader = new InputStreamReader(stream);
 
-    // TODO 4: Implementar un método getter para retornar la lista de dispositivos y un método para agregar un nuevo Dispositivo.
+     Gson gson = new Gson();
+     JsonArray arreglo_dispositivos = gson.fromJson(reader, JsonArray.class);
+
+     for (JsonElement d : arreglo_dispositivos) {
+        d.getAsJsonObject();
+        JsonObject ar = d.getAsJsonObject();
+        
+        String tipo = ar.get("tipo").getAsString();
+
+        if(tipo.equals("notebook")){
+            Notebook notebook = gson.fromJson(d, Notebook.class);
+            dispositivos.add(notebook);
+        }
+        else if (tipo.equals("smartphone")){
+            Smartphone smartphone = gson.fromJson(d, Smartphone.class);
+            dispositivos.add(smartphone);
+        }
+        else {System.err.println("no se puede añadir el dispositivo");
+
+        }
+    }
+
+     }
+
+     public ArrayList<Dispositivo> getDispositivos(){
+        return dispositivos;
+        
+     }
+     public void agregarDispositivo(Dispositivo nuevo){
+        dispositivos.add(nuevo);
+     }
+
+      {
+        
+     }
 
 }
 
