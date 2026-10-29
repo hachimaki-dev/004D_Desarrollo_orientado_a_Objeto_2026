@@ -47,8 +47,8 @@ function Write-Fail {
 # CONFIGURACION
 # ------------------------------------------------------------
 
-$JAVA_HOME_PATH = "C:\Program Files\Java\jdk-21"
-$MAVEN_HOME_PATH = "C:\apache-maven-3.9.11"
+$JAVA_HOME_PATH = "C:\Archivos de programa\Java\jdk-21.0.12"
+$MAVEN_HOME_PATH = "C:\apache-maven-3.10.0"
 
 # La carpeta donde esta este script
 $ROOT_PATH = $PSScriptRoot
@@ -83,7 +83,7 @@ if (-not (Test-Path $JAVA_HOME_PATH)) {
     Write-Host $JAVA_HOME_PATH
     Write-Host ""
     Write-Host "Verifica que exista:"
-    Write-Host "C:\Program Files\Java\jdk-21"
+    Write-Host "C:\Archivos de programa\Java\jdk-21.0.12"
     exit 1
 }
 
@@ -183,7 +183,7 @@ if (-not (Test-Path $VSCODE_PATH)) {
 
 $settings = @'
 {
-    "java.jdt.ls.java.home": "C:\\Program Files\\Java\\jdk-21",
+    "java.jdt.ls.java.home": "C:\Archivos de programa\Java\jdk-21.0.12",
     "java.configuration.updateBuildConfiguration": "automatic",
     "java.debug.settings.onBuildFailureProceed": true,
     "java.import.maven.enabled": true,
