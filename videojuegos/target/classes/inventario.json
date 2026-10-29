@@ -5,7 +5,7 @@
     "plataforma": "Nintendo Switch",
     "stockTienda": 14,
     "pesoGramos": 75,
-    "portada": "https://m.media-amazon.com/images/I/81xU-7l2fWL._AC_UF1000,1000_QL80_.jpg"
+    "portada": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQOLAzlg5qFJTunRMchK07ao3bSJ0MnVNC4owKuLizmU56XKnewS4dbg4&s=10"
   },
   {
     "tipo": "digital",
@@ -13,7 +13,7 @@
     "plataforma": "PC / Steam",
     "tamanoGB": 70.0,
     "codigoActivacion": "CP77-PL-9948-DUOC",
-    "portada": "https://m.media-amazon.com/images/I/71rIuR2w71L._AC_UF1000,1000_QL80_.jpg"
+    "portada": "https://www.dolby.com/siteassets/xf-site/content-detail-pages/cyberpunk-2077.jpg"
   },
   {
     "tipo": "fisico",
@@ -21,7 +21,7 @@
     "plataforma": "PlayStation 5",
     "stockTienda": 8,
     "pesoGramos": 90,
-    "portada": "https://m.media-amazon.com/images/I/81mS8b1kF3L._AC_UF1000,1000_QL80_.jpg"
+    "portada": "https://cdn.mobygames.com/covers/10722526-elden-ring-playstation-5-front-cover.jpg"
   },
   {
     "tipo": "digital",
@@ -29,6 +29,6 @@
     "plataforma": "PC / Xbox",
     "tamanoGB": 9.0,
     "codigoActivacion": "HK-VOID-2026-XBOX",
-    "portada": "https://m.media-amazon.com/images/I/71rE5r820bL._AC_UF1000,1000_QL80_.jpg"
+    "portada": "https://i.pinimg.com/736x/fc/85/fe/fc85fe47b9243ba856d88a29559ce8f0.jpg"
   }
 ]

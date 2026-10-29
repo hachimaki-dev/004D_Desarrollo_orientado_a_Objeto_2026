@@ -1,77 +1,119 @@
 package com.video.juegos.view;
 
-import com.video.juegos.model.Usuario;
-import com.video.juegos.controller.UserController;
+import com.video.juegos.controller.InventarioController;
+import com.video.juegos.model.JuegoDigital;
+import com.video.juegos.model.JuegoFisico;
+import com.video.juegos.model.Videojuego;
 
+import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
+import javafx.scene.control.TableCell;
+import javafx.scene.image.ImageView;
 
 public class GameVaultView {
-    public Scene gameVaultScene(){
-        Label lbl_panel_superior = new Label("CONSULTA DE SOCIO GAMER");
-        Label lbl_user_rut = new Label("RUT:");
-        TextField txf_user_rut = new TextField();
-        txf_user_rut.setPromptText("Ej: 11.111.111-1");
+    private TableView<Videojuego> tablaVideoJuegos;
+    private InventarioController inventarioController;
 
-        Button btn_search_user = new Button("Buscar socio");
+    public GameVaultView() {
+        inventarioController = new InventarioController();
+        configurarTabla();
+        cargarInventario();
+    }
 
-        HBox hbox_search_user = new HBox(10, lbl_user_rut, txf_user_rut, btn_search_user);
+    private void configurarTabla() {
 
-        Label lbl_user_data_rut = new Label("RUT: _____________");
-        Label lbl_user_data_nombre = new Label("Nombre: _____________");
-        Label lbl_user_data_nivel = new Label("Nivel: _____________");
-        Label lbl_user_data_email = new Label("Email: _____________");
+        tablaVideoJuegos = new TableView<>();
+        tablaVideoJuegos.setFixedCellSize(180);
+        // tablaVideoJuegos.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_ALL_COLUMNS);
 
-        Label lbl_mensaje = new Label();
+        TableColumn<Videojuego, String> columnaTipo = new TableColumn<>("Tipo");
+        columnaTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
 
-        HBox hbox_user_data = new HBox(5, lbl_user_data_rut, lbl_user_data_nombre, lbl_user_data_nivel, lbl_user_data_email);
+        TableColumn<Videojuego, String> columnaTitulo = new TableColumn<>("Título");
+        columnaTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
 
-        VBox vbox_panel_superior = new VBox(10, lbl_panel_superior, hbox_search_user, hbox_user_data);
+        TableColumn<Videojuego, String> columnaDetalle = new TableColumn<>("Detalles");
 
-        Label lbl_panel_inferior = new Label("INVENTARIO DE VIDEOJUEGOS EN TABLEVIEW");
-        Label lbl_formato = new Label("Formato");
-        Label lbl_consola = new Label("Consola");
-        Label lbl_detalle = new Label("Detalle");
-        Label lbl_portada = new Label("Portada");
-        HBox hbox_tabla = new HBox(30, lbl_formato, lbl_consola, lbl_detalle, lbl_portada);
+        columnaDetalle.setCellValueFactory(fila -> {
+            Videojuego videojuego = fila.getValue();
+            String detalle = "";
 
-        VBox vbox_home = new VBox(30, vbox_panel_superior, hbox_search_user, hbox_user_data, hbox_tabla);
+            if (videojuego instanceof JuegoFisico fisico) {
+                detalle = "Stock: " + fisico.getStockTienda()
+                        + " · Peso: " + fisico.getPesoGramos() + " g";
 
-        Scene home_scene = new Scene(vbox_home, 720, 480);
-
-        btn_search_user.setOnAction(e -> {
-
-            String rut = txf_user_rut.getText().trim();
-
-            if (rut.isEmpty()) {
-                lbl_mensaje.setText("Ingrese un RUT para buscar.");
-                return;
+            } else if (videojuego instanceof JuegoDigital digital) {
+                detalle = "Tamaño: " + digital.getTamanoGB() + " GB"
+                        + " · Código: " + digital.getCodigoActivacion();
             }
 
-            UserController userController = new UserController();
-            Usuario usuario = userController.buscarUsuario(rut);
-
-            if (usuario == null) { //Para evitar error si el rut esta vacio/nulo
-                lbl_user_data_rut.setText("RUT: _____________");
-                lbl_user_data_nombre.setText("Nombre: _____________");
-                lbl_user_data_email.setText("Email: _____________");
-
-                lbl_mensaje.setText("No se encontró un usuario con ese RUT.");
-                return;
-            }
-
-            lbl_user_data_rut.setText("RUT: " + usuario.getRut());
-            lbl_user_data_nombre.setText("Nombre: " + usuario.getNombre());
-            lbl_user_data_email.setText("Email: " + usuario.getEmail());
-            lbl_user_data_nivel.setText("Nivel Gamer: " + usuario.getNivelGamer());
-
-            lbl_mensaje.setText("Usuario encontrado.");
+            return new ReadOnlyStringWrapper(detalle);
         });
 
-        return home_scene;
+        TableColumn<Videojuego, String> columnaPlataforma = new TableColumn<>("Plataforma");
+        columnaPlataforma.setCellValueFactory(new PropertyValueFactory<>("plataforma"));
+
+        TableColumn<Videojuego, String> columnaPortada = new TableColumn<>("Portada");
+        columnaPortada.setCellValueFactory(new PropertyValueFactory<>("portada"));
+
+        columnaPortada.setCellFactory(columna -> {
+
+            return new TableCell<Videojuego, String>() {
+
+                private final ImageView vistaImagen = new ImageView();
+
+                {
+                    vistaImagen.setFitWidth(110);
+                    vistaImagen.setFitHeight(160);
+                    vistaImagen.setPreserveRatio(true);
+                }
+
+                @Override
+                protected void updateItem(String rutaImagen, boolean vacio) {
+                    super.updateItem(rutaImagen, vacio);
+
+                    if (vacio || rutaImagen == null || rutaImagen.isBlank()) {
+                        vistaImagen.setImage(null);
+                        setGraphic(null);
+                        setText(null);
+                    } else {
+                        Image imagen = new Image(rutaImagen, true);
+                        vistaImagen.setImage(imagen);
+
+                        setGraphic(vistaImagen);
+                        setText(null);
+                    }
+                }
+            };
+        });
+
+        tablaVideoJuegos.getColumns().add(columnaTipo);
+        tablaVideoJuegos.getColumns().add(columnaTitulo);
+        tablaVideoJuegos.getColumns().add(columnaDetalle);
+        tablaVideoJuegos.getColumns().add(columnaPlataforma);
+        tablaVideoJuegos.getColumns().add(columnaPortada);
     }
+
+    private void cargarInventario() {
+        ObservableList<Videojuego> videojuegos = FXCollections.observableArrayList(inventarioController.getInventario());
+        tablaVideoJuegos.setItems(videojuegos);
+    }
+
+    public Scene inventarioScene() {
+        VBox contenedorInventario = new VBox(tablaVideoJuegos);
+        Scene escenaInventario = new Scene(contenedorInventario, 800, 600);
+        return escenaInventario;
+    }
+
+    public VBox contenedorGameVault() {
+        return new VBox(tablaVideoJuegos);
+    }
+
 }

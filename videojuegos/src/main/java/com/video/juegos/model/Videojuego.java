@@ -34,4 +34,6 @@ public abstract class Videojuego {
     public void setPortada(String portada) {
         this.portada = portada;
     }
+
+    public abstract String getTipo();
 }

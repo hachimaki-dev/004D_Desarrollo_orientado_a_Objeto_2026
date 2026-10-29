@@ -1,18 +1,19 @@
 package com.video.juegos.controller;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import com.video.juegos.model.Videojuego;
 import com.video.juegos.model.InventarioManager;
-import com.video.juegos.model.Usuario;
-import com.video.juegos.model.UsuarioManager;
 
 public class InventarioController {
 
-    private InventarioManager materialManager = new InventarioManager();
-    //private UsuarioManager userManager = new UsuarioManager();
+    private InventarioManager inventarioManager;
 
-    public List<Videojuego> obtenerCatalogo() {
-        return materialManager.getCatalogo();
+    public InventarioController() {
+        inventarioManager = new InventarioManager();
+    }
+
+    public ArrayList<Videojuego> getInventario(){
+        return inventarioManager.getInventario();
     }
 }

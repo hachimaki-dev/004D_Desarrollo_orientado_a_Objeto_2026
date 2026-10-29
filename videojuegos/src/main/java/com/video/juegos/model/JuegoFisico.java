@@ -26,4 +26,9 @@ public class JuegoFisico extends Videojuego {
         this.pesoGramos = pesoGramos;
     }
 
+    @Override
+    public String getTipo() {
+        return "Físico";
+    }
+
 }
