@@ -20,7 +20,7 @@ public class Smartphone extends Dispositivo {
 
     @Override
     public String getEspecificacion() {
-        return almacenamientoGb + " GB · " + camaraMp + " MP";
+        return almacenamientoGb + " GB  " + camaraMp + " MP";
     }
 
     public int getAlmacenamientoGb() {

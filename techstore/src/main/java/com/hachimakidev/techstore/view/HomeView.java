@@ -9,7 +9,7 @@ public class HomeView {
         CatalogoView catalogo_view = new CatalogoView();
         VBox box_catalogo = catalogo_view.catalogo();
 
-        Scene home_scene = new Scene(box_catalogo, 820, 560);
+        Scene home_scene = new Scene(box_catalogo, 1080, 720);
         return home_scene;
     }
 }

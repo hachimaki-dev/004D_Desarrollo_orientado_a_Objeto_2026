@@ -19,8 +19,8 @@ public class Notebook extends Dispositivo {
     }
 
     @Override
-    public String getEspecificacion() {
-        return ramGb + " GB RAM · " + procesador;
+    public String getEspecificacion(){
+        return ramGb + " GB RAM · " + procesador ;
     }
 
     public int getRamGb() {
