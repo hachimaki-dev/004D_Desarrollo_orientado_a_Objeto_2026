@@ -27,31 +27,40 @@ public class DispositivoManager {
 
             String tipo = dispositivo.get("tipo").getAsString();
 
+            int id = dispositivo.get("id").getAsInt();
+            String marca = dispositivo.get("marca").getAsString();
+            String modelo = dispositivo.get("modelo").getAsString();
+            int precio = dispositivo.get("precio").getAsInt();
+            boolean disponible= dispositivo.get("disponible").getAsBoolean();
+            int almacenamientoGb = dispositivo.get("almacenamientoGb").getAsInt();
+            int camaraMp = dispositivo.get("camaraMp").getAsInt();
+            int ramGb = dispositivo.get("ramGb").getAsInt();
+            String procesador = dispositivo.get("procesador").getAsString();
+
             switch (tipo) {
-                case "notebook" :
-                    int id = dispositivo.get("id").getAsInt();
-                    String marca = dispositivo.get("marca").getAsString();
-                    String modelo = dispositivo.get("modelo").getAsString();
-                    int precio = dispositivo.get("precio").getAsInt();
-                    boolean disponible= dispositivo.get("disponible").getAsBoolean();
-                    int almacenamientoGb = dispositivo.get("almacenamientoGb").getAsInt();
-                    int camaraMp = dispositivo.get("camaraMp").getAsInt();
+                case "notebook" : {
+                    Notebook notebook = new Notebook(id, marca, modelo, precio, disponible, ramGb, procesador);
+                    array_dispositivos.add(notebook);
                     break;
-            
-                case "smartphone":
+                }
+                case "smartphone": {
+                    Smartphone smartphone = new Smartphone(id, marca, modelo, precio, disponible, almacenamientoGb, camaraMp);
+                    array_dispositivos.add(smartphone);
                     break;
+                }
             }
+
         }
-
-
-
+    }
+    public List<Dispositivo> getListaDispositivos(){
+        return array_dispositivos;
     }
 
-    // TODO 3: Implementar el método de carga usando Gson y JsonObject[]:
-    //   - Si el campo "tipo" es "notebook", convertir el JsonObject a Notebook.class y agregarlo a la lista.
-    //   - Si el campo "tipo" es "smartphone", convertir el JsonObject a Smartphone.class y agregarlo a la lista.
-
-    // TODO 4: Implementar un método getter para retornar la lista de dispositivos y un método para agregar un nuevo Dispositivo.
-
+    public void agregarDispositivo(Dispositivo dispositivo){
+        if (dispositivo != null) {
+            this.array_dispositivos.add(dispositivo);
+        }
+    }
+    
 }
 
