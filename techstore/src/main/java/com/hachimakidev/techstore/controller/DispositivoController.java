@@ -1,6 +1,39 @@
 package com.hachimakidev.techstore.controller;
 
+import java.util.ArrayList;
+
+import com.hachimakidev.techstore.model.Dispositivo;
+import com.hachimakidev.techstore.model.DispositivoManager;
+
 public class DispositivoController {
+
+    DispositivoManager manager = new DispositivoManager();
+
+    
+    public ArrayList<Dispositivo> obtenerDispositivos(){
+
+            return manager.obtenerDispositivos();
+
+    }
+
+    public void agregarDispositivo (Dispositivo dispositivo) {
+
+        if (dispositivo != null) {
+
+            manager.agregarDispositivo(dispositivo);
+
+        } else {
+
+            System.out.println("No puede agregar un objeto de valor nulo");
+        }
+
+        
+    }
+   
+        
+        
+
+   
 
     // TODO 1: Instanciar DispositivoManager como atributo del controlador.
 
