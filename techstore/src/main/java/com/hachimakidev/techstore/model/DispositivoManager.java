@@ -15,7 +15,7 @@ public class DispositivoManager {
 
 // TODO 2: En el constructor, llamar al método que carga los datos desde "/dispositivos.json".
 
-    public DispositivoManager(ArrayList<Dispositivo> dispositivos) {
+    public DispositivoManager() {
         cargarDatos();
     }
     
