@@ -1,6 +1,6 @@
-package com.hachimakidev.techstore.model;
+package com.hachimakidev.musicstore.model;
 
-public abstract class Dispositivo {
+public abstract class Instrumento {
 
     private int id;
     private String marca;
@@ -8,9 +8,9 @@ public abstract class Dispositivo {
     private int precio;
     private boolean disponible;
 
-    public Dispositivo() {}
+    public Instrumento() {}
 
-    public Dispositivo(int id, String marca, String modelo, int precio, boolean disponible) {
+    public Instrumento(int id, String marca, String modelo, int precio, boolean disponible) {
         this.id = id;
         this.marca = marca;
         this.modelo = modelo;

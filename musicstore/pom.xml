@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.hachimakidev.techstore</groupId>
-    <artifactId>techstore</artifactId>
+    <groupId>com.hachimakidev.musicstore</groupId>
+    <artifactId>musicstore</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -35,7 +35,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
-                    <mainClass>com.hachimakidev.techstore.Main</mainClass>
+                    <mainClass>com.hachimakidev.musicstore.Main</mainClass>
                 </configuration>
             </plugin>
         </plugins>

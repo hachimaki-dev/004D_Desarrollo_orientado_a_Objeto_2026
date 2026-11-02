@@ -1,0 +1,103 @@
+[
+  {
+    "tipo": "guitarra",
+    "id": 1,
+    "marca": "Fender",
+    "modelo": "Player Stratocaster",
+    "precio": 789990,
+    "disponible": true,
+    "cuerdas": 6,
+    "tipoPastilla": "Single Coil"
+  },
+  {
+    "tipo": "teclado",
+    "id": 2,
+    "marca": "Yamaha",
+    "modelo": "PSR-E373",
+    "precio": 269990,
+    "disponible": true,
+    "teclas": 61,
+    "ritmosIntegrados": 205
+  },
+  {
+    "tipo": "guitarra",
+    "id": 3,
+    "marca": "Gibson",
+    "modelo": "Les Paul Standard",
+    "precio": 2190000,
+    "disponible": true,
+    "cuerdas": 6,
+    "tipoPastilla": "Humbucker"
+  },
+  {
+    "tipo": "teclado",
+    "id": 4,
+    "marca": "Casio",
+    "modelo": "Casiotone CT-S300",
+    "precio": 189990,
+    "disponible": true,
+    "teclas": 61,
+    "ritmosIntegrados": 77
+  },
+  {
+    "tipo": "guitarra",
+    "id": 5,
+    "marca": "Ibanez",
+    "modelo": "RG7421",
+    "precio": 649990,
+    "disponible": false,
+    "cuerdas": 7,
+    "tipoPastilla": "Humbucker"
+  },
+  {
+    "tipo": "teclado",
+    "id": 6,
+    "marca": "Roland",
+    "modelo": "GO:KEYS 3",
+    "precio": 429990,
+    "disponible": true,
+    "teclas": 61,
+    "ritmosIntegrados": 203
+  },
+  {
+    "tipo": "guitarra",
+    "id": 7,
+    "marca": "PRS",
+    "modelo": "SE Custom 24",
+    "precio": 899990,
+    "disponible": true,
+    "cuerdas": 6,
+    "tipoPastilla": "Humbucker"
+  },
+  {
+    "tipo": "teclado",
+    "id": 8,
+    "marca": "Korg",
+    "modelo": "EK-50",
+    "precio": 459990,
+    "disponible": true,
+    "teclas": 61,
+    "ritmosIntegrados": 280
+  },
+  {
+    "tipo": "guitarra",
+    "id": 9,
+    "marca": "ESP LTD",
+    "modelo": "EC-256",
+    "precio": 529990,
+    "disponible": true,
+    "cuerdas": 6,
+    "tipoPastilla": "Humbucker"
+  },
+  {
+    "tipo": "teclado",
+    "id": 10,
+    "marca": "Yamaha",
+    "modelo": "NP-35 Piaggero",
+    "precio": 349990,
+    "disponible": false,
+    "teclas": 76,
+    "ritmosIntegrados": 10
+  }
+]
+

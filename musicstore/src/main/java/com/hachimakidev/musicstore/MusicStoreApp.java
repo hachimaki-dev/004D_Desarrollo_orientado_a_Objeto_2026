@@ -1,17 +1,17 @@
-package com.hachimakidev.techstore;
+package com.hachimakidev.musicstore;
 
-import com.hachimakidev.techstore.view.HomeView;
+import com.hachimakidev.musicstore.view.HomeView;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-public class TechStoreApp extends Application {
+public class MusicStoreApp extends Application {
 
     @Override
     public void start(Stage stage) {
         HomeView home_view = new HomeView();
 
-        stage.setTitle("TechStore — Inventario de Dispositivos");
+        stage.setTitle("MusicStore — Inventario de Instrumentos");
         stage.setScene(home_view.homeScene());
         stage.show();
     }
