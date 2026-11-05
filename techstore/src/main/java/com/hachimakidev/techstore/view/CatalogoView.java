@@ -7,6 +7,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import com.hachimakidev.techstore.controller.DispositivoController;
 import com.hachimakidev.techstore.model.Dispositivo;
+import com.hachimakidev.techstore.model.Notebook;
+import com.hachimakidev.techstore.model.Smartphone;
 
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
@@ -70,7 +72,7 @@ public class CatalogoView {
 
         columnaDisponible.setCellValueFactory(new PropertyValueFactory<>("disponible"));
 
-        tablaDispositivos.getColumns().addAll(columnaID, columnaDisponible, columnaEspecificacion, columnaPrecio, columnaModelo, columnaMarca, columnaTipo);
+        tablaDispositivos.getColumns().addAll(columnaID, columnaTipo, columnaMarca, columnaModelo, columnaPrecio, columnaEspecificacion, columnaDisponible);
 
         VBox contenedor_tabla = new VBox(10, tablaDispositivos);
 
@@ -110,15 +112,75 @@ public class CatalogoView {
         Marca_txf.setPromptText("Marca");
         TextField Precio_txf = new TextField();
         Precio_txf.setPromptText("Precio");
-        HBox h2 = new HBox(10, combo_opciones, Marca_txf, Precio_txf);
+        TextField Modelo_txf = new TextField();
+        Modelo_txf.setPromptText("Modelo");
+        HBox h2 = new HBox(10, combo_opciones, Marca_txf, Precio_txf, Modelo_txf);
 
 
-        TextField RAM_txf = new TextField();
-        RAM_txf.setPromptText("RAM");
+        TextField Ram_txf = new TextField();
+        Ram_txf.setPromptText("RAM");
         TextField Procesador_txf = new TextField();
         Procesador_txf.setPromptText("Procesador");
-        Button Agregar_dispositivo_Boton = new Button();
-        HBox h3 = new HBox(10, RAM_txf, Procesador_txf );
+
+        combo_opciones.setOnAction(sePresionoSmartphone -> {
+
+            String opcionSeleccionada = combo_opciones.getValue();
+
+            if (opcionSeleccionada.equals("Smartphone")) {
+
+                    Ram_txf.setPromptText("Almacenamiento (GB)");
+
+                    Procesador_txf.setPromptText("Cámara (MP)");
+               
+            } else {
+
+                Ram_txf.setPromptText("RAM");
+       
+                Procesador_txf.setPromptText("Procesador");
+                
+            }
+        });
+
+        Button Agregar_dispositivo_boton = new Button("Agregar Dispositivo");
+
+        Agregar_dispositivo_boton.setOnAction (presionaron_el_boton -> { 
+
+            String guardarComboOpciones = combo_opciones.getValue();
+            String guardarMarca = Marca_txf.getText();
+            String guardarPrecio = Precio_txf.getText();
+            String guardarModelo = Modelo_txf.getText();
+            String guardarRam = Ram_txf.getText();
+            String guardarProcesador = Procesador_txf.getText();
+
+            int precio = Integer.parseInt(guardarPrecio);
+
+            int ID = controller.obtenerDispositivos().size() + 1;
+
+            if (guardarComboOpciones.equals("Notebook")){
+
+                int RAM = Integer.parseInt(guardarRam);
+
+              Notebook N1 = new Notebook (ID, guardarMarca, guardarModelo, precio, true, RAM, guardarProcesador);
+
+              controller.agregarDispositivo(N1);
+
+              tablaDispositivos.getItems().setAll(controller.obtenerDispositivos());
+
+            } else if (guardarComboOpciones.equals("Smartphone")) {
+
+                int almacenamiento = Integer.parseInt(guardarRam);
+                int camara = Integer.parseInt(guardarProcesador);
+
+                Smartphone S1 = new Smartphone(ID, guardarMarca, guardarModelo, precio, true, almacenamiento, camara);
+
+                controller.agregarDispositivo(S1);
+
+                tablaDispositivos.getItems().setAll(controller.obtenerDispositivos());
+            }
+        });
+
+
+        HBox h3 = new HBox(10, Ram_txf, Procesador_txf, Agregar_dispositivo_boton);
 
         VBox contenedor_formulario = new VBox(10, h1, h2, h3);
 
