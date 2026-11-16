@@ -1,7 +1,7 @@
-package com.hachimakidev.biblioapp;
+package com.shunsui2.javadb;
 
 public class Main {
     public static void main(String[] args) {
         App.main(args);
-    }
+    } 
 }
