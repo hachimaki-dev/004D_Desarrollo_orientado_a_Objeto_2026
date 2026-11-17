@@ -34,7 +34,7 @@ public class App extends Application {
         String origenConexion = "jdbc:oracle:thin:@//localhost:1521/FREEPDB1";
 
         String usuariodb = "usuario_desarrollador";
-        String password = "mejiropalmer4ever";
+        String password = "contraseña";
         TextField txfJuego = new TextField();
         TextField txfPrecio = new TextField();
         TextField txfConsola = new TextField();
