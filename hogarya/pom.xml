@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.agcamila01.javadb</groupId>
-    <artifactId>javadb</artifactId>
+    <groupId>com.agcamila01.hogarya</groupId>
+    <artifactId>hogarya</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
