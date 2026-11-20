@@ -34,16 +34,26 @@ public class App extends Application {
         String origenConexion = "jdbc:oracle:thin:@//localhost:1521/FREEPDB1";
 
         String usuariodb = "usuario_desarrollador";
-        String password = "contraseña";
+        String password = "mejiropalmer4ever";
         TextField txfJuego = new TextField();
         TextField txfPrecio = new TextField();
         TextField txfConsola = new TextField();
+        TextField txfJuego2 = new TextField();
+        TextField txfPrecio2 = new TextField();
+        TextField txfConsola2 = new TextField();
         TextField txfidABuscar = new TextField();
+        TextField txfidABuscar2 = new TextField();
         ObservableList<String[]> listaJuegos = FXCollections.observableArrayList();
         txfJuego.setPromptText("Ingresa el nombre del juego");
         txfPrecio.setPromptText("Ingresa el precio del juego");
         txfConsola.setPromptText("Ingresa el nombre de la consola");
         txfidABuscar.setPromptText("Ingresa el id del juego");
+        txfJuego2.setPromptText("Ingresa el nombre del juego");
+        txfPrecio2.setPromptText("Ingresa el precio del juego");
+        txfConsola2.setPromptText("Ingresa el nombre de la consola");
+        txfidABuscar2.setPromptText("Ingresa el id del juego");
+        
+
 
         TableView<String[]> tablajuegos = new TableView<>();
         TableColumn<String[], String> colId = new TableColumn<>("ID");
@@ -86,17 +96,20 @@ public class App extends Application {
         VBox camposAgregar = new VBox(btn_registrar, txfJuego, txfPrecio, txfConsola);
         VBox camposRemover = new VBox(btn_remover, txfidABuscar);
 
-        VBox camposActualizar = new VBox(btn_actualizar, txfidABuscar, txfJuego, txfPrecio, txfConsola);
+        VBox camposActualizar = new VBox(btn_actualizar, txfidABuscar2, txfJuego2, txfPrecio2, txfConsola2);
+        
 
         
         camposAgregar.setVisible(true);
         camposAgregar.setManaged(true);
 
+        camposActualizar.setVisible(false);
+        camposActualizar.setManaged(false);
+
         camposRemover.setVisible(false);
         camposRemover.setManaged(false);
 
-        camposActualizar.setVisible(false);
-        camposActualizar.setManaged(false);
+
 
 
         cmbTipo.setOnAction(e -> {
@@ -168,10 +181,10 @@ while (resultado.next()) {
 
         btn_actualizar.setOnAction(e ->{
             try {
-                int idActualizar = Integer.parseInt(txfidABuscar.getText()); 
-                String juego = txfJuego.getText();
-                int precio = Integer.parseInt(txfPrecio.getText());
-                String consola = txfConsola.getText();
+                int idActualizar = Integer.parseInt(txfidABuscar2.getText()); 
+                String juego = txfJuego2.getText();
+                int precio = Integer.parseInt(txfPrecio2.getText());
+                String consola = txfConsola2.getText();
                 
                 DriverManager.getConnection(origenConexion, usuariodb, password).isValid(2);
                 String actualizarDatos = "UPDATE JUEGOS SET nombre = '" + juego + "', precio = " + precio + ", consola = '" + consola + "' WHERE id = " + idActualizar;
