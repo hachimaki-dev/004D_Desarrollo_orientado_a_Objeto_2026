@@ -1,0 +1,6 @@
+com\kiosko\data\SQL\Conexion.class
+com\kiosko\data\Main.class
+com\kiosko\data\View\viewPrincipal.class
+com\kiosko\data\Model\producto.class
+com\kiosko\data\App.class
+com\kiosko\data\Controller\producoController.class

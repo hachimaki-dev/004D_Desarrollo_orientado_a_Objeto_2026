@@ -25,3 +25,9 @@ INSERT INTO producto (nombre, categoria, precio, stock) VALUES ('Agua Mineral 50
 COMMIT;
 
 select * from producto;
+
+select
+nvl(max(id), 0) as ID_actual
+from producto;
+
+select * from producto order by producto.id asc;

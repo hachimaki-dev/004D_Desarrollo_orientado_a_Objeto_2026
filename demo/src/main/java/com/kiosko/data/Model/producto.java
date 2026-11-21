@@ -2,7 +2,8 @@ package com.kiosko.data.Model;
 
 public class producto 
 {
-    
+    private int id;
+
     private String nombre;
 
     private String categoria;
@@ -10,6 +11,21 @@ public class producto
     private int precio;
 
     private int stock;
+
+    public producto(int id, String nombre, String categoria, int precio, int stock)
+    {
+
+        this.id = id;
+
+        this.nombre = nombre;
+
+        this.categoria = categoria;
+
+        this.precio = precio;
+
+        this.stock = stock;
+
+    }
 
     public producto(String nombre, String categoria, int precio, int stock)
     {
@@ -24,6 +40,16 @@ public class producto
 
     }
 
+    public int getID()
+    {
+        return id;
+    }
+    
+    public void setID(int id)
+    {
+        this.id = id;
+    }
+    
     public String getNombre() 
     {
         return nombre;
