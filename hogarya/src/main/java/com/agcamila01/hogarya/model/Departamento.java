@@ -29,7 +29,7 @@ public class Departamento extends Propiedad {
 
     @Override 
     public String getTipo() {
-        return "Departamento";
+        return "DEPARTAMENTO";
     }
 
     @Override 
@@ -39,6 +39,6 @@ public class Departamento extends Propiedad {
 
     @Override 
     public String getDetalle() {
-        return "COMPLETAR DETALLE DEPARTAMENTO";
+        return "Piso: " + numeroPiso + " | Gastos comunes: $" + gastosComunes;
     }
 }

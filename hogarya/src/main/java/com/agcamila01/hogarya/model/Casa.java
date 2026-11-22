@@ -29,7 +29,7 @@ public class Casa extends Propiedad {
 
     @Override 
     public String getTipo(){
-        return "Casa";
+        return "CASA";
     }
 
     @Override
@@ -39,10 +39,6 @@ public class Casa extends Propiedad {
 
     @Override 
     public String getDetalle() {
-        return "COMPLETAR DETALLES CASA";
-    }
-
-    
-
-    
+        return "Pisos: " + this.getCantidadPisos() + " | Patio: " + (tienePatio ? "Sí" : "No");
+    } 
 }
