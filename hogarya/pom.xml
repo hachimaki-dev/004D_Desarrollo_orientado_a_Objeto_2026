@@ -4,15 +4,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.kiosko.data</groupId>
-    <artifactId>demo</artifactId>
+    <groupId>com.config.hogarya</groupId>
+    <artifactId>hogarya</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <javafx.version>21.0.1</javafx.version>
+        <javafx.version>21.0.4</javafx.version>
+        <mainClass>com.config.hogarya.Main</mainClass>
     </properties>
 
     <dependencies>
@@ -30,6 +31,15 @@
             <version>${javafx.version}</version>
         </dependency>
 
+        <!-- Opcional: descomenta si usas archivos .fxml -->
+        <!--
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+        -->
+
         <!-- Driver oficial de Oracle Database para JDBC -->
         <dependency>
             <groupId>com.oracle.database.jdbc</groupId>
@@ -43,10 +53,9 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
+                <version>3.13.0</version>
                 <configuration>
-                    <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
+                    <release>17</release>
                 </configuration>
             </plugin>
 
@@ -55,9 +64,10 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
-                    <mainClass>com.kiosko.data.Main</mainClass>
+                    <mainClass>${mainClass}</mainClass>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+
 </project>
