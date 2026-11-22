@@ -1,20 +1,10 @@
-package com.evelinvidal.hogarya;
+package com.evelinvidal.Modelo;
 
 public class Casa extends Propiedad {
     private int cantidadPisos;
     private boolean tienePatio;
 
-    public Casa() {
-        super();
-    }
-
-    public Casa(String direccion, double arriendoBase, int metrosCuadrados, int cantidadPisos, boolean tienePatio) {
-        super(direccion, arriendoBase, metrosCuadrados);
-        this.cantidadPisos = cantidadPisos;
-        this.tienePatio = tienePatio;
-    }
-
-    public Casa(int id, String direccion, double arriendoBase, int metrosCuadrados, int cantidadPisos, boolean tienePatio) {
+    public Casa(int id, String direccion, int arriendoBase, int metrosCuadrados, int cantidadPisos, boolean tienePatio) {
         super(id, direccion, arriendoBase, metrosCuadrados);
         this.cantidadPisos = cantidadPisos;
         this.tienePatio = tienePatio;
@@ -26,16 +16,15 @@ public class Casa extends Propiedad {
     }
 
     @Override
-    public double calcularPagoMensual() {
-        return getArriendoBase();
+    public int calcularPagoMensual() {
+        return arriendoBase;
     }
 
     @Override
     public String getDetalle() {
-        return cantidadPisos + " piso(s)" + (tienePatio ? " - Con patio" : " - Sin patio");
+        return cantidadPisos + " piso(s) | Patio: " + (tienePatio ? "Sí" : "No");
     }
 
-    // Getters y Setters
     public int getCantidadPisos() { return cantidadPisos; }
     public void setCantidadPisos(int cantidadPisos) { this.cantidadPisos = cantidadPisos; }
 

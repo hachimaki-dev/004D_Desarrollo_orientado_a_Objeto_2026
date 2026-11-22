@@ -1,0 +1,8 @@
+com\evelinvidal\Dao\PropiedadDAO.class
+com\evelinvidal\HogarYa\App.class
+com\evelinvidal\HogarYa\Conexion\ConexionDB.class
+com\evelinvidal\Vista\PropiedadView.class
+com\evelinvidal\Modelo\Departamento.class
+com\evelinvidal\Modelo\Casa.class
+com\evelinvidal\Modelo\Propiedad.class
+com\evelinvidal\Controller\PropiedadController.class
