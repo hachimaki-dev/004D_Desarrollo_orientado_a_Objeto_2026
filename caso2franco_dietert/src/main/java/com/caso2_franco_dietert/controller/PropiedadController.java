@@ -24,7 +24,7 @@ public class PropiedadController {
         dao.eliminarPropiedad(id);
     }
 
-    public void actualizarPropiedad () {
+    public void actualizarPropiedad (Propiedad propiedad) {
 
         dao.actualizarPropiedad(null);
     }

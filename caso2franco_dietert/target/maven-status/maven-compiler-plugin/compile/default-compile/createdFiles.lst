@@ -1,0 +1,9 @@
+com/caso2_franco_dietert/model/Casa.class
+com/caso2_franco_dietert/conexionDB/conexionDB.class
+com/caso2_franco_dietert/controller/PropiedadController.class
+com/caso2_franco_dietert/model/Departamento.class
+com/caso2_franco_dietert/view/PropiedadView.class
+com/caso2_franco_dietert/view/App.class
+com/caso2_franco_dietert/model/Propiedad.class
+com/caso2_franco_dietert/dao/PropiedadDAO.class
+com/caso2_franco_dietert/Main.class

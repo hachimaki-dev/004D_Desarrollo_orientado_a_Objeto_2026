@@ -11,10 +11,9 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
     
-    VBox layout = new VBox(15);
-    layout.setPadding(new Insets(20));
+    PropiedadView vista = new PropiedadView();
 
-    Scene scene = new Scene(layout, 1000, 650);
+    Scene scene = new Scene(vista.getVista(), 1200, 750);
 
     stage.setTitle("Gestión de Propiedades");
     stage.setScene(scene);
