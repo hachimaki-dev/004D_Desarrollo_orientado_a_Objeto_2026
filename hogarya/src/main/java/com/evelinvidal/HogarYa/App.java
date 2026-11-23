@@ -9,10 +9,9 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) {
-        PropiedadView root = new PropiedadView();
-        Scene scene = new Scene(root, 950, 600);
+        PropiedadView view = new PropiedadView();
         stage.setTitle("Inmobiliaria HogarYA - Gestión de Arriendos");
-        stage.setScene(scene);
+        stage.setScene(view.crearEscena());
         stage.show();
     }
 

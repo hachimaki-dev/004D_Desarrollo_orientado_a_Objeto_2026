@@ -4,11 +4,8 @@ import com.evelinvidal.Dao.PropiedadDAO;
 import com.evelinvidal.Modelo.Casa;
 import com.evelinvidal.Modelo.Departamento;
 import com.evelinvidal.Modelo.Propiedad;
-
 import java.util.List;
-
 public class PropiedadController {
-
     private final PropiedadDAO dao;
 
     public PropiedadController() {
