@@ -12,38 +12,65 @@ public class ProductoController {
         this.productoDAO = new ProductoDAO();
     }
 
-    public boolean registrarProducto(String nombre, String categoria, int precio, int stock) {
-        if (nombre == null || nombre.isBlank() ||
-            categoria == null || categoria.isBlank() ||
-             precio < 0||
-             stock < 0) {
-            return false;
-        }
+    public boolean registrarProducto(String nombre, String categoria, String precioTexto, String stockTexto) {
+    if (nombre == null || nombre.isBlank() ||
+        categoria == null || categoria.isBlank() ||
+        precioTexto == null || precioTexto.isBlank() ||
+        stockTexto == null || stockTexto.isBlank()) {
+        return false;
+}
 
-        // Usamos el constructor SIN id porque es un usuario nuevo
-        Producto nuevo = new Producto(nombre.trim(), categoria.trim(), precio, stock);
-        return productoDAO.guardar(nuevo);
+    try {
+    int precio = Integer.parseInt(precioTexto.trim());
+    int stock = Integer.parseInt(stockTexto.trim());
+
+    if (precio <= 0 || stock < 0) {
+        return false;
+    }
+    Producto nuevo = new Producto(nombre.trim(), categoria.trim(), precio, stock);
+    return productoDAO.guardar(nuevo);
+
+    } catch (NumberFormatException e) {
+    return false;
+}
     }
 
-    public ArrayList<Producto> obtenerUsuarios() {
+
+
+    public ArrayList<Producto> obtenerProductos() {
         return productoDAO.obtenerTodos();
     }
 
-    public boolean actualizarUsuario(int id, String nombre, String categoria, int precio, int stock) {
+    
+
+    public boolean actualizarProducto(int id, String nombre, String categoria, String precioTexto, String stockTexto) {
         if (id <= 0 ||
             nombre == null || nombre.isBlank() ||
             categoria == null || categoria.isBlank() ||
-             precio > 0||
-             stock > 0) {
+             precioTexto == null|| precioTexto.isBlank() ||
+             stockTexto == null|| stockTexto.isBlank()) {
             return false;
         }
+    
+    try {
+    int precio = Integer.parseInt(precioTexto.trim());
+    int stock = Integer.parseInt(stockTexto.trim());
 
-        // Usamos el constructor CON id para indicar qué fila se está actualizando
-        Producto editado = new Producto(id, nombre.trim(), categoria.trim(), precio, stock);
-        return productoDAO.actualizar(editado);
+    if (precio <= 0 || stock < 0) {
+        return false;
     }
 
-    public boolean eliminarUsuario(int id) {
+        // Usamos el constructor CON id para indicar qué fila se está actualizando
+    Producto editado = new Producto(id, nombre.trim(), categoria.trim(), precio, stock);
+    return productoDAO.actualizar(editado);
+    }
+     catch (NumberFormatException e) {
+    return false;
+    }
+}
+
+
+    public boolean eliminarProducto(int id) {
         if (id <= 0) {
             return false;
         }

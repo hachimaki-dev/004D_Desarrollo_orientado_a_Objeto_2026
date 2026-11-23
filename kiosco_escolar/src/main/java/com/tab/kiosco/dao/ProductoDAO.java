@@ -11,7 +11,7 @@ import com.tab.kiosco.model.Producto;
 
 public class ProductoDAO {
     public boolean guardar(Producto producto) {
-        String sql = "INSERT INTO usuarios (username, correo, password, rol) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO productos (nombre, categoria, precio, stock) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = ConexionDB.obtenerConexion();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -32,7 +32,7 @@ public class ProductoDAO {
 
     public ArrayList<Producto> obtenerTodos() {
         ArrayList<Producto> lista = new ArrayList<>();
-        String sql = "SELECT id, username, correo, password, rol FROM usuarios ORDER BY id ASC";
+        String sql = "SELECT id, nombre, categoria, precio, stock FROM productos ORDER BY id ASC";
 
         try (Connection conn = ConexionDB.obtenerConexion();
              PreparedStatement ps = conn.prepareStatement(sql);
@@ -78,7 +78,7 @@ public class ProductoDAO {
 
     // 4. OPERACIÓN ELIMINAR (DELETE)
     public boolean eliminar(int id) {
-        String sql = "DELETE FROM usuarios WHERE id = ?";
+        String sql = "DELETE FROM productos WHERE id = ?";
 
         try (Connection conn = ConexionDB.obtenerConexion();
              PreparedStatement ps = conn.prepareStatement(sql)) {
