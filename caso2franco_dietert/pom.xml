@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.javadb_prueba_final</groupId>
-    <artifactId>javadb_final</artifactId>
+    <groupId>com.caso2_franco_dietert</groupId>
+    <artifactId>caso2franco_dietert</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>

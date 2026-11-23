@@ -1,7 +1,6 @@
-package com.javadb_prueba_final;
+package com.caso2_franco_dietert;
 
 public class Main {
     public static void main(String[] args) {
-        App.main(args);
     }
 }
